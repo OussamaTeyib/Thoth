@@ -1,0 +1,29 @@
+# Gradle files
+.gradle/
+.kotlin/
+[Bb]uild*/
+.cxx/
+local.properties
+*.log
+
+# IDE files
+.idea/*
+!.idea/misc.xml
+!.idea/gradle.xml
+!.idea/compiler.xml
+!.idea/vcs.xml
+!.idea/AndroidProjectSystem.xml
+!.idea/markdown.xml
+!.idea/runConfigurations/
+!.idea/dictionaries/
+
+# Android build artifacts
+*.class
+*.dex
+*.flat
+*.zip
+*.ap_
+*.apk
+*.idsig
+*.aab
+*.apks

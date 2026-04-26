@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Thoth</string>
+    <string name="app_description">Yet another note-taking app</string>
+</resources>
