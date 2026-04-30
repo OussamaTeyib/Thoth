@@ -54,7 +54,7 @@ android {
             isShrinkResources = true
 
             // Apply release signing
-            signingConfig = if (hasSigningConfig) {
+            signingConfig = if (System.getenv("STORE_FILE") != null) {
                 signingConfigs.getByName("release")
             } else {
                 signingConfigs.getByName("debug")  // Fallback to debug keystore
