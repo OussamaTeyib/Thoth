@@ -1,6 +1,7 @@
 package com.oussamateyib.thoth.feature_note.domain.model
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.oussamateyib.thoth.ui.theme.BabyBlue
 import com.oussamateyib.thoth.ui.theme.LightGreen
 import com.oussamateyib.thoth.ui.theme.RedOrange
