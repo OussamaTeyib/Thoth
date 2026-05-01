@@ -1,7 +1,7 @@
 package com.oussamateyib.thoth.feature_note.data.data_source
 
 import androidx.room.RoomDatabase
-import androidx.room.vo.Database
+import androidx.room.Database
 import com.oussamateyib.thoth.feature_note.domain.model.Note
 
 @Database(
