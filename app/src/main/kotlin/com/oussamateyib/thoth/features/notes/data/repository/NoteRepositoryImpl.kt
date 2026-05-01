@@ -1,8 +1,8 @@
-package com.oussamateyib.thoth.feature_note.data.repository
+package com.oussamateyib.thoth.features.notes.data.repository
 
-import com.oussamateyib.thoth.feature_note.data.data_source.NoteDao
-import com.oussamateyib.thoth.feature_note.domain.model.Note
-import com.oussamateyib.thoth.feature_note.domain.repository.NoteRepository
+import com.oussamateyib.thoth.features.notes.domain.model.Note
+import com.oussamateyib.thoth.features.notes.data.local.NoteDao
+import com.oussamateyib.thoth.features.notes.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
 
 class NoteRepositoryImpl(

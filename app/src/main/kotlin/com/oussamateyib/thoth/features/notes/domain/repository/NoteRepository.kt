@@ -1,6 +1,6 @@
-package com.oussamateyib.thoth.feature_note.domain.repository
+package com.oussamateyib.thoth.features.notes.domain.repository
 
-import com.oussamateyib.thoth.feature_note.domain.model.Note
+import com.oussamateyib.thoth.features.notes.domain.model.Note
 import kotlinx.coroutines.flow.Flow
 
 interface NoteRepository {

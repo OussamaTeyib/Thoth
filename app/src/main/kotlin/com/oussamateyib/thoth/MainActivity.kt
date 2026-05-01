@@ -1,4 +1,4 @@
-package com.oussamateyib.thoth.feature_note.presentation
+package com.oussamateyib.thoth
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

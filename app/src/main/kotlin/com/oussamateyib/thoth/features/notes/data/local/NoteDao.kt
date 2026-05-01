@@ -1,11 +1,11 @@
-package com.oussamateyib.thoth.feature_note.data.data_source
+package com.oussamateyib.thoth.features.notes.data.local
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.oussamateyib.thoth.feature_note.domain.model.Note
+import com.oussamateyib.thoth.features.notes.domain.model.Note
 import kotlinx.coroutines.flow.Flow
 
 @Dao
