@@ -93,4 +93,5 @@ dependencies {
 
     // Testing
     testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
 }

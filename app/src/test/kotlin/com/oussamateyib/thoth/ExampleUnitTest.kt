@@ -1,7 +1,6 @@
 package com.oussamateyib.thoth
 
 import org.junit.Test
-
 import org.junit.Assert.*
 
 class ExampleUnitTest {
