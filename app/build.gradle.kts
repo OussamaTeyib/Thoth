@@ -2,6 +2,12 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
+}
+
+// Configure Room schema export directory
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 // Detect if the current build is for an Android App Bundle (AAB)
