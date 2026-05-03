@@ -49,7 +49,7 @@ jobs:
             mv "$apk" "$(dirname "$apk")/Thoth_$(basename "$apk" | sed -E 's/app-(.*)-(release|debug)\.apk/\1/').apk"
           done
 
-          # Rename AAB
+          # Rename AABs
           for variant in release debug; do
             mv "app/build/outputs/bundle/$variant/"{app-$variant,Thoth}.aab
           done
