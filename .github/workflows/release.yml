@@ -38,8 +38,10 @@ jobs:
           set -euo pipefail
           RELEASE_VERSION="${GITHUB_REF_NAME}"
 
-          # Move and rename APK:
-          mv app/build/outputs/apk/release/app-release.apk "Thoth_${RELEASE_VERSION}.apk"
+          # Move and rename APKs
+          for apk in app/build/outputs/apk/release/*.apk; do
+            mv "$apk" "Thoth_${RELEASE_VERSION}_$(basename "$apk" | sed -E 's/app-(.*)-release\.apk/\1/').apk"
+          done
 
           # Move and rename AAB
           mv app/build/outputs/bundle/release/app-release.aab "Thoth_${RELEASE_VERSION}.aab"
@@ -49,7 +51,7 @@ jobs:
 
           # Generate SHA256SUMS
           sha256sum \
-            Thoth_${RELEASE_VERSION}.apk \
+            Thoth_${RELEASE_VERSION}_*.apk \
             Thoth_${RELEASE_VERSION}.aab \
             mapping.txt \
             > SHA256SUMS
@@ -65,7 +67,7 @@ jobs:
           generate_release_notes: true
           discussion_category_name: Announcements
           files: |
-            Thoth_${{ github.ref_name }}.apk
+            Thoth_${{ github.ref_name }}_*.apk
             Thoth_${{ github.ref_name }}.aab
             mapping.txt
             SHA256SUMS
