@@ -1,4 +1,4 @@
-package com.oussamateyib.thoth.features.notes.presentation.utils
+package com.oussamateyib.thoth.features.notes.presentation.util
 
 import com.oussamateyib.thoth.ui.theme.BabyBlue
 import com.oussamateyib.thoth.ui.theme.LightGreen
