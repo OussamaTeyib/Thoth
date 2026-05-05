@@ -4,7 +4,7 @@ import com.oussamateyib.thoth.features.notes.domain.model.Note
 import com.oussamateyib.thoth.features.notes.domain.util.NoteOrder
 import com.oussamateyib.thoth.features.notes.domain.util.OrderType
 
-data class ListState(
+data class NoteListState(
     val notes: List<Note> = emptyList(),
     val noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
     val isOrderSectionVisible: Boolean = false
