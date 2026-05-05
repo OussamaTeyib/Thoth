@@ -1,6 +1,6 @@
 [versions]
 activityCompose = "1.13.0"
-androidGradlePlugin = "9.2.0"
+androidGradlePlugin = "9.2.1"
 composeBom = "2026.04.01"
 hilt = "2.59.2"
 junit = "4.13.2"
