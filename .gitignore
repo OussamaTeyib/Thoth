@@ -9,14 +9,14 @@ local.properties
 # IDE files
 *.iml
 .idea/*
-!.idea/misc.xml
-!.idea/gradle.xml
-!.idea/compiler.xml
-!.idea/vcs.xml
 !.idea/AndroidProjectSystem.xml
-!.idea/markdown.xml
-!.idea/runConfigurations/
+!.idea/compiler.xml
 !.idea/dictionaries/
+!.idea/gradle.xml
+!.idea/markdown.xml
+!.idea/misc.xml
+!.idea/runConfigurations/
+!.idea/vcs.xml
 
 # Android build artifacts
 *.aab
