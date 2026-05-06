@@ -1,12 +1,13 @@
 # Gradle files
+*.log
+.cxx/
 .gradle/
 .kotlin/
 [Bb]uild*/
-.cxx/
 local.properties
-*.log
 
 # IDE files
+*.iml
 .idea/*
 !.idea/misc.xml
 !.idea/gradle.xml
@@ -18,12 +19,13 @@ local.properties
 !.idea/dictionaries/
 
 # Android build artifacts
+*.aab
+*.ap_
+*.apk
+*.apks
 *.class
 *.dex
 *.flat
-*.zip
-*.ap_
-*.apk
+*.hprof
 *.idsig
-*.aab
-*.apks
+*.zip
