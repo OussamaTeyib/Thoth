@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Thoth</string>
-    <string name="app_description">Yet another note-taking app</string>
     <string name="add_note">Add note</string>
+    <string name="app_description">Yet another note-taking app</string>
+    <string name="app_name">Thoth</string>
+    <string name="ascending">Ascending</string>
+    <string name="color">Color</string>
+    <string name="date">Date</string>
     <string name="delete_note">Delete note</string>
-    <string name="note_deleted">Note deleted</string>
+    <string name="descending">Descending</string>
     <string name="list_screen_top_bar_title">My Notes</string>
+    <string name="note_deleted">Note deleted</string>
+    <string name="title">Title</string>
     <string name="sort_notes">Sort notes</string>
     <string name="undo">Undo</string>
 </resources>
