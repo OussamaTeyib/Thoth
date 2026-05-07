@@ -4,5 +4,8 @@
     <string name="app_description">Yet another note-taking app</string>
     <string name="add_note">Add note</string>
     <string name="delete_note">Delete note</string>
+    <string name="note_deleted">Note deleted</string>
+    <string name="list_screen_top_bar_title">My Notes</string>
     <string name="sort_notes">Sort notes</string>
+    <string name="undo">Undo</string>
 </resources>
