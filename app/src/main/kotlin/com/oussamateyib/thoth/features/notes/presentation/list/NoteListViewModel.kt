@@ -16,9 +16,9 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class NoteListViewModel @Inject constructor(
-    val deleteNoteUseCase: DeleteNoteUseCase,
-    val getNotesUseCase: GetNotesUseCase,
-    val insertNoteUseCase: InsertNoteUseCase
+    private val deleteNoteUseCase: DeleteNoteUseCase,
+    private val getNotesUseCase: GetNotesUseCase,
+    private val insertNoteUseCase: InsertNoteUseCase
 ) : ViewModel() {
     private val _state = mutableStateOf(NoteListState())
     val state: State<NoteListState> = _state
