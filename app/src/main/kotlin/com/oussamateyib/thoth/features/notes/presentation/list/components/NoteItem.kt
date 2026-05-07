@@ -94,7 +94,7 @@ fun NoteItem(
         ) {
             Icon(
                 painter = painterResource(R.drawable.ic_delete),
-                contentDescription = stringResource(R.string.delete_item)
+                contentDescription = stringResource(R.string.delete_note)
             )
         }
     }

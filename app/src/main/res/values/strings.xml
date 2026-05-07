@@ -2,5 +2,7 @@
 <resources>
     <string name="app_name">Thoth</string>
     <string name="app_description">Yet another note-taking app</string>
-    <string name="delete_item">Delete item</string>
+    <string name="add_note">Add note</string>
+    <string name="delete_note">Delete note</string>
+    <string name="sort_notes">Sort notes</string>
 </resources>
