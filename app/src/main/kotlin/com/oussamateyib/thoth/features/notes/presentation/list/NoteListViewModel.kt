@@ -1,7 +1,5 @@
 package com.oussamateyib.thoth.features.notes.presentation.list
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oussamateyib.thoth.features.notes.domain.model.Note
@@ -12,6 +10,10 @@ import com.oussamateyib.thoth.features.notes.domain.util.NoteOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -20,8 +22,8 @@ class NoteListViewModel @Inject constructor(
     private val getNotesUseCase: GetNotesUseCase,
     private val insertNoteUseCase: InsertNoteUseCase
 ) : ViewModel() {
-    private val _state = mutableStateOf(NoteListState())
-    val state: State<NoteListState> = _state
+    private val _state = MutableStateFlow(NoteListState())
+    val state: StateFlow<NoteListState> = _state.asStateFlow()
 
     // Holds the active collection job so it can be canceled on re-fetch
     private var getNotesJob: Job? = null
@@ -39,17 +41,17 @@ class NoteListViewModel @Inject constructor(
                 if (state.value.noteOrder::class == event.noteOrder::class &&
                     state.value.noteOrder.orderType == event.noteOrder.orderType
                 ) return
-                _state.value = state.value.copy(
-                    noteOrder = event.noteOrder
-                )
+                _state.update {
+                    it.copy(noteOrder = event.noteOrder)
+                }
                 // Reload with the new order
                 getNotes(event.noteOrder)
             }
 
             is NoteListEvent.ToggleOrderSection -> {
-                _state.value = state.value.copy(
-                    isOrderSectionVisible = !state.value.isOrderSectionVisible
-                )
+                _state.update {
+                    it.copy(isOrderSectionVisible = !it.isOrderSectionVisible)
+                }
             }
 
             is NoteListEvent.DeleteNote -> {
@@ -72,8 +74,10 @@ class NoteListViewModel @Inject constructor(
     private fun getNotes(noteOrder: NoteOrder) {
         getNotesJob?.cancel()
         getNotesJob = viewModelScope.launch {
-            getNotesUseCase(noteOrder).collect {
-                _state.value = state.value.copy(notes = it)
+            getNotesUseCase(noteOrder).collect { notes ->
+                _state.update {
+                    it.copy(notes = notes)
+                }
             }
         }
     }
