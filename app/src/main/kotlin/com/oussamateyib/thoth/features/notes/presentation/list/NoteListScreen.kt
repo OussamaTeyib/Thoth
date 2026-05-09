@@ -29,6 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -37,6 +38,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.features.notes.presentation.list.components.NoteItem
@@ -48,7 +50,7 @@ import kotlinx.coroutines.launch
 fun NoteListScreen(
     navController: NavController, viewModel: NoteListViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state.value
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -101,7 +103,7 @@ fun NoteListScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding )
+                .padding(innerPadding)
                 .padding(horizontal = 16.dp)
         ) {
             AnimatedVisibility(
