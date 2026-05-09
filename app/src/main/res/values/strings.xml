@@ -9,7 +9,7 @@
     <string name="delete_note">Delete note</string>
     <string name="descending">Descending</string>
     <string name="list_screen_top_bar_title">My Notes</string>
-    <string name="note_content_hint" tools:ignore="UnusedResources">What\'s on your mind…</string>
+    <string name="note_content_hint" tools:ignore="UnusedResources">What’s on your mind…</string>
     <string name="note_deleted">Note deleted</string>
     <string name="note_title_hint" tools:ignore="UnusedResources">Give it a title…</string>
     <string name="title">Title</string>
