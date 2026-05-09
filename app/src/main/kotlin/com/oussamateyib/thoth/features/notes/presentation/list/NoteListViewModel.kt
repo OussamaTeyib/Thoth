@@ -6,16 +6,19 @@ import com.oussamateyib.thoth.features.notes.domain.model.Note
 import com.oussamateyib.thoth.features.notes.domain.usecase.DeleteNoteUseCase
 import com.oussamateyib.thoth.features.notes.domain.usecase.GetNotesUseCase
 import com.oussamateyib.thoth.features.notes.domain.usecase.InsertNoteUseCase
-import com.oussamateyib.thoth.features.notes.domain.util.NoteOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class NoteListViewModel @Inject constructor(
     private val deleteNoteUseCase: DeleteNoteUseCase,
@@ -25,14 +28,21 @@ class NoteListViewModel @Inject constructor(
     private val _state = MutableStateFlow(NoteListState())
     val state: StateFlow<NoteListState> = _state.asStateFlow()
 
-    // Holds the active collection job so it can be canceled on re-fetch
-    private var getNotesJob: Job? = null
-
     // Temporarily holds the last deleted note to support undo
     private var recentlyDeletedNote: Note? = null
 
     init {
-        getNotes(state.value.noteOrder)
+        viewModelScope.launch {
+            _state
+                .map { it.noteOrder }
+                .distinctUntilChanged()
+                .flatMapLatest { getNotesUseCase(it) }
+                .collect { notes ->
+                    _state.update {
+                        it.copy(notes = notes)
+                    }
+                }
+        }
     }
 
     fun onEvent(event: NoteListEvent) {
@@ -44,8 +54,6 @@ class NoteListViewModel @Inject constructor(
                 _state.update {
                     it.copy(noteOrder = event.noteOrder)
                 }
-                // Reload with the new order
-                getNotes(event.noteOrder)
             }
 
             is NoteListEvent.ToggleOrderSection -> {
@@ -67,17 +75,6 @@ class NoteListViewModel @Inject constructor(
                     insertNoteUseCase(recentlyDeletedNote ?: return@launch)
                 }
                 recentlyDeletedNote = null
-            }
-        }
-    }
-
-    private fun getNotes(noteOrder: NoteOrder) {
-        getNotesJob?.cancel()
-        getNotesJob = viewModelScope.launch {
-            getNotesUseCase(noteOrder).collect { notes ->
-                _state.update {
-                    it.copy(notes = notes)
-                }
             }
         }
     }
