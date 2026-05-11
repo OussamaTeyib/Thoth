@@ -53,8 +53,6 @@ fun NoteEditorScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    val snackbarHostState = remember { SnackbarHostState() }
-
     val noteBackgroundAnimatable = remember {
         Animatable(Color(state.color))
     }
@@ -81,7 +79,6 @@ fun NoteEditorScreen(
     }
 
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
