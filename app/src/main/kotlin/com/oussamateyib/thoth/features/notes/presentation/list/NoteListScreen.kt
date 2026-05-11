@@ -33,6 +33,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -98,7 +99,8 @@ fun NoteListScreen(
                     contentDescription = stringResource(R.string.add_note)
                 )
             }
-        }
+        },
+        containerColor = Color.Transparent,
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -113,7 +115,7 @@ fun NoteListScreen(
             ) {
                 OrderSection(
                     modifier = Modifier
-                        .fillMaxSize()
+                        .fillMaxWidth()
                         .padding(vertical = 8.dp),
                     noteOrder = state.noteOrder,
                     onOrderChange = {
