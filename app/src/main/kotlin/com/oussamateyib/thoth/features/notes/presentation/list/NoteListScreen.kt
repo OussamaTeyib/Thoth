@@ -44,6 +44,7 @@ import androidx.navigation.NavController
 import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.features.notes.presentation.list.components.NoteItem
 import com.oussamateyib.thoth.features.notes.presentation.list.components.OrderSection
+import com.oussamateyib.thoth.features.notes.presentation.util.NoteScreen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -92,7 +93,11 @@ fun NoteListScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    navController.navigate(
+                        NoteScreen.EditorScreen.route
+                    )
+                },
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary,
                 shape = CircleShape
@@ -129,13 +134,18 @@ fun NoteListScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
-                items(state.notes, key = { it.id!! }) { note ->
+                items(
+                    state.notes,
+                    key = { it.id!! }
+                ) { note ->
                     NoteItem(
                         note = note,
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-                                /*TODO*/
+                                navController.navigate(
+                                    NoteScreen.EditorScreen.route + "?noteId=${note.id}"
+                                )
                             },
                         onDeleteClick = {
                             viewModel.onEvent(NoteListEvent.DeleteNote(note))
