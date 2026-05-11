@@ -3,6 +3,7 @@ package com.oussamateyib.thoth.features.notes.presentation.editor
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.features.notes.domain.model.Note
 import com.oussamateyib.thoth.features.notes.domain.usecase.GetNoteByIdUseCase
 import com.oussamateyib.thoth.features.notes.domain.usecase.InsertNoteUseCase
@@ -39,10 +40,12 @@ class NoteEditorViewModel @Inject constructor(
                             it.copy(
                                 title = NoteEditorTextFieldState(
                                     text = note.title,
+                                    hint = R.string.note_title_hint,
                                     isHintVisible = false
                                 ),
                                 content = NoteEditorTextFieldState(
                                     text = note.content,
+                                    hint = R.string.note_content_hint,
                                     isHintVisible = false
                                 ),
                                 color = note.color,
