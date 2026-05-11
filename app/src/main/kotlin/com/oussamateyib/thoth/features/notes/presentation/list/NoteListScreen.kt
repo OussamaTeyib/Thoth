@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -44,12 +45,14 @@ import androidx.navigation.NavController
 import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.features.notes.presentation.list.components.NoteItem
 import com.oussamateyib.thoth.features.notes.presentation.list.components.OrderSection
+import com.oussamateyib.thoth.features.notes.presentation.util.NoteScreen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteListScreen(
-    navController: NavController, viewModel: NoteListViewModel = hiltViewModel()
+    navController: NavController,
+    viewModel: NoteListViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -91,8 +94,14 @@ fun NoteListScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ },
-                containerColor = MaterialTheme.colorScheme.primary
+                onClick = {
+                    navController.navigate(
+                        NoteScreen.EditorScreen.route
+                    )
+                },
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
+                shape = CircleShape
             ) {
                 Icon(
                     painter = painterResource(R.drawable.ic_add),
@@ -127,13 +136,18 @@ fun NoteListScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
-                items(state.notes, key = { it.id!! }) { note ->
+                items(
+                    state.notes,
+                    key = { it.id!! }
+                ) { note ->
                     NoteItem(
                         note = note,
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-                                /*TODO*/
+                                navController.navigate(
+                                    NoteScreen.EditorScreen.route + "?noteId=${note.id}"
+                                )
                             },
                         onDeleteClick = {
                             viewModel.onEvent(NoteListEvent.DeleteNote(note))

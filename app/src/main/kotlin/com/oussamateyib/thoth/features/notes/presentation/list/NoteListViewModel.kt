@@ -52,7 +52,7 @@ class NoteListViewModel @Inject constructor(
                 }
             }
 
-            is NoteListEvent.ToggleOrderSection -> {
+            NoteListEvent.ToggleOrderSection -> {
                 _state.update {
                     it.copy(isOrderSectionVisible = !it.isOrderSectionVisible)
                 }
@@ -67,8 +67,9 @@ class NoteListViewModel @Inject constructor(
                 }
             }
 
-            is NoteListEvent.RestoreNote -> {
+            NoteListEvent.RestoreNote -> {
                 val snapshot = _state.value
+
                 // If no note was recently deleted, do nothing
                 viewModelScope.launch {
                     insertNoteUseCase(snapshot.recentlyDeletedNote ?: return@launch)
