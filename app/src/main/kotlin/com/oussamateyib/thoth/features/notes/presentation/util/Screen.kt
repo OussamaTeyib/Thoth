@@ -1,8 +1,8 @@
 package com.oussamateyib.thoth.features.notes.presentation.util
 
-sealed class Screen(
+sealed class NoteScreen(
     val route: String
 ) {
-    object ListScreen : Screen("list_screen")
-    object EditorScreen : Screen("editor_screen")
+    object ListScreen : NoteScreen("list_screen")
+    object EditorScreen : NoteScreen("editor_screen")
 }
