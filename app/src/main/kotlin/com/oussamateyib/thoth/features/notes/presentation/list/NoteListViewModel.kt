@@ -56,7 +56,7 @@ class NoteListViewModel @Inject constructor(
                 }
             }
 
-            is NoteListEvent.ToggleOrderSection -> {
+            NoteListEvent.ToggleOrderSection -> {
                 _state.update {
                     it.copy(isOrderSectionVisible = !it.isOrderSectionVisible)
                 }
@@ -69,7 +69,7 @@ class NoteListViewModel @Inject constructor(
                 recentlyDeletedNote = event.note
             }
 
-            is NoteListEvent.RestoreNote -> {
+            NoteListEvent.RestoreNote -> {
                 // If no note was recently deleted, do nothing
                 viewModelScope.launch {
                     insertNoteUseCase(recentlyDeletedNote ?: return@launch)

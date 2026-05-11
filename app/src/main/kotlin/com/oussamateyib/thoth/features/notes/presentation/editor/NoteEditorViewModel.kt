@@ -104,7 +104,7 @@ class NoteEditorViewModel @Inject constructor(
                 }
             }
 
-            is NoteEditorEvent.SaveNote -> {
+            NoteEditorEvent.SaveNote -> {
                 val snapshot = _state.value
                 viewModelScope.launch {
                     insertNoteUseCase(
