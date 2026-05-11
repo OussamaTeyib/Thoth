@@ -49,7 +49,8 @@ class NoteEditorViewModel @Inject constructor(
                                     isHintVisible = note.content.isEmpty()
                                 ),
                                 color = note.color,
-                                id = noteId
+                                id = noteId,
+                                originalNote = note
                             )
                         }
                     }
@@ -110,18 +111,43 @@ class NoteEditorViewModel @Inject constructor(
             NoteEditorEvent.SaveNote -> {
                 val snapshot = _state.value
                 viewModelScope.launch {
-                    insertNoteUseCase(
-                        Note(
-                            title = snapshot.title.text,
-                            content = snapshot.content.text,
-                            timestamp = System.currentTimeMillis(),
-                            color = snapshot.color,
-                            id = snapshot.id
-                        )
-                    )
+                    saveNote(snapshot)
+                    _uiEvents.send(NoteEditorUiEvent.NoteSaved)
+                }
+            }
+
+            NoteEditorEvent.NavigateBack -> {
+                val snapshot = _state.value
+                viewModelScope.launch {
+                    if (snapshot.id != null) saveNote(snapshot)
                     _uiEvents.send(NoteEditorUiEvent.NoteSaved)
                 }
             }
         }
+    }
+
+    private suspend fun saveNote(snapshot: NoteEditorState) {
+        if (hasChanged(snapshot)) {
+            val note = Note(
+                title = snapshot.title.text,
+                content = snapshot.content.text,
+                timestamp = System.currentTimeMillis(),
+                color = snapshot.color,
+                id = snapshot.id
+            )
+            insertNoteUseCase(note)
+            _state.update {
+                it.copy(
+                    originalNote = note
+                )
+            }
+        }
+    }
+
+    private fun hasChanged(snapshot: NoteEditorState): Boolean {
+        val original = snapshot.originalNote ?: return true // new note, always save
+        return snapshot.title.text != original.title ||
+                snapshot.content.text != original.content ||
+                snapshot.color != original.color
     }
 }

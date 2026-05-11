@@ -9,4 +9,5 @@ sealed class NoteEditorEvent {
     data class ChangeContentFocus(val focusState: FocusState) : NoteEditorEvent()
     data class ChangeColor(val color: Int) : NoteEditorEvent()
     object SaveNote : NoteEditorEvent()
+    object NavigateBack : NoteEditorEvent()
 }

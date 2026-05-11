@@ -1,5 +1,6 @@
 package com.oussamateyib.thoth.features.notes.presentation.editor
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -70,6 +71,10 @@ fun NoteEditorScreen(
                 }
             }
         }
+    }
+
+    BackHandler {
+        viewModel.onEvent(NoteEditorEvent.NavigateBack)
     }
 
     Scaffold(
