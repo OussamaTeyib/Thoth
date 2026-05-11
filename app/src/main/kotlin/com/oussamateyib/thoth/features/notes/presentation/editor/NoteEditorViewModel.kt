@@ -41,12 +41,12 @@ class NoteEditorViewModel @Inject constructor(
                                 title = NoteEditorTextFieldState(
                                     text = note.title,
                                     hint = R.string.note_title_hint,
-                                    isHintVisible = false
+                                    isHintVisible = note.title.isEmpty()
                                 ),
                                 content = NoteEditorTextFieldState(
                                     text = note.content,
                                     hint = R.string.note_content_hint,
-                                    isHintVisible = false
+                                    isHintVisible = note.content.isEmpty()
                                 ),
                                 color = note.color,
                                 id = noteId
@@ -73,7 +73,7 @@ class NoteEditorViewModel @Inject constructor(
                 _state.update {
                     it.copy(
                         title = it.title.copy(
-                            isHintVisible = !event.focusState.isFocused
+                            isHintVisible = !event.focusState.isFocused && it.title.text.isEmpty()
                         )
                     )
                 }
@@ -93,7 +93,7 @@ class NoteEditorViewModel @Inject constructor(
                 _state.update {
                     it.copy(
                         content = it.content.copy(
-                            isHintVisible = !event.focusState.isFocused
+                            isHintVisible = !event.focusState.isFocused && it.content.text.isEmpty()
                         )
                     )
                 }
