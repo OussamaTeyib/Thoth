@@ -2,7 +2,6 @@ package com.oussamateyib.thoth.features.notes.presentation.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.oussamateyib.thoth.features.notes.domain.model.Note
 import com.oussamateyib.thoth.features.notes.domain.usecase.DeleteNoteUseCase
 import com.oussamateyib.thoth.features.notes.domain.usecase.GetNotesUseCase
 import com.oussamateyib.thoth.features.notes.domain.usecase.InsertNoteUseCase
@@ -27,9 +26,6 @@ class NoteListViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state = MutableStateFlow(NoteListState())
     val state: StateFlow<NoteListState> = _state.asStateFlow()
-
-    // Temporarily holds the last deleted note to support undo
-    private var recentlyDeletedNote: Note? = null
 
     init {
         viewModelScope.launch {
@@ -66,15 +62,21 @@ class NoteListViewModel @Inject constructor(
                 viewModelScope.launch {
                     deleteNoteUseCase(event.note)
                 }
-                recentlyDeletedNote = event.note
+                _state.update {
+                    it.copy(recentlyDeletedNote = event.note)
+                }
             }
 
             NoteListEvent.RestoreNote -> {
+                val snapshot = _state.value
+
                 // If no note was recently deleted, do nothing
                 viewModelScope.launch {
-                    insertNoteUseCase(recentlyDeletedNote ?: return@launch)
+                    insertNoteUseCase(snapshot.recentlyDeletedNote ?: return@launch)
                 }
-                recentlyDeletedNote = null
+                _state.update {
+                    it.copy(recentlyDeletedNote = null)
+                }
             }
         }
     }
