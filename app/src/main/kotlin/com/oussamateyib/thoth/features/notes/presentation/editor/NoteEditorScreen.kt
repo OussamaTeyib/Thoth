@@ -29,7 +29,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,7 +45,6 @@ import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.features.notes.presentation.editor.components.TransparentHintTextField
 import com.oussamateyib.thoth.features.notes.presentation.editor.util.NoteColors
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @Composable
 fun NoteEditorScreen(
@@ -57,10 +55,15 @@ fun NoteEditorScreen(
 
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val scope = rememberCoroutineScope()
-
     val noteBackgroundAnimatable = remember {
         Animatable(Color(state.color))
+    }
+
+    LaunchedEffect(state.color) {
+        noteBackgroundAnimatable.animateTo(
+            targetValue = Color(state.color),
+            animationSpec = tween(durationMillis = 400)
+        )
     }
 
     LaunchedEffect(Unit) {
@@ -126,12 +129,6 @@ fun NoteEditorScreen(
                                 shape = CircleShape
                             )
                             .clickable {
-                                scope.launch {
-                                    noteBackgroundAnimatable.animateTo(
-                                        targetValue = Color(colorInt),
-                                        animationSpec = tween(durationMillis = 400)
-                                    )
-                                }
                                 viewModel.onEvent(NoteEditorEvent.ChangeColor(colorInt))
                             }
                     )
