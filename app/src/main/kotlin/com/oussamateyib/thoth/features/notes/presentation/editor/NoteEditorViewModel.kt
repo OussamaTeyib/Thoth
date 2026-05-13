@@ -25,7 +25,9 @@ class NoteEditorViewModel @Inject constructor(
     val state: StateFlow<NoteEditorState> = _state.asStateFlow()
 
     init {
-        savedStateHandle.get<Int>("noteId")?.takeIf { it != -1 }?.let { noteId ->
+        savedStateHandle.get<Int>("noteId")
+            ?.takeIf { it != -1 }
+            ?.let { noteId ->
                 viewModelScope.launch {
                     getNoteByIdUseCase(noteId)?.let { note ->
                         _state.update {
@@ -34,11 +36,14 @@ class NoteEditorViewModel @Inject constructor(
                                     text = note.title,
                                     hint = R.string.note_title_hint,
                                     isHintVisible = note.title.isEmpty()
-                                ), content = NoteEditorTextFieldState(
+                                ),
+                                content = NoteEditorTextFieldState(
                                     text = note.content,
                                     hint = R.string.note_content_hint,
                                     isHintVisible = note.content.isEmpty()
-                                ), color = note.color, id = noteId
+                                ),
+                                color = note.color,
+                                id = noteId
                             )
                         }
                     }
