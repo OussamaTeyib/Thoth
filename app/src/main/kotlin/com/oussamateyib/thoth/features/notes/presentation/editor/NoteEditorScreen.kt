@@ -1,6 +1,5 @@
 package com.oussamateyib.thoth.features.notes.presentation.editor
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -18,13 +17,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -35,20 +30,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
-import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.features.notes.presentation.editor.components.TransparentHintTextField
 import com.oussamateyib.thoth.features.notes.presentation.editor.util.NoteColors
-import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun NoteEditorScreen(
-    navController: NavController,
     viewModel: NoteEditorViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -64,36 +54,7 @@ fun NoteEditorScreen(
         )
     }
 
-    LaunchedEffect(Unit) {
-        viewModel.uiEvents.collectLatest { event ->
-            when (event) {
-                NoteEditorUiEvent.NoteSaved -> {
-                    navController.navigateUp()
-                }
-            }
-        }
-    }
-
-    BackHandler {
-        viewModel.onEvent(NoteEditorEvent.NavigateBack)
-    }
-
     Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    viewModel.onEvent(NoteEditorEvent.SaveNote)
-                },
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary,
-                shape = CircleShape
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_save),
-                    contentDescription = stringResource(R.string.save_note)
-                )
-            }
-        },
         containerColor = Color.Transparent
     ) { innerPadding ->
         Column(
@@ -143,6 +104,7 @@ fun NoteEditorScreen(
                 isHintVisible = state.title.isHintVisible,
                 onValueChange = {
                     viewModel.onEvent(NoteEditorEvent.EnteredTitle(it))
+                    viewModel.onEvent(NoteEditorEvent.SaveNote)
                 },
                 onFocusChange = {
                     viewModel.onEvent(NoteEditorEvent.ChangeTitleFocus(it))
@@ -157,6 +119,7 @@ fun NoteEditorScreen(
                 isHintVisible = state.content.isHintVisible,
                 onValueChange = {
                     viewModel.onEvent(NoteEditorEvent.EnteredContent(it))
+                    viewModel.onEvent(NoteEditorEvent.SaveNote)
                 },
                 onFocusChange = {
                     viewModel.onEvent(NoteEditorEvent.ChangeContentFocus(it))

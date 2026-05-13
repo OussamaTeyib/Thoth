@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         ) {
-                            NoteEditorScreen(navController = navController)
+                            NoteEditorScreen()
                         }
                     }
                 }
