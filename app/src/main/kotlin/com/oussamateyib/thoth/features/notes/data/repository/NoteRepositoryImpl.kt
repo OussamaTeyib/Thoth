@@ -20,8 +20,8 @@ class NoteRepositoryImpl(
         return dao.getNoteById(id)?.toDomain()
     }
 
-    override suspend fun insertNote(note: Note) {
-        dao.insertNote(note.toEntity())
+    override suspend fun insertNote(note: Note): Long {
+        return dao.insertNote(note.toEntity())
     }
 
     override suspend fun deleteNote(note: Note) {

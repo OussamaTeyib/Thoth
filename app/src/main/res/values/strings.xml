@@ -13,7 +13,6 @@
     <string name="note_deleted">Note deleted</string>
     <string name="note_title_hint">Give it a title…</string>
     <string name="title">Title</string>
-    <string name="save_note">Save note</string>
     <string name="sort_notes">Sort notes</string>
     <string name="undo">Undo</string>
 </resources>

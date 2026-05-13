@@ -9,11 +9,9 @@ import com.oussamateyib.thoth.features.notes.domain.usecase.GetNoteByIdUseCase
 import com.oussamateyib.thoth.features.notes.domain.usecase.InsertNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -25,10 +23,6 @@ class NoteEditorViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state = MutableStateFlow(NoteEditorState())
     val state: StateFlow<NoteEditorState> = _state.asStateFlow()
-
-    // Set up a one-way pipe from the ViewModel to the UI
-    private val _uiEvents = Channel<NoteEditorUiEvent>()
-    val uiEvents = _uiEvents.receiveAsFlow()
 
     init {
         savedStateHandle.get<Int>("noteId")
@@ -49,8 +43,7 @@ class NoteEditorViewModel @Inject constructor(
                                     isHintVisible = note.content.isEmpty()
                                 ),
                                 color = note.color,
-                                id = noteId,
-                                originalNote = note
+                                id = noteId
                             )
                         }
                     }
@@ -111,43 +104,25 @@ class NoteEditorViewModel @Inject constructor(
             NoteEditorEvent.SaveNote -> {
                 val snapshot = _state.value
                 viewModelScope.launch {
-                    saveNote(snapshot)
-                    _uiEvents.send(NoteEditorUiEvent.NoteSaved)
-                }
-            }
-
-            NoteEditorEvent.NavigateBack -> {
-                val snapshot = _state.value
-                viewModelScope.launch {
-                    if (snapshot.id != null) saveNote(snapshot)
-                    _uiEvents.send(NoteEditorUiEvent.NoteSaved)
+                    val newId = insertNoteUseCase(
+                        Note(
+                            title = snapshot.title.text,
+                            content = snapshot.content.text,
+                            timestamp = System.currentTimeMillis(),
+                            color = snapshot.color,
+                            id = snapshot.id
+                        )
+                    )
+                    // Update state if this was a new note
+                    if (snapshot.id == null) {
+                        _state.update {
+                            it.copy(
+                                id = newId.toInt()
+                            )
+                        }
+                    }
                 }
             }
         }
-    }
-
-    private suspend fun saveNote(snapshot: NoteEditorState) {
-        if (hasChanged(snapshot)) {
-            val note = Note(
-                title = snapshot.title.text,
-                content = snapshot.content.text,
-                timestamp = System.currentTimeMillis(),
-                color = snapshot.color,
-                id = snapshot.id
-            )
-            insertNoteUseCase(note)
-            _state.update {
-                it.copy(
-                    originalNote = note
-                )
-            }
-        }
-    }
-
-    private fun hasChanged(snapshot: NoteEditorState): Boolean {
-        val original = snapshot.originalNote ?: return true // new note, always save
-        return snapshot.title.text != original.title ||
-                snapshot.content.text != original.content ||
-                snapshot.color != original.color
     }
 }
