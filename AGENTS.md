@@ -17,10 +17,10 @@
 
 ## 1. Project Overview
 
-**Thoth** is a is a note-taking app for Android.
+**Thoth** is a note-taking app for Android.
 
 | Property       | Value                                        |
-|----------------|----------------------------------------------|
+| -------------- | -------------------------------------------- |
 | Language       | Kotlin                                       |
 | Build system   | Gradle                                       |
 | Android SDK    | `compileSdk` 37, `minSdk` 24, `targetSdk` 37 |
@@ -32,7 +32,7 @@
 
 ## 2. Repository Layout
 
-```
+```plaintext
 Thoth/
 ├── .github/
 │   ├── ISSUE_TEMPLATE/        # Bug report & feature request templates
@@ -49,6 +49,15 @@ Thoth/
 │   └── src/main/
 │       ├── AndroidManifest.xml
 │       ├── kotlin/             # Application code
+│       │   └── com/oussamateyib/thoth/
+│       │       ├── MainActivity.kt         # app entrypoint and navigation host
+│       │       ├── ThothApp.kt             # application-level app setup
+│       │       ├── di/                     # Hilt dependency injection module(s)
+│       │       ├── features/notes/         # note-taking feature implementation
+│       │       │   ├── data/               # Room local data source, repository, mappers
+│       │       │   ├── domain/             # use cases, domain models, repository interfaces
+│       │       │   └── presentation/       # Compose UI screens, view models, components
+│       │       └── ui/                     # shared UI theme and styling
 │       └── res/                # Android resources (icons, strings, XML rules)
 ├── gradle/                     # Gradle wrapper and version catalog
 ├── build.gradle.kts            # Root Gradle build script
@@ -70,7 +79,7 @@ Thoth/
 ### Prerequisites
 
 | Tool        | Version                      |
-|-------------|------------------------------|
+| ----------- | ---------------------------- |
 | JDK         | 17                           |
 | Android SDK | Managed automatically by AGP |
 
@@ -80,6 +89,10 @@ Thoth/
 # Build debug and release APKs + AABs
 ./gradlew build
 ./gradlew bundle
+
+# Build only release artifacts
+./gradlew assembleRelease
+./gradlew bundleRelease
 
 # Install on a connected device or emulator
 ./gradlew installDebug
@@ -101,7 +114,7 @@ Thoth/
 Release builds read signing credentials from the following **environment variables**:
 
 | Variable         | Description                                            |
-|------------------|--------------------------------------------------------|
+| ---------------- | ------------------------------------------------------ |
 | `STORE_FILE`     | Absolute path to the `.jks` / `.p12` keystore          |
 | `STORE_PASSWORD` | Keystore password                                      |
 | `KEY_ALIAS`      | Key alias inside the keystore                          |
@@ -174,6 +187,6 @@ Runs GitHub’s CodeQL static analysis security scanning workflow.
 ## 6. Important Constraints
 
 | Rule                                        | Reason                                                                                                  |
-|---------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | **Always use `./gradlew`, never `gradle`.** | The wrapper pins the exact Gradle version required for reproducible builds.                             |
-| **Lint is treated as errors.**              | `warningsAsErrors = true` in the lint configuration. All lint warnings must be resolved before merging. |  |
+| **Lint is treated as errors.**              | `warningsAsErrors = true` in the lint configuration. All lint warnings must be resolved before merging. |
