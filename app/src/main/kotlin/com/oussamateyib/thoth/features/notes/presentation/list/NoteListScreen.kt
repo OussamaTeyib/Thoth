@@ -60,7 +60,7 @@ fun NoteListScreen(
 
     val scope = rememberCoroutineScope()
 
-    // Connects the TopAppBar scroll behavior to the Scaffold
+    // Connect the TopAppBar scroll behavior to the Scaffold
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     val noteDeletedMessage = stringResource(R.string.note_deleted)
