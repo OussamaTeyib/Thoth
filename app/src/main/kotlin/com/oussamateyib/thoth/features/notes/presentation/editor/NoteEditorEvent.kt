@@ -8,5 +8,6 @@ sealed class NoteEditorEvent {
     data class EnteredContent(val content: String) : NoteEditorEvent()
     data class ChangeContentFocus(val focusState: FocusState) : NoteEditorEvent()
     data class ChangeColor(val color: Int) : NoteEditorEvent()
+    object ToggleColorPicker : NoteEditorEvent()
     object SaveNote : NoteEditorEvent()
 }
