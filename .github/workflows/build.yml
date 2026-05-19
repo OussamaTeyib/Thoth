@@ -40,6 +40,9 @@ jobs:
       - name: Lint project
         run: ./gradlew lint lintRelease
 
+      - name: Analyze dependencies
+        run: ./gradlew buildHealth
+
       - name: Rename artifacts
         run: |
           set -euo pipefail
@@ -93,8 +96,14 @@ jobs:
       - name: Upload lint reports
         uses: actions/upload-artifact@v7
         with:
-          name: reports
+          name: lint-reports
           path: app/build/reports/*
+
+      - name: Upload dependency analysis reports
+        uses: actions/upload-artifact@v7
+        with:
+          name: dependency-analysis-reports
+          path: build/reports/dependency-analysis/*
 
       - name: Generate build provenance attestations
         uses: actions/attest-build-provenance@v4
@@ -106,3 +115,4 @@ jobs:
             app/build/outputs/mapping/release/*.txt
             app/build/outputs/logs/*.txt
             app/build/reports/*
+            build/reports/dependency-analysis/*
