@@ -37,6 +37,13 @@ jobs:
           ./gradlew build
           ./gradlew bundle
 
+      - name: Ensure Room schemas are up to date
+        run: |
+          git diff --exit-code app/schemas/ || (
+            echo "::error::Room schemas are out of date. Run the build locally and commit the result."
+            exit 1
+          )
+
       - name: Lint project
         run: ./gradlew lint lintRelease
 
