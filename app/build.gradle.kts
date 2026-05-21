@@ -105,14 +105,14 @@ android {
 }
 
 dependencies {
-    // Activity
+    // Android core
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)
-
-    // Annotation
     implementation(libs.androidx.annotation)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.fragment)
 
-    // Compose
+    // UI
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.animation)
     implementation(libs.androidx.compose.animation.core)
@@ -126,46 +126,34 @@ dependencies {
     implementation(libs.androidx.compose.ui.text)
     implementation(libs.androidx.compose.ui.unit)
 
-    // Core
-    implementation(libs.androidx.core)
+    // Navigation
+    implementation(libs.androidx.navigation.common)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.runtime)
 
-    // Coroutines
+    // Concurrency
     implementation(libs.kotlinx.coroutines.core)
 
-    // Dagger
-    implementation(libs.dagger)
-    implementation(libs.dagger.hilt.core)
-
-    // Fragment
-    implementation(libs.androidx.fragment)
-
-    // Hilt
-    implementation(libs.hilt.android)
-    implementation(libs.hilt.lifecycle.viewmodel.compose)
-    ksp(libs.hilt.compiler)
-
-    // Inject
-    implementation(libs.jakarta.inject.api)
-
-    // Lifecycle
+    // Architecture
     implementation(libs.androidx.lifecycle.common)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
 
-    // Navigation
-    implementation(libs.androidx.navigation.common)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.navigation.runtime)
+    // Dependency injection
+    implementation(libs.dagger)
+    implementation(libs.dagger.hilt.core)
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.lifecycle.viewmodel.compose)
+    implementation(libs.jakarta.inject.api)
+    ksp(libs.hilt.compiler)
 
-    // Room
+    // Data persistence
     implementation(libs.androidx.room.common)
     implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-
-    // SQLite
     implementation(libs.androidx.sqlite)
+    ksp(libs.androidx.room.compiler)
 
     // Testing
     testImplementation(libs.junit)
