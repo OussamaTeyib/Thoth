@@ -101,6 +101,14 @@ class NoteEditorViewModel @Inject constructor(
                 }
             }
 
+            is NoteEditorEvent.ToggleColorPicker -> {
+                _state.update {
+                    it.copy(
+                        isColorPickerVisible = !it.isColorPickerVisible
+                    )
+                }
+            }
+
             NoteEditorEvent.SaveNote -> {
                 val snapshot = _state.value
                 viewModelScope.launch {

@@ -155,6 +155,9 @@ dependencies {
     implementation(libs.androidx.sqlite)
     ksp(libs.androidx.room.compiler)
 
+    // Color picker
+    implementation(libs.colorpicker.compose)
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

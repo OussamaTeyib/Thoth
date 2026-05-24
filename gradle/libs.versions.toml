@@ -2,6 +2,7 @@
 activity = "1.13.0"
 annotation = "1.10.0"
 androidGradlePlugin = "9.2.1"
+colorpicker = "1.1.4"
 composeBom = "2026.05.01"
 core = "1.18.0"
 coroutines = "1.11.0"
@@ -52,6 +53,7 @@ androidx-room-compiler = { group = "androidx.room", name = "room-compiler", vers
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime-android", version.ref = "room" }
 androidx-sqlite = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqlite" }
 androidx-test-monitor = { group = "androidx.test", name = "monitor", version.ref = "monitor" }
+colorpicker-compose = { module = "com.github.skydoves:colorpicker-compose", version.ref = "colorpicker" }
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "hilt" }
 dagger-hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
