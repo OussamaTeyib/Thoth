@@ -88,6 +88,7 @@ fun NoteEditorScreen(
                             )
                             .clickable {
                                 viewModel.onEvent(NoteEditorEvent.ChangeColor(colorInt))
+                                viewModel.onEvent(NoteEditorEvent.SaveNote)
                             }
                     )
                 }
