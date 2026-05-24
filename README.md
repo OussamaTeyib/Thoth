@@ -4,7 +4,25 @@ This is a note-taking app for Android.
 
 ---
 
-## Getting Started
+## Downloads
+
+| Channel                | Source                                                                                                  |
+| :--------------------- | :------------------------------------------------------------------------------------------------------ |
+| **Stable Releases**    | [GitHub Releases](https://github.com/OussamaTeyib/Thoth/releases)                                       |
+| **Canary (CI) Builds** | [GitHub Actions](https://github.com/OussamaTeyib/Thoth/actions/workflows/build.yml?query=branch%3Amain) |
+
+> [!NOTE]
+> Debug builds are recommended for users encountering issues or performing troubleshooting.
+
+> [!CAUTION]
+> A signed-in GitHub account is required to retrieve CI-generated artifacts.
+>
+> The page linked above only displays builds produced from the `main` branch.
+> Builds originating from pull requests may contain unfinished or unverified changes, so sticking to `main` builds is generally recommended unless specifically requested for testing purposes.
+
+---
+
+## Development
 
 ### Prerequisites
 
