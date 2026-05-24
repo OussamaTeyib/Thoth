@@ -49,6 +49,23 @@ fun NoteEditorScreen(
         )
     }
 
+    if (state.isColorPickerVisible) {
+        ModalBottomSheet(
+            onDismissRequest = {
+                viewModel.onEvent(NoteEditorEvent.ToggleColorPicker)
+            }
+        ) {
+            ColorPicker(
+                selectedColor = state.color,
+                onColorChange = {
+                    viewModel.onEvent(NoteEditorEvent.ChangeColor(it))
+                    viewModel.onEvent(NoteEditorEvent.SaveNote)
+                },
+                modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
+            )
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -76,22 +93,6 @@ fun NoteEditorScreen(
                 .padding(innerPadding)
                 .padding(horizontal = 20.dp, vertical = 12.dp)
         ) {
-            if (state.isColorPickerVisible) {
-                ModalBottomSheet(
-                    onDismissRequest = {
-                        viewModel.onEvent(NoteEditorEvent.ToggleColorPicker)
-                    }
-                ) {
-                    ColorPicker(
-                        selectedColor = state.color,
-                        onColorChange = {
-                            viewModel.onEvent(NoteEditorEvent.ChangeColor(it))
-                            viewModel.onEvent(NoteEditorEvent.SaveNote)
-                        },
-                        modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
-                    )
-                }
-            }
             TransparentHintTextField(
                 text = state.title.text,
                 hint = stringResource(state.title.hint),
