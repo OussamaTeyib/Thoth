@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.R
-import com.oussamateyib.thoth.features.notes.presentation.editor.components.HueSlider
+import com.oussamateyib.thoth.features.notes.presentation.editor.components.ColorPicker
 import com.oussamateyib.thoth.features.notes.presentation.editor.components.TransparentHintTextField
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -82,7 +82,7 @@ fun NoteEditorScreen(
                         viewModel.onEvent(NoteEditorEvent.ToggleColorPicker)
                     }
                 ) {
-                    HueSlider(
+                    ColorPicker(
                         selectedColor = state.color,
                         onColorChange = {
                             viewModel.onEvent(NoteEditorEvent.ChangeColor(it))
