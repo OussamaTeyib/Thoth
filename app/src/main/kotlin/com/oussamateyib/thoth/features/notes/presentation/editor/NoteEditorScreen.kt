@@ -86,6 +86,7 @@ fun NoteEditorScreen(
                         selectedColor = state.color,
                         onColorChange = {
                             viewModel.onEvent(NoteEditorEvent.ChangeColor(it))
+                            viewModel.onEvent(NoteEditorEvent.SaveNote)
                         },
                         modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
                     )
