@@ -61,7 +61,6 @@ fun NoteEditorScreen(
                 selectedColor = state.color,
                 onColorChange = {
                     viewModel.onEvent(NoteEditorEvent.ChangeColor(it))
-                    viewModel.onEvent(NoteEditorEvent.SaveNote)
                 },
                 modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
             )
@@ -113,7 +112,6 @@ fun NoteEditorScreen(
                 isHintVisible = state.title.isHintVisible,
                 onValueChange = {
                     viewModel.onEvent(NoteEditorEvent.EnteredTitle(it))
-                    viewModel.onEvent(NoteEditorEvent.SaveNote)
                 },
                 onFocusChange = {
                     viewModel.onEvent(NoteEditorEvent.ChangeTitleFocus(it))
@@ -128,7 +126,6 @@ fun NoteEditorScreen(
                 isHintVisible = state.content.isHintVisible,
                 onValueChange = {
                     viewModel.onEvent(NoteEditorEvent.EnteredContent(it))
-                    viewModel.onEvent(NoteEditorEvent.SaveNote)
                 },
                 onFocusChange = {
                     viewModel.onEvent(NoteEditorEvent.ChangeContentFocus(it))

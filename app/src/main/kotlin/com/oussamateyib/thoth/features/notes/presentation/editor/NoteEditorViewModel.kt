@@ -9,6 +9,8 @@ import com.oussamateyib.thoth.features.notes.domain.usecase.GetNoteByIdUseCase
 import com.oussamateyib.thoth.features.notes.domain.usecase.InsertNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,6 +25,8 @@ class NoteEditorViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state = MutableStateFlow(NoteEditorState())
     val state: StateFlow<NoteEditorState> = _state.asStateFlow()
+
+    private var saveJob: Job? = null
 
     init {
         savedStateHandle.get<Int>("noteId")
@@ -61,6 +65,7 @@ class NoteEditorViewModel @Inject constructor(
                         )
                     )
                 }
+                saveNote()
             }
 
             is NoteEditorEvent.ChangeTitleFocus -> {
@@ -81,6 +86,7 @@ class NoteEditorViewModel @Inject constructor(
                         )
                     )
                 }
+                saveNote()
             }
 
             is NoteEditorEvent.ChangeContentFocus -> {
@@ -99,6 +105,7 @@ class NoteEditorViewModel @Inject constructor(
                         color = event.color
                     )
                 }
+                saveNote()
             }
 
             is NoteEditorEvent.ToggleColorPicker -> {
@@ -108,27 +115,29 @@ class NoteEditorViewModel @Inject constructor(
                     )
                 }
             }
+        }
+    }
 
-            NoteEditorEvent.SaveNote -> {
-                val snapshot = _state.value
-                viewModelScope.launch {
-                    val newId = insertNoteUseCase(
-                        Note(
-                            title = snapshot.title.text,
-                            content = snapshot.content.text,
-                            timestamp = System.currentTimeMillis(),
-                            color = snapshot.color,
-                            id = snapshot.id
-                        )
+    private fun saveNote() {
+        saveJob?.cancel()
+        saveJob = viewModelScope.launch {
+            delay(300)
+            val snapshot = _state.value
+            val newId = insertNoteUseCase(
+                Note(
+                    title = snapshot.title.text,
+                    content = snapshot.content.text,
+                    timestamp = System.currentTimeMillis(),
+                    color = snapshot.color,
+                    id = snapshot.id
+                )
+            )
+            // Update state if this was a new note
+            if (snapshot.id == null) {
+                _state.update {
+                    it.copy(
+                        id = newId.toInt()
                     )
-                    // Update state if this was a new note
-                    if (snapshot.id == null) {
-                        _state.update {
-                            it.copy(
-                                id = newId.toInt()
-                            )
-                        }
-                    }
                 }
             }
         }
