@@ -84,7 +84,7 @@ fun NoteListScreen(
                         }
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_sort),
+                            painter = painterResource(R.drawable.sort),
                             contentDescription = stringResource(R.string.sort_notes)
                         )
                     }
@@ -104,7 +104,7 @@ fun NoteListScreen(
                 shape = CircleShape
             ) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_add),
+                    painter = painterResource(R.drawable.add),
                     contentDescription = stringResource(R.string.add_note)
                 )
             }

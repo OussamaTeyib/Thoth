@@ -93,7 +93,7 @@ fun NoteItem(
             modifier = Modifier.align(Alignment.BottomEnd)
         ) {
             Icon(
-                painter = painterResource(R.drawable.ic_delete),
+                painter = painterResource(R.drawable.delete),
                 contentDescription = stringResource(R.string.delete_note)
             )
         }
