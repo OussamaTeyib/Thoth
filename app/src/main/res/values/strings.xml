@@ -4,6 +4,7 @@
     <string name="app_description">Yet another note-taking app</string>
     <string name="app_name">Thoth</string>
     <string name="ascending">Ascending</string>
+    <string name="back">Back</string>
     <string name="color">Color</string>
     <string name="date">Date</string>
     <string name="delete_note">Delete note</string>

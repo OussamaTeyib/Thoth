@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.features.notes.presentation.editor.components.ColorPicker
 import com.oussamateyib.thoth.features.notes.presentation.editor.components.TransparentHintTextField
@@ -34,6 +35,7 @@ import com.oussamateyib.thoth.features.notes.presentation.editor.components.Tran
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteEditorScreen(
+    navController: NavController,
     viewModel: NoteEditorViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -70,6 +72,18 @@ fun NoteEditorScreen(
         topBar = {
             TopAppBar(
                 title = {},
+                navigationIcon = {
+                    IconButton(
+                        onClick = {
+                            navController.popBackStack()
+                        }
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.arrow_back),
+                            contentDescription = stringResource(R.string.back)
+                        )
+                    }
+                },
                 actions = {
                     IconButton(
                         onClick = {
