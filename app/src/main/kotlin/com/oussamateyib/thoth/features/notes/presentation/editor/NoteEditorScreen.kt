@@ -14,6 +14,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -39,6 +41,27 @@ fun NoteEditorScreen(
     viewModel: NoteEditorViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    val invalidNavigationMessage = stringResource(R.string.editor_invalid_navigation)
+    val noteNotFoundMessage = stringResource(R.string.note_not_found)
+
+    LaunchedEffect(Unit) {
+        viewModel.events.collect { event ->
+            when (event) {
+                is NoteEditorUiEvent.InvalidNavigation -> {
+                    snackbarHostState.showSnackbar(invalidNavigationMessage)
+                    navController.popBackStack()
+                }
+
+                is NoteEditorUiEvent.NoteNotFound -> {
+                    snackbarHostState.showSnackbar(noteNotFoundMessage)
+                    navController.popBackStack()
+                }
+            }
+        }
+    }
 
     if (state.isLoading) return
 
@@ -75,6 +98,7 @@ fun NoteEditorScreen(
     }
 
     Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
                 title = {},
