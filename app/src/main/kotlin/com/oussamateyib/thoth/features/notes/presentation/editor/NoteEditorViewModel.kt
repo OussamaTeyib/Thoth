@@ -47,12 +47,19 @@ class NoteEditorViewModel @Inject constructor(
                                     isHintVisible = note.content.isEmpty()
                                 ),
                                 color = note.color,
-                                id = noteId
+                                id = noteId,
+                                isLoading = false
                             )
                         }
                     }
                 }
+            } ?: {
+            _state.update {
+                it.copy(
+                    isLoading = false
+                )
             }
+        }
     }
 
     fun onEvent(event: NoteEditorEvent) {
