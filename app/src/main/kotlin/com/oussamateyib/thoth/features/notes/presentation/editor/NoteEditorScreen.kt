@@ -40,6 +40,8 @@ fun NoteEditorScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
+    if (state.isLoading) return
+
     val noteBackgroundAnimatable = remember {
         Animatable(Color(state.color))
     }

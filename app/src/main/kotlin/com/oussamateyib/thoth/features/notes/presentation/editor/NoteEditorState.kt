@@ -9,5 +9,6 @@ data class NoteEditorState(
     val content: NoteEditorTextFieldState = NoteEditorTextFieldState(hint = R.string.note_content_hint),
     val color: Int = NoteColors.noteColors.random().toArgb(),
     val isColorPickerVisible: Boolean = false,
-    val id: Int? = null
+    val id: Int? = null,
+    val isLoading: Boolean = true
 )
