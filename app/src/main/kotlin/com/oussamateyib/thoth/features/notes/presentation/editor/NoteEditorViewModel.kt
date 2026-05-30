@@ -11,8 +11,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -26,38 +28,47 @@ class NoteEditorViewModel @Inject constructor(
     private val _state = MutableStateFlow(NoteEditorState())
     val state: StateFlow<NoteEditorState> = _state.asStateFlow()
 
+    private val _events = MutableSharedFlow<NoteEditorUiEvent>()
+    val events = _events.asSharedFlow()
+
     private var saveJob: Job? = null
 
     init {
-        savedStateHandle.get<Int>("noteId")
-            ?.takeIf { it != -1 }
-            ?.let { noteId ->
-                viewModelScope.launch {
-                    getNoteByIdUseCase(noteId)?.let { note ->
-                        _state.update {
-                            it.copy(
-                                title = NoteEditorTextFieldState(
-                                    text = note.title,
-                                    hint = R.string.note_title_hint,
-                                    isHintVisible = note.title.isEmpty()
-                                ),
-                                content = NoteEditorTextFieldState(
-                                    text = note.content,
-                                    hint = R.string.note_content_hint,
-                                    isHintVisible = note.content.isEmpty()
-                                ),
-                                color = note.color,
-                                id = noteId,
-                                isLoading = false
-                            )
-                        }
-                    }
-                }
-            } ?: {
-            _state.update {
+        when (val noteId = savedStateHandle.get<Int>("noteId")) {
+            null -> viewModelScope.launch {
+                _events.emit(NoteEditorUiEvent.InvalidNavigation)
+            }
+
+            -1 -> _state.update {
                 it.copy(
                     isLoading = false
                 )
+            }
+
+            else -> viewModelScope.launch {
+                when (val note = getNoteByIdUseCase(noteId)) {
+                    null -> viewModelScope.launch {
+                        _events.emit(NoteEditorUiEvent.NoteNotFound)
+                    }
+
+                    else -> _state.update {
+                        it.copy(
+                            title = NoteEditorTextFieldState(
+                                text = note.title,
+                                hint = R.string.note_title_hint,
+                                isHintVisible = note.title.isEmpty()
+                            ),
+                            content = NoteEditorTextFieldState(
+                                text = note.content,
+                                hint = R.string.note_content_hint,
+                                isHintVisible = note.content.isEmpty()
+                            ),
+                            color = note.color,
+                            id = noteId,
+                            isLoading = false
+                        )
+                    }
+                }
             }
         }
     }
