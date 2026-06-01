@@ -40,7 +40,6 @@ Thoth/
 │   │   ├── build.yml          # CI: build, lint, and upload artifacts
 │   │   ├── release.yml        # CD: create GitHub releases
 │   │   └── dependency-submission.yml
-│   ├── CODEOWNERS
 │   ├── CODE_OF_CONDUCT.md
 │   ├── CONTRIBUTING.md
 │   ├── pull_request_template.md
@@ -51,7 +50,7 @@ Thoth/
 │       ├── kotlin/             # Application code
 │       │   └── com/oussamateyib/thoth/
 │       │       ├── MainActivity.kt         # app entrypoint and navigation host
-│       │       ├── ThothApp.kt             # application-level app setup
+│       │       ├── ThothApplication.kt             # application-level app setup
 │       │       ├── di/                     # Hilt dependency injection module(s)
 │       │       ├── features/notes/         # note-taking feature implementation
 │       │       │   ├── data/               # Room local data source, repository, mappers
