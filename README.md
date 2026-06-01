@@ -1,5 +1,9 @@
 # Thoth
 
+[![Build](https://github.com/OussamaTeyib/Thoth/actions/workflows/build.yml/badge.svg)](https://github.com/OussamaTeyib/Thoth/actions/workflows/build.yml)
+[![CodeQL](https://github.com/OussamaTeyib/Thoth/actions/workflows/codeql.yml/badge.svg)](https://github.com/OussamaTeyib/Thoth/actions/workflows/codeql.yml)
+[![Dependency Submission](https://github.com/OussamaTeyib/Thoth/actions/workflows/dependency-submission.yml/badge.svg)](https://github.com/OussamaTeyib/Thoth/actions/workflows/dependency-submission.yml)
+
 This is a note-taking app for Android.
 
 ---
