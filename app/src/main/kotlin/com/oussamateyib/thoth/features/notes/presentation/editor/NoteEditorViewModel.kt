@@ -117,7 +117,7 @@ class NoteEditorViewModel @Inject constructor(
                 }
             }
 
-            NoteEditorEvent.ChangeColor -> {
+            is NoteEditorEvent.ChangeColor -> {
                 _state.update {
                     it.copy(
                         color = event.color
@@ -126,7 +126,7 @@ class NoteEditorViewModel @Inject constructor(
                 saveNote()
             }
 
-            is NoteEditorEvent.ToggleColorPicker -> {
+            NoteEditorEvent.ToggleColorPicker -> {
                 _state.update {
                     it.copy(
                         isColorPickerVisible = !it.isColorPickerVisible
