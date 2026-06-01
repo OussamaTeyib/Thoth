@@ -50,12 +50,12 @@ fun NoteEditorScreen(
     LaunchedEffect(Unit) {
         viewModel.events.collect { event ->
             when (event) {
-                is NoteEditorUiEvent.InvalidNavigation -> {
+                NoteEditorUiEvent.InvalidNavigation -> {
                     snackbarHostState.showSnackbar(invalidNavigationMessage)
                     navController.popBackStack()
                 }
 
-                is NoteEditorUiEvent.NoteNotFound -> {
+                NoteEditorUiEvent.NoteNotFound -> {
                     snackbarHostState.showSnackbar(noteNotFoundMessage)
                     navController.popBackStack()
                 }
