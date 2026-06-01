@@ -11,7 +11,7 @@ import jakarta.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NotesModule {
+object NotesModule {
     @Provides
     @Singleton
     fun provideNoteRepository(noteDao: NoteDao): NoteRepository {

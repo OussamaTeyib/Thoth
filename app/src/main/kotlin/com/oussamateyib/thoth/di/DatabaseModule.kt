@@ -12,7 +12,7 @@ import jakarta.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
+object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(app: Application): ThothDatabase {
