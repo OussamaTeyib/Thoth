@@ -9,7 +9,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
@@ -20,12 +19,12 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class NoteListViewModel @Inject constructor(
+    getNotesUseCase: GetNotesUseCase,
     private val deleteNoteUseCase: DeleteNoteUseCase,
-    private val getNotesUseCase: GetNotesUseCase,
     private val insertNoteUseCase: InsertNoteUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(NoteListState())
-    val state: StateFlow<NoteListState> = _state.asStateFlow()
+    val state = _state.asStateFlow()
 
     init {
         viewModelScope.launch {

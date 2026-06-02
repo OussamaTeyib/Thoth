@@ -13,7 +13,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -21,12 +20,12 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class NoteEditorViewModel @Inject constructor(
-    private val getNoteByIdUseCase: GetNoteByIdUseCase,
-    private val insertNoteUseCase: InsertNoteUseCase,
-    savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle,
+    getNoteByIdUseCase: GetNoteByIdUseCase,
+    private val insertNoteUseCase: InsertNoteUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(NoteEditorState())
-    val state: StateFlow<NoteEditorState> = _state.asStateFlow()
+    val state = _state.asStateFlow()
 
     private val _events = MutableSharedFlow<NoteEditorUiEvent>()
     val events = _events.asSharedFlow()
