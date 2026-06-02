@@ -17,9 +17,6 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
-
     steps:
       - name: Check out code
         uses: actions/checkout@v6
