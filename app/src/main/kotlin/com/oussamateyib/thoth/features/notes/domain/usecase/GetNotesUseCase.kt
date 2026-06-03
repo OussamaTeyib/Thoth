@@ -8,13 +8,13 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class GetNotesUseCase @Inject constructor(
+class GetNotesStreamUseCase @Inject constructor(
     private val repository: NoteRepository
 ) {
     operator fun invoke(
         noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending)
     ): Flow<List<Note>> {
-        return repository.getNotes().map { notes ->
+        return repository.getNotesStream().map { notes ->
             when (noteOrder) {
                 is NoteOrder.Title -> when (noteOrder.orderType) {
                     is OrderType.Ascending -> notes.sortedBy { it.title.lowercase() }

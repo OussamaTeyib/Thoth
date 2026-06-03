@@ -3,7 +3,7 @@ package com.oussamateyib.thoth.features.notes.presentation.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oussamateyib.thoth.features.notes.domain.usecase.DeleteNoteUseCase
-import com.oussamateyib.thoth.features.notes.domain.usecase.GetNotesUseCase
+import com.oussamateyib.thoth.features.notes.domain.usecase.GetNotesStreamUseCase
 import com.oussamateyib.thoth.features.notes.domain.usecase.InsertNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class NoteListViewModel @Inject constructor(
-    getNotesUseCase: GetNotesUseCase,
+    getNotesStreamUseCase: GetNotesStreamUseCase,
     private val deleteNoteUseCase: DeleteNoteUseCase,
     private val insertNoteUseCase: InsertNoteUseCase
 ) : ViewModel() {
@@ -31,7 +31,7 @@ class NoteListViewModel @Inject constructor(
             _state
                 .map { it.noteOrder }
                 .distinctUntilChanged()
-                .flatMapLatest { getNotesUseCase(it) }
+                .flatMapLatest { getNotesStreamUseCase(it) }
                 .collect { notes ->
                     _state.update {
                         it.copy(notes = notes)
