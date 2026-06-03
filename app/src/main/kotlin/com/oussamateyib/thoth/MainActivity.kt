@@ -13,9 +13,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.oussamateyib.thoth.features.notes.presentation.editor.NoteEditorScreen
-import com.oussamateyib.thoth.features.notes.presentation.list.NoteListScreen
-import com.oussamateyib.thoth.features.notes.presentation.util.NoteScreen
+import com.oussamateyib.thoth.feature.notes.presentation.editor.NoteEditorScreen
+import com.oussamateyib.thoth.feature.notes.presentation.list.NoteListScreen
+import com.oussamateyib.thoth.feature.notes.presentation.util.NoteScreen
 import com.oussamateyib.thoth.ui.theme.ThothTheme
 import dagger.hilt.android.AndroidEntryPoint
 

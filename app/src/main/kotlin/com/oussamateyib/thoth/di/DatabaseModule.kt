@@ -3,7 +3,7 @@ package com.oussamateyib.thoth.di
 import android.app.Application
 import androidx.room.Room
 import com.oussamateyib.thoth.core.database.ThothDatabase
-import com.oussamateyib.thoth.features.notes.data.local.NoteDao
+import com.oussamateyib.thoth.feature.notes.data.local.NoteDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
