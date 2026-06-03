@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.map
 class NoteRepositoryImpl @Inject constructor(
     private val dao: NoteDao
 ) : NoteRepository {
-    override fun getNotes(): Flow<List<Note>> {
+    override fun getNotesStream(): Flow<List<Note>> {
         return dao.getNotes().map { it.map(NoteEntity::toDomain) }
     }
 
