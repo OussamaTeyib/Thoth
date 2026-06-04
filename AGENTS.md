@@ -189,7 +189,7 @@ All workflows are defined in `.github/workflows/`.
 6. Analyze dependencies.
 7. Rename artifacts to a consistent `Thoth_*` naming scheme.
 8. Upload artifacts: debug/release APKs, debug/release AABs, ProGuard mapping, build logs, lint reports, dependency analysis reports.
-9. Generate **build-provenance attestations** for all output artifacts.
+9. Generate build-provenance attestations for all output artifacts.
 
 ### `release.yml` — triggered on version tag push
 
