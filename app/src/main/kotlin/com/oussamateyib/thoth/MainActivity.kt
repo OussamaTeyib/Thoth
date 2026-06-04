@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.oussamateyib.thoth.navigation.ThothNavHost
+import com.oussamateyib.thoth.ui.ThothApp
 import com.oussamateyib.thoth.ui.rememberThothAppState
 import com.oussamateyib.thoth.ui.theme.ThothTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,9 +15,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val appState = rememberThothAppState()
             ThothTheme {
-                val appState = rememberThothAppState()
-                ThothNavHost(appState = appState)
+                ThothApp(appState = appState)
             }
         }
     }
