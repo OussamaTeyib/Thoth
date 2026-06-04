@@ -9,10 +9,11 @@ import com.oussamateyib.thoth.navigation.ThothNavHost
 
 @Composable
 fun ThothApp(
-    appState: ThothAppState
+    appState: ThothAppState,
+    modifier: Modifier = Modifier
 ) {
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
         ThothNavHost(appState)
