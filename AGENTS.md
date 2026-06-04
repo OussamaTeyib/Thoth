@@ -35,38 +35,54 @@
 ```plaintext
 Thoth/
 ├── .github/
-│   ├── ISSUE_TEMPLATE/        # Bug report & feature request templates
+│   ├── ISSUE_TEMPLATE/                         # Bug report & feature request templates
 │   ├── workflows/
-│   │   ├── build.yml          # CI: build, lint, and upload artifacts
-│   │   ├── release.yml        # CD: create GitHub releases
-|   |   ├── codeql.yml         # CI: Run static analysis
+│   │   ├── build.yml                           # CI: build, lint, and upload artifacts
+│   │   ├── release.yml                         # CD: create GitHub releases
+|   |   ├── codeql.yml                          # CI: Run static analysis
 │   │   └── dependency-submission.yml
 │   ├── CODE_OF_CONDUCT.md
 │   ├── CONTRIBUTING.md
 │   ├── pull_request_template.md
 │   └── SECURITY.md
 ├── app/
-│   └── src/main/
-│       ├── AndroidManifest.xml
-│       ├── kotlin/             # Application code
-│       │   └── com/oussamateyib/thoth/
-│       │       ├── MainActivity.kt         # app entrypoint and navigation host
-│       │       ├── ThothApplication.kt             # application-level app setup
-│       │       ├── di/                     # Hilt dependency injection module(s)
-│       │       ├── features/notes/         # note-taking feature implementation
-│       │       │   ├── data/               # Room local data source, repository, mappers
-│       │       │   ├── domain/             # use cases, domain models, repository interfaces
-│       │       │   └── presentation/       # Compose UI screens, view models, components
-│       │       └── ui/                     # shared UI theme and styling
-│       └── res/                # Android resources (icons, strings, XML rules)
-├── gradle/                     # Gradle wrapper and version catalog
-├── build.gradle.kts            # Root Gradle build script
-├── settings.gradle.kts         # Project name and module declarations
-├── gradle.properties           # JVM args, caching, and Android flags
-├── renovate.json               # Dependency update automation
-├── .gitignore
-├── .gitattributes
-├── gradlew / gradlew.bat       # Gradle wrapper scripts
+│   ├── schemas/                                 # Room database schema snapshots
+│   │   └── com.oussamateyib.thoth.core.database.ThothDatabase/
+│   │       └── 1.json
+│   └── src/
+│       ├── androidTest/                         # Instrumented (on-device) tests
+│       ├── main/
+│       │   ├── AndroidManifest.xml
+│       │   ├── kotlin/
+│       │   │   └── com/oussamateyib/thoth/
+│       │   │       ├── MainActivity.kt          # App entry point
+│       │   │       ├── ThothApplication.kt      # Application-level setup
+│       │   │       ├── core/
+│       │   │       │   └── database/            # ThothDatabase (Room)
+│       │   │       ├── di/                      # App-level Hilt modules
+│       │   │       ├── feature/
+│       │   │       │   └── notes/               # Note-taking feature
+│       │   │       │       ├── data/            # Room DAO, entities, repository impl, mappers
+│       │   │       │       ├── di/              # Feature-scoped Hilt modules
+│       │   │       │       ├── domain/          # Use cases, domain models, repository interfaces, utils
+│       │   │       │       ├── navigation/      # Notes nav graph
+│       │   │       │       └── presentation/    # Compose screens, ViewModels, components
+│       │   │       │           ├── editor/      # Note editor screen
+│       │   │       │           └── list/        # Note list screen
+│       │   │       ├── navigation/              # Top-level NavHost
+│       │   │       └── ui/                      # App-wide UI: theme, app scaffold, and state
+│       │   │           ├── ThothApp.kt          # Root composable / app shell
+│       │   │           ├── ThothAppState.kt     # Holder for app-level UI state
+│       │   │           └── theme/               # Color, Type, Shapes, Theme
+│       │   └── res/                             # Drawables, launcher icons, strings, themes
+│       └── test/                                # Unit tests
+├── gradle/                                      # Wrapper and version catalog
+├── build.gradle.kts
+├── settings.gradle.kts
+├── gradle.properties
+├── lint.xml                                     # Lint configuration
+├── renovate.json
+├── gradlew / gradlew.bat
 ├── LICENSE
 ├── README.md
 └── AGENTS.md
@@ -104,6 +120,9 @@ Thoth/
 
 # Run lint checks
 ./gradlew lint lintRelease
+
+# Analyze dependencies
+./gradlew buildHealth
 
 # Clean all build outputs
 ./gradlew clean
@@ -164,23 +183,36 @@ All workflows are defined in `.github/workflows/`.
 
 1. Check out code (with submodules).
 2. Set up Gradle.
-3. Build APKs and AABs (`./gradlew build bundle`).
-4. Run lint (`./gradlew lint lintRelease`).
-5. Upload artifacts: debug/release APKs, debug/release AABs, native debug symbols, ProGuard mapping,
-   build logs, lint reports.
-6. Generate **build-provenance attestations** for all output artifacts.
+3. Build APKs and AABs, signing with keystore secrets.
+4. Verify Room schemas are up to date.
+5. Run lint
+6. Analyze dependencies.
+7. Rename artifacts to a consistent `Thoth_*` naming scheme.
+8. Upload artifacts: debug/release APKs, debug/release AABs, ProGuard mapping, build logs, lint reports, dependency analysis reports.
+9. Generate **build-provenance attestations** for all output artifacts.
 
 ### `release.yml` — triggered on version tag push
 
-Creates a GitHub Release and attaches the signed release artifacts.
+1. Build and sign release APKs and AABs.
+2. Rename artifacts to `Thoth_<version>_*`, move ProGuard mapping.
+3. Generate `SHA256SUMS` and sign it with GPG.
+4. Create a GitHub Release with auto-generated notes, attach APKs, AAB, mapping, `SHA256SUMS`, and `SHA256SUMS.asc`. Also opens a discussion under **Announcements**.
 
-### `dependency-submission.yml`
+### `dependency-submission.yml`  — triggered on
+
+- Push to `main`
+- Manual dispatch
 
 Submits the dependency graph to GitHub for security analysis.
 
-### `codeql.yml`
+### `codeql.yml` — triggered on
 
-Runs GitHub’s CodeQL static analysis security scanning workflow.
+- Push to `main`
+- Push of a `v*.*.*` tag
+- Pull requests targeting `main`
+- Manual dispatch
+
+Runs GitHub's CodeQL static analysis on `java-kotlin`, building the project fresh with `--no-build-cache`.
 
 ---
 
