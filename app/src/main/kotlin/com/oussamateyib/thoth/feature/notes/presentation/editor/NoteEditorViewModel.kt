@@ -10,7 +10,7 @@ import com.oussamateyib.thoth.feature.notes.domain.usecase.GetNoteByIdUseCase
 import com.oussamateyib.thoth.feature.notes.domain.usecase.InsertNoteUseCase
 import com.oussamateyib.thoth.feature.notes.navigation.NoteEditorRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
+import javax.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow

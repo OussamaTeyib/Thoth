@@ -6,7 +6,7 @@ import com.oussamateyib.thoth.feature.notes.data.mappers.toDomain
 import com.oussamateyib.thoth.feature.notes.data.mappers.toEntity
 import com.oussamateyib.thoth.feature.notes.domain.model.Note
 import com.oussamateyib.thoth.feature.notes.domain.repository.NoteRepository
-import jakarta.inject.Inject
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

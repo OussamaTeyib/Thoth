@@ -6,7 +6,7 @@ import com.oussamateyib.thoth.feature.notes.domain.usecase.DeleteNoteUseCase
 import com.oussamateyib.thoth.feature.notes.domain.usecase.GetNotesStreamUseCase
 import com.oussamateyib.thoth.feature.notes.domain.usecase.InsertNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
+import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
