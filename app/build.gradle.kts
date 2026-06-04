@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
 }
@@ -120,6 +121,7 @@ dependencies {
     implementation(libs.androidx.compose.foundation.layout)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.runtime.annotation)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.geometry)
     implementation(libs.androidx.compose.ui.graphics)
@@ -133,6 +135,9 @@ dependencies {
 
     // Concurrency
     implementation(libs.kotlinx.coroutines.core)
+
+    // Serialization
+    implementation(libs.kotlinx.serialization.core)
 
     // Architecture
     implementation(libs.androidx.lifecycle.common)

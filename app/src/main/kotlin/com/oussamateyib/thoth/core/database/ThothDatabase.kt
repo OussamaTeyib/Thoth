@@ -2,8 +2,8 @@ package com.oussamateyib.thoth.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.oussamateyib.thoth.features.notes.data.local.NoteDao
-import com.oussamateyib.thoth.features.notes.data.local.NoteEntity
+import com.oussamateyib.thoth.feature.notes.data.local.NoteDao
+import com.oussamateyib.thoth.feature.notes.data.local.NoteEntity
 
 @Database(
     entities = [NoteEntity::class],
