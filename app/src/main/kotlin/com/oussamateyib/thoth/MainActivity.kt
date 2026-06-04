@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val appState = rememberThothAppState()
             ThothTheme {
-                ThothApp(appState = appState)
+                ThothApp(appState)
             }
         }
     }
