@@ -46,6 +46,7 @@ Thoth/
 │   ├── pull_request_template.md
 │   └── SECURITY.md
 ├── app/
+|   ├── build.gradle.kts                         # App-level Gradle build script
 │   ├── schemas/                                 # Room database schema snapshots
 │   │   └── com.oussamateyib.thoth.core.database.ThothDatabase/
 │   │       └── 1.json
