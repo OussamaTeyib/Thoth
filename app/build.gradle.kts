@@ -151,7 +151,7 @@ dependencies {
     implementation(libs.dagger.hilt.core)
     implementation(libs.hilt.android)
     implementation(libs.hilt.lifecycle.viewmodel.compose)
-    implementation(libs.jakarta.inject.api)
+    implementation(libs.javax.inject)
     ksp(libs.hilt.compiler)
 
     // Data persistence

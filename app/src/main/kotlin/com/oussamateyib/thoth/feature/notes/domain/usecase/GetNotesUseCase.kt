@@ -4,7 +4,7 @@ import com.oussamateyib.thoth.feature.notes.domain.model.Note
 import com.oussamateyib.thoth.feature.notes.domain.repository.NoteRepository
 import com.oussamateyib.thoth.feature.notes.domain.util.NoteOrder
 import com.oussamateyib.thoth.feature.notes.domain.util.OrderType
-import jakarta.inject.Inject
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
