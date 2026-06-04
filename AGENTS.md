@@ -181,7 +181,7 @@ All workflows are defined in `.github/workflows/`.
 
 **Steps summary:**
 
-1. Check out code (with submodules).
+1. Check out code.
 2. Set up Gradle.
 3. Build APKs and AABs, signing with keystore secrets.
 4. Verify Room schemas are up to date.
