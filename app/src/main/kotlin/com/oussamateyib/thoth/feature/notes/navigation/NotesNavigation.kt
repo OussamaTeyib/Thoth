@@ -13,7 +13,9 @@ data object NoteListRoute
 @Serializable
 data class NoteEditorRoute(val noteId: Int = -1)
 
-fun NavController.navigateToNoteEditor(noteId: Int = -1) = navigate(route = NoteEditorRoute(noteId))
+fun NavController.navigateToNoteEditor(
+    noteId: Int = NoteEditorRoute().noteId
+) = navigate(route = NoteEditorRoute(noteId))
 
 fun NavGraphBuilder.notesScreen(
     onNoteClick: (Int) -> Unit,
