@@ -29,7 +29,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
 import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.feature.notes.presentation.editor.components.ColorPicker
 import com.oussamateyib.thoth.feature.notes.presentation.editor.components.TransparentHintTextField
@@ -37,27 +36,21 @@ import com.oussamateyib.thoth.feature.notes.presentation.editor.components.Trans
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteEditorScreen(
-    navController: NavController,
+    onBackClick: () -> Unit,
     viewModel: NoteEditorViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val invalidNavigationMessage = stringResource(R.string.editor_invalid_navigation)
     val noteNotFoundMessage = stringResource(R.string.note_not_found)
 
     LaunchedEffect(Unit) {
         viewModel.events.collect { event ->
             when (event) {
-                NoteEditorUiEvent.InvalidNavigation -> {
-                    snackbarHostState.showSnackbar(invalidNavigationMessage)
-                    navController.popBackStack()
-                }
-
                 NoteEditorUiEvent.NoteNotFound -> {
                     snackbarHostState.showSnackbar(noteNotFoundMessage)
-                    navController.popBackStack()
+                    onBackClick()
                 }
             }
         }
@@ -105,7 +98,7 @@ fun NoteEditorScreen(
                 navigationIcon = {
                     IconButton(
                         onClick = {
-                            navController.popBackStack()
+                            onBackClick()
                         }
                     ) {
                         Icon(

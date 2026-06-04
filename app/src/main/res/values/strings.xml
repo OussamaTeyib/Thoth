@@ -9,7 +9,6 @@
     <string name="date">Date</string>
     <string name="delete_note">Delete note</string>
     <string name="descending">Descending</string>
-    <string name="editor_invalid_navigation">Unable to open the editor. Please try again.</string>
     <string name="pick_color">Pick color</string>
     <string name="list_screen_top_bar_title">My Notes</string>
     <string name="note_content_hint">What’s on your mind…</string>

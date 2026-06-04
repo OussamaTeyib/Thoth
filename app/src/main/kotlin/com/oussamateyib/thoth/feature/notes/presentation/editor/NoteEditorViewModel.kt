@@ -3,10 +3,12 @@ package com.oussamateyib.thoth.feature.notes.presentation.editor
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
 import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.feature.notes.domain.model.Note
 import com.oussamateyib.thoth.feature.notes.domain.usecase.GetNoteByIdUseCase
 import com.oussamateyib.thoth.feature.notes.domain.usecase.InsertNoteUseCase
+import com.oussamateyib.thoth.feature.notes.navigation.NoteEditorRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.Job
@@ -33,11 +35,7 @@ class NoteEditorViewModel @Inject constructor(
     private var saveJob: Job? = null
 
     init {
-        when (val noteId = savedStateHandle.get<Int>("noteId")) {
-            null -> viewModelScope.launch {
-                _events.emit(NoteEditorUiEvent.InvalidNavigation)
-            }
-
+        when (val noteId = savedStateHandle.toRoute<NoteEditorRoute>().noteId) {
             -1 -> _state.update {
                 it.copy(
                     isLoading = false
