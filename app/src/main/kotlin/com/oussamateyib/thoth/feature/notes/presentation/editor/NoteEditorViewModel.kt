@@ -1,16 +1,15 @@
 package com.oussamateyib.thoth.feature.notes.presentation.editor
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.toRoute
 import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.feature.notes.domain.model.Note
 import com.oussamateyib.thoth.feature.notes.domain.usecase.GetNoteByIdUseCase
 import com.oussamateyib.thoth.feature.notes.domain.usecase.InsertNoteUseCase
-import com.oussamateyib.thoth.feature.notes.navigation.NoteEditorRoute
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,12 +19,17 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-@HiltViewModel
-class NoteEditorViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
+@HiltViewModel(assistedFactory = NoteEditorViewModel.Factory::class)
+class NoteEditorViewModel @AssistedInject constructor(
+    @Assisted private val noteId: Int,
     getNoteByIdUseCase: GetNoteByIdUseCase,
     private val insertNoteUseCase: InsertNoteUseCase
 ) : ViewModel() {
+    @AssistedFactory
+    interface Factory {
+        fun create(noteId: Int): NoteEditorViewModel
+    }
+
     private val _state = MutableStateFlow(NoteEditorState())
     val state = _state.asStateFlow()
 
@@ -35,7 +39,7 @@ class NoteEditorViewModel @Inject constructor(
     private var saveJob: Job? = null
 
     init {
-        when (val noteId = savedStateHandle.toRoute<NoteEditorRoute>().noteId) {
+        when (noteId) {
             -1 -> _state.update {
                 it.copy(
                     isLoading = false

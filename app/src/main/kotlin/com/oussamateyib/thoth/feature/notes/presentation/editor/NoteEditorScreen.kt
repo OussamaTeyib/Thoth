@@ -30,14 +30,20 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.R
+import com.oussamateyib.thoth.feature.notes.navigation.NoteEditorNavKey
 import com.oussamateyib.thoth.feature.notes.presentation.editor.components.ColorPicker
 import com.oussamateyib.thoth.feature.notes.presentation.editor.components.TransparentHintTextField
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteEditorScreen(
+    key: NoteEditorNavKey,
     onBackClick: () -> Unit,
-    viewModel: NoteEditorViewModel = hiltViewModel()
+    viewModel: NoteEditorViewModel = hiltViewModel(
+        creationCallback = { factory: NoteEditorViewModel.Factory ->
+            factory.create(noteId = key.noteId)
+        }
+    )
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
