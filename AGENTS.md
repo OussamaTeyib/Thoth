@@ -60,17 +60,17 @@ Thoth/
 │       │   │       ├── ThothApplication.kt      # Application-level setup
 │       │   │       ├── core/
 │       │   │       │   └── database/            # ThothDatabase (Room)
+│       │   │       |   └── navigation/          # Navigation state and engine
 │       │   │       ├── di/                      # App-level Hilt modules
 │       │   │       ├── feature/
 │       │   │       │   └── notes/               # Note-taking feature
 │       │   │       │       ├── data/            # Room DAO, entities, repository impl, mappers
 │       │   │       │       ├── di/              # Feature-scoped Hilt modules
 │       │   │       │       ├── domain/          # Use cases, domain models, repository interfaces, utils
-│       │   │       │       ├── navigation/      # Notes nav graph
+│       │   │       │       ├── navigation/      # Notes navigation routes and entries
 │       │   │       │       └── presentation/    # Compose screens, ViewModels, components
 │       │   │       │           ├── editor/      # Note editor screen
 │       │   │       │           └── list/        # Note list screen
-│       │   │       ├── navigation/              # Top-level NavHost
 │       │   │       └── ui/                      # App-wide UI: theme, app scaffold, and state
 │       │   │           ├── ThothApp.kt          # Root composable / app shell
 │       │   │           ├── ThothAppState.kt     # Holder for app-level UI state
