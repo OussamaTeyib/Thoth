@@ -33,14 +33,11 @@ import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.feature.notes.presentation.editor.components.ColorPicker
 import com.oussamateyib.thoth.feature.notes.presentation.editor.components.TransparentHintTextField
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteEditorScreen(
     onBackClick: () -> Unit,
     viewModel: NoteEditorViewModel = hiltViewModel()
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
     val snackbarHostState = remember { SnackbarHostState() }
 
     val noteNotFoundMessage = stringResource(R.string.note_not_found)
@@ -56,6 +53,24 @@ fun NoteEditorScreen(
         }
     }
 
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    NoteEditorScreen(
+        state = state,
+        snackbarHostState = snackbarHostState,
+        onEvent = { event -> viewModel.onEvent(event) },
+        onBackClick = onBackClick
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun NoteEditorScreen(
+    state: NoteEditorState,
+    snackbarHostState: SnackbarHostState,
+    onEvent: (NoteEditorEvent) -> Unit,
+    onBackClick: () -> Unit
+) {
     if (state.isLoading) return
 
     val noteBackgroundAnimatable = remember {
@@ -77,13 +92,13 @@ fun NoteEditorScreen(
         ModalBottomSheet(
             sheetState = sheetState,
             onDismissRequest = {
-                viewModel.onEvent(NoteEditorEvent.ToggleColorPicker)
+                onEvent(NoteEditorEvent.ToggleColorPicker)
             }
         ) {
             ColorPicker(
                 selectedColor = state.color,
                 onColorChange = {
-                    viewModel.onEvent(NoteEditorEvent.ChangeColor(it))
+                    onEvent(NoteEditorEvent.ChangeColor(it))
                 },
                 modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
             )
@@ -110,7 +125,7 @@ fun NoteEditorScreen(
                 actions = {
                     IconButton(
                         onClick = {
-                            viewModel.onEvent(NoteEditorEvent.ToggleColorPicker)
+                            onEvent(NoteEditorEvent.ToggleColorPicker)
                         }
                     ) {
                         Icon(
@@ -135,10 +150,10 @@ fun NoteEditorScreen(
                 hint = stringResource(state.title.hint),
                 isHintVisible = state.title.isHintVisible,
                 onValueChange = {
-                    viewModel.onEvent(NoteEditorEvent.EnteredTitle(it))
+                    onEvent(NoteEditorEvent.EnteredTitle(it))
                 },
                 onFocusChange = {
-                    viewModel.onEvent(NoteEditorEvent.ChangeTitleFocus(it))
+                    onEvent(NoteEditorEvent.ChangeTitleFocus(it))
                 },
                 singleLine = true,
                 textStyle = MaterialTheme.typography.headlineMedium,
@@ -149,10 +164,10 @@ fun NoteEditorScreen(
                 hint = stringResource(state.content.hint),
                 isHintVisible = state.content.isHintVisible,
                 onValueChange = {
-                    viewModel.onEvent(NoteEditorEvent.EnteredContent(it))
+                    onEvent(NoteEditorEvent.EnteredContent(it))
                 },
                 onFocusChange = {
-                    viewModel.onEvent(NoteEditorEvent.ChangeContentFocus(it))
+                    onEvent(NoteEditorEvent.ChangeContentFocus(it))
                 },
                 textStyle = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.weight(1f)
