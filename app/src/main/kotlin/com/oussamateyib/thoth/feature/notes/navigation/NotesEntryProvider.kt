@@ -11,13 +11,15 @@ fun EntryProviderScope<NavKey>.notesEntry(
 ) {
     entry<NoteListNavKey> {
         NoteListScreen(
-            onNoteClick = { noteId -> navigator.navigate(NoteEditorNavKey(noteId)) },
+            onNoteClick = { noteId ->
+                navigator.navigate(NoteEditorNavKey(noteId))
+            },
             onAddNote = { navigator.navigate(NoteEditorNavKey()) },
         )
     }
     entry<NoteEditorNavKey> { key ->
         NoteEditorScreen(
-            key = key,
+            noteId = key.noteId,
             onBackClick = navigator::goBack
         )
     }
