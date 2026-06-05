@@ -35,53 +35,55 @@
 ```plaintext
 Thoth/
 ├── .github/
-│   ├── ISSUE_TEMPLATE/                         # Bug report & feature request templates
+│   ├── ISSUE_TEMPLATE/                              # Bug report & feature request templates
 │   ├── workflows/
-│   │   ├── build.yml                           # CI: build, lint, and upload artifacts
-│   │   ├── release.yml                         # CD: create GitHub releases
-|   |   ├── codeql.yml                          # CI: Run static analysis
+│   │   ├── build.yml                                # CI: build, lint, and upload artifacts
+│   │   ├── release.yml                              # CD: create GitHub releases
+│   │   ├── codeql.yml                               # CI: Run static analysis
 │   │   └── dependency-submission.yml
 │   ├── CODE_OF_CONDUCT.md
 │   ├── CONTRIBUTING.md
 │   ├── pull_request_template.md
 │   └── SECURITY.md
 ├── app/
-|   ├── build.gradle.kts                         # App-level Gradle build script
-│   ├── schemas/                                 # Room database schema snapshots
+│   ├── build.gradle.kts                             # App-level Gradle build script
+│   ├── schemas/                                     # Room database schema snapshots
 │   │   └── com.oussamateyib.thoth.core.database.ThothDatabase/
 │   │       └── 1.json
 │   └── src/
-│       ├── androidTest/                         # Instrumented (on-device) tests
+│       ├── androidTest/                             # Instrumented (on-device) tests
 │       ├── main/
 │       │   ├── AndroidManifest.xml
 │       │   ├── kotlin/
 │       │   │   └── com/oussamateyib/thoth/
-│       │   │       ├── MainActivity.kt          # App entry point
-│       │   │       ├── ThothApplication.kt      # Application-level setup
+│       │   │       ├── MainActivity.kt              # App entry point
+│       │   │       ├── ThothApplication.kt          # Application-level setup
 │       │   │       ├── core/
-│       │   │       │   └── database/            # ThothDatabase (Room)
-│       │   │       ├── di/                      # App-level Hilt modules
+│       │   │       │   └── database/                # ThothDatabase (Room)
+│       │   │       ├── di/                          # App-level Hilt modules
 │       │   │       ├── feature/
-│       │   │       │   └── notes/               # Note-taking feature
-│       │   │       │       ├── data/            # Room DAO, entities, repository impl, mappers
-│       │   │       │       ├── di/              # Feature-scoped Hilt modules
-│       │   │       │       ├── domain/          # Use cases, domain models, repository interfaces, utils
-│       │   │       │       ├── navigation/      # Notes nav graph
-│       │   │       │       └── presentation/    # Compose screens, ViewModels, components
-│       │   │       │           ├── editor/      # Note editor screen
-│       │   │       │           └── list/        # Note list screen
-│       │   │       ├── navigation/              # Top-level NavHost
-│       │   │       └── ui/                      # App-wide UI: theme, app scaffold, and state
-│       │   │           ├── ThothApp.kt          # Root composable / app shell
-│       │   │           ├── ThothAppState.kt     # Holder for app-level UI state
-│       │   │           └── theme/               # Color, Type, Shapes, Theme
-│       │   └── res/                             # Drawables, launcher icons, strings, themes
-│       └── test/                                # Unit tests
-├── gradle/                                      # Wrapper and version catalog
+│       │   │       │   └── notes/                   # Note-taking feature
+│       │   │       │       ├── api                  # Public API (navigation routes)
+│       │   │       │       └── impl
+│       │   │       │           ├── data/            # Room DAO, entities, repository impl, mappers
+│       │   │       │           ├── di/              # Feature-scoped Hilt modules
+│       │   │       │           ├── domain/          # Use cases, domain models, repository interfaces, utils
+│       │   │       │           ├── navigation/      # Navigation graph
+│       │   │       │           └── presentation/    # Compose screens, ViewModels, components
+│       │   │       │               ├── editor/      # Note editor screen
+│       │   │       │               └── list/        # Note list screen
+│       │   │       ├── navigation/                  # Top-level NavHost
+│       │   │       └── ui/                          # App-wide UI: theme, app scaffold, and state
+│       │   │           ├── ThothApp.kt              # Root composable / app shell
+│       │   │           ├── ThothAppState.kt         # Holder for app-level UI state
+│       │   │           └── theme/                   # Color, Type, Shapes, Theme
+│       │   └── res/                                 # Drawables, launcher icons, strings, themes
+│       └── test/                                    # Unit tests
+├── gradle/                                          # Wrapper and version catalog
 ├── build.gradle.kts
 ├── settings.gradle.kts
 ├── gradle.properties
-├── lint.xml                                     # Lint configuration
+├── lint.xml                                         # Lint configuration
 ├── renovate.json
 ├── gradlew / gradlew.bat
 ├── LICENSE
