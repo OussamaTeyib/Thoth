@@ -23,6 +23,7 @@ fun ThothApp(
         color = MaterialTheme.colorScheme.background
     ) {
         NavDisplay(
+            // Fetch UI screens matching the current navigation state
             entries = appState.navigationState.toEntries(entryProvider),
             onBack = { appState.navigator.goBack() },
         )

@@ -22,13 +22,18 @@ import androidx.savedstate.compose.serialization.serializers.MutableStateSeriali
 class NavigationState(
     val startRoute: NavKey,
     topLevelRoute: MutableState<NavKey>,
-    val backStacks: Map<NavKey, NavBackStack<NavKey>>
+    val backStacks: Map<NavKey, NavBackStack<NavKey>> // Hold a separate stack for each top-level route
 ) {
+    // Hide the MutableState wrapper, expose the value directly
     var topLevelRoute: NavKey by topLevelRoute
+
+    // Expose only stacks that should be rendered
     val stacksInUse: List<NavKey>
         get() = if (topLevelRoute == startRoute) {
+            // Render only the start stack
             listOf(startRoute)
         } else {
+            // Keep the start stack alive and render the selected stack
             listOf(startRoute, topLevelRoute)
         }
 }
@@ -37,9 +42,12 @@ class NavigationState(
 fun NavigationState.toEntries(
     entryProvider: (NavKey) -> NavEntry<NavKey>
 ): SnapshotStateList<NavEntry<NavKey>> {
+    // Map each root key to its corresponding list of fully decorated UI screens
     val decoratedEntries = backStacks.mapValues { (_, stack) ->
         val decorators = listOf(
+            // Save and restore inner screen state (e.g., text inputs) during configuration changes
             rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
+            // Provide an isolated ViewModel container for each screen that clears automatically when popped
             rememberViewModelStoreNavEntryDecorator()
         )
         rememberDecoratedNavEntries(
@@ -49,6 +57,7 @@ fun NavigationState.toEntries(
         )
     }
 
+    // Collect entries exclusively from stacks marked as active
     return stacksInUse
         .flatMap { decoratedEntries[it] ?: emptyList() }
         .toMutableStateList()
@@ -59,13 +68,17 @@ fun rememberNavigationState(
     startRoute: NavKey,
     topLevelRoutes: Set<NavKey>
 ): NavigationState {
+    // Keep the active top-level route in memory and protect it from being cleared
     val topLevelRoute = rememberSerializable(
         startRoute, topLevelRoutes,
+        // Save the current route choice during configuration changes or process death
         serializer = MutableStateSerializer(NavKeySerializer())
     ) {
+        // Set up the default route
         mutableStateOf(startRoute)
     }
 
+    // Associate each top-level route with its own independent stack
     val backStacks = topLevelRoutes.associateWith { key -> rememberNavBackStack(key) }
 
     return remember(startRoute, topLevelRoutes) {

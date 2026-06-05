@@ -6,6 +6,7 @@ import com.oussamateyib.thoth.core.navigation.Navigator
 import com.oussamateyib.thoth.feature.notes.presentation.editor.NoteEditorScreen
 import com.oussamateyib.thoth.feature.notes.presentation.list.NoteListScreen
 
+// Map the navigation keys of the notes feature to their respective screens
 fun EntryProviderScope<NavKey>.notesEntry(
     navigator: Navigator
 ) {
@@ -14,7 +15,9 @@ fun EntryProviderScope<NavKey>.notesEntry(
             onNoteClick = { noteId ->
                 navigator.navigate(NoteEditorNavKey(noteId))
             },
-            onAddNote = { navigator.navigate(NoteEditorNavKey()) },
+            onAddNote = {
+                navigator.navigate(NoteEditorNavKey())
+            },
         )
     }
     entry<NoteEditorNavKey> { key ->
