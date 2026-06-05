@@ -46,17 +46,34 @@ import com.oussamateyib.thoth.feature.notes.presentation.list.components.NoteIte
 import com.oussamateyib.thoth.feature.notes.presentation.list.components.OrderSection
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteListScreen(
     onNoteClick: (Int) -> Unit,
     onAddNote: () -> Unit,
     viewModel: NoteListViewModel = hiltViewModel()
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
     val snackbarHostState = remember { SnackbarHostState() }
 
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    NoteListScreen(
+        state = state,
+        snackbarHostState = snackbarHostState,
+        onEvent = { event -> viewModel.onEvent(event) },
+        onNoteClick = onNoteClick,
+        onAddNote = onAddNote
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun NoteListScreen(
+    state: NoteListState,
+    snackbarHostState: SnackbarHostState,
+    onEvent: (NoteListEvent) -> Unit,
+    onNoteClick: (Int) -> Unit,
+    onAddNote: () -> Unit
+) {
     val scope = rememberCoroutineScope()
 
     // Connect the TopAppBar scroll behavior to the Scaffold
@@ -79,7 +96,7 @@ fun NoteListScreen(
                 actions = {
                     IconButton(
                         onClick = {
-                            viewModel.onEvent(NoteListEvent.ToggleOrderSection)
+                            onEvent(NoteListEvent.ToggleOrderSection)
                         }
                     ) {
                         Icon(
@@ -125,7 +142,7 @@ fun NoteListScreen(
                         .padding(vertical = 8.dp),
                     noteOrder = state.noteOrder,
                     onOrderChange = {
-                        viewModel.onEvent(NoteListEvent.Order(it))
+                        onEvent(NoteListEvent.Order(it))
                     }
                 )
             }
@@ -145,7 +162,7 @@ fun NoteListScreen(
                                 onNoteClick(note.id!!)
                             },
                         onDeleteClick = {
-                            viewModel.onEvent(NoteListEvent.DeleteNote(note))
+                            onEvent(NoteListEvent.DeleteNote(note))
                             scope.launch {
                                 val result = snackbarHostState.showSnackbar(
                                     message = noteDeletedMessage,
@@ -153,7 +170,7 @@ fun NoteListScreen(
                                     duration = SnackbarDuration.Short
                                 )
                                 if (result == SnackbarResult.ActionPerformed) {
-                                    viewModel.onEvent(NoteListEvent.RestoreNote)
+                                    onEvent(NoteListEvent.RestoreNote)
                                 }
                             }
                         }
