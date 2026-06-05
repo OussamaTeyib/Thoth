@@ -64,7 +64,7 @@ Thoth/
 │       │   │       ├── di/                          # App-level Hilt modules
 │       │   │       ├── feature/
 │       │   │       │   └── notes/                   # Note-taking feature
-│       │   │       │       ├── api                  # Public API (navigation routes)
+│       │   │       │       ├── api                  # Public API (navigation keys)
 │       │   │       │       └── impl
 │       │   │       │           ├── data/            # Room DAO, entities, repository impl, mappers
 │       │   │       │           ├── di/              # Feature-scoped Hilt modules

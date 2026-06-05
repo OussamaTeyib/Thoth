@@ -17,8 +17,8 @@ class ThothAppState(
 @Composable
 fun rememberThothAppState(
     navigationState: NavigationState = rememberNavigationState(
-        startRoute = NoteListNavKey,
-        topLevelRoutes = setOf(NoteListNavKey),
+        startKey = NoteListNavKey,
+        topLevelKeys = setOf(NoteListNavKey)
     ),
     navigator: Navigator = remember { Navigator(navigationState) }
 ): ThothAppState = remember(navigationState, navigator) {
