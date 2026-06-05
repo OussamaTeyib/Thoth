@@ -6,7 +6,7 @@ import androidx.compose.runtime.remember
 import com.oussamateyib.thoth.core.navigation.NavigationState
 import com.oussamateyib.thoth.core.navigation.Navigator
 import com.oussamateyib.thoth.core.navigation.rememberNavigationState
-import com.oussamateyib.thoth.feature.notes.navigation.NoteListNavKey
+import com.oussamateyib.thoth.feature.notes.api.NoteListNavKey
 
 @Stable
 class ThothAppState(

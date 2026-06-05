@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import com.oussamateyib.thoth.core.navigation.toEntries
-import com.oussamateyib.thoth.feature.notes.navigation.notesEntry
+import com.oussamateyib.thoth.feature.notes.impl.navigation.notesEntry
 
 @Composable
 fun ThothApp(
