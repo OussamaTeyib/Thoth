@@ -20,7 +20,6 @@ monitor = "1.8.0"
 navigation3 = "1.1.2"
 room = "2.8.4"
 serialization = "1.11.0"
-savedstate = "1.5.0"
 sqlite = "2.6.2"
 
 [libraries]
@@ -55,8 +54,6 @@ androidx-navigation3-ui = { group = "androidx.navigation3", name ="navigation3-u
 androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime-android", version.ref = "room" }
-androidx-savedstate = { group = "androidx.savedstate", name = "savedstate", version.ref = "savedstate" }
-androidx-savedstate-compose = { group = "androidx.savedstate", name = "savedstate-compose", version.ref = "savedstate" }
 androidx-sqlite = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqlite" }
 androidx-test-monitor = { group = "androidx.test", name = "monitor", version.ref = "monitor" }
 colorpicker-compose = { group = "com.github.skydoves", name ="colorpicker-compose", version.ref = "colorpicker" }

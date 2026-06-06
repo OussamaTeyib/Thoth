@@ -146,8 +146,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.viewmodel.navigation3)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
-    implementation(libs.androidx.savedstate)
-    implementation(libs.androidx.savedstate.compose)
 
     // Dependency injection
     implementation(libs.dagger)
