@@ -122,6 +122,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.compose.runtime.annotation)
+    implementation(libs.androidx.compose.runtime.saveable)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.geometry)
     implementation(libs.androidx.compose.ui.graphics)
@@ -129,9 +130,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.unit)
 
     // Navigation
-    implementation(libs.androidx.navigation.common)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.navigation.runtime)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
 
     // Concurrency
     implementation(libs.kotlinx.coroutines.core)
@@ -144,6 +144,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.navigation3)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
 
     // Dependency injection

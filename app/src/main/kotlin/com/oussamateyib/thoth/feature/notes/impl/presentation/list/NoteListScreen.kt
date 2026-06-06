@@ -39,7 +39,6 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.feature.notes.impl.presentation.list.components.NoteItem
@@ -50,7 +49,7 @@ import kotlinx.coroutines.launch
 fun NoteListScreen(
     onNoteClick: (Int) -> Unit,
     onAddNote: () -> Unit,
-    viewModel: NoteListViewModel = hiltViewModel()
+    viewModel: NoteListViewModel
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
 

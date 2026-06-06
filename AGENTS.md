@@ -59,23 +59,23 @@ Thoth/
 │       │   │       ├── MainActivity.kt              # App entry point
 │       │   │       ├── ThothApplication.kt          # Application-level setup
 │       │   │       ├── core/
-│       │   │       │   └── database/                # ThothDatabase (Room)
+│       │   │       │   ├── database/                # ThothDatabase (Room)
+│       │   │       │   └── navigation/              # Navigation state and engine
 │       │   │       ├── di/                          # App-level Hilt modules
 │       │   │       ├── feature/
 │       │   │       │   └── notes/                   # Note-taking feature
-│       │   │       │       ├── api                  # Public API (navigation routes)
+│       │   │       │       ├── api                  # Public API (navigation keys)
 │       │   │       │       └── impl
 │       │   │       │           ├── data/            # Room DAO, entities, repository impl, mappers
 │       │   │       │           ├── di/              # Feature-scoped Hilt modules
 │       │   │       │           ├── domain/          # Use cases, domain models, repository interfaces, utils
-│       │   │       │           ├── navigation/      # Navigation graph
+│       │   │       │           ├── navigation/      # Navigation entries
 │       │   │       │           └── presentation/    # Compose screens, ViewModels, components
 │       │   │       │               ├── editor/      # Note editor screen
 │       │   │       │               └── list/        # Note list screen
-│       │   │       ├── navigation/                  # Top-level NavHost
-│       │   │       └── ui/                          # App-wide UI: theme, app scaffold, and state
-│       │   │           ├── ThothApp.kt              # Root composable / app shell
-│       │   │           ├── ThothAppState.kt         # Holder for app-level UI state
+│       │   │       └── ui/
+│       │   │           ├── ThothApp.kt              # Root composable
+│       │   │           ├── ThothAppState.kt         # App-level state
 │       │   │           └── theme/                   # Color, Type, Shapes, Theme
 │       │   └── res/                                 # Drawables, launcher icons, strings, themes
 │       └── test/                                    # Unit tests

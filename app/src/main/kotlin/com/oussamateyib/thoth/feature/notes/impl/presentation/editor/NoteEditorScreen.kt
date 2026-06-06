@@ -27,7 +27,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.R
 import com.oussamateyib.thoth.feature.notes.impl.presentation.editor.components.ColorPicker
@@ -36,7 +35,7 @@ import com.oussamateyib.thoth.feature.notes.impl.presentation.editor.components.
 @Composable
 fun NoteEditorScreen(
     onBackClick: () -> Unit,
-    viewModel: NoteEditorViewModel = hiltViewModel()
+    viewModel: NoteEditorViewModel
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
 
