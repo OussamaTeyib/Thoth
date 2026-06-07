@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.TextStyle
-import com.oussamateyib.thoth.ui.theme.DarkGray
+import com.oussamateyib.thoth.core.designsystem.theme.DarkGray
 
 @Composable
 fun TransparentHintTextField(

@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.oussamateyib.thoth.ui.ThothApp
 import com.oussamateyib.thoth.ui.rememberThothAppState
-import com.oussamateyib.thoth.ui.theme.ThothTheme
+import com.oussamateyib.thoth.core.designsystem.theme.ThothTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

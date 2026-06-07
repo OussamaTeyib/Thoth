@@ -74,11 +74,14 @@ Thoth/
 │       │   │       │               └── list/        # Note list screen
 │       │   │       └── ui/
 │       │   │           ├── ThothApp.kt              # Root composable
-│       │   │           ├── ThothAppState.kt         # App-level state
-│       │   │           └── theme/                   # Color, Type, Shapes, Theme
+│       │   │           └── ThothAppState.kt         # App-level state
 │       │   └── res/                                 # Drawables, launcher icons, strings, themes
 │       └── test/                                    # Unit tests
 ├── core/
+│   ├── designsystem/                                # Core UI components, themes
+│   │   ├── build.gradle.kts
+│   │   └── src/main/kotlin/com/oussamateyib/thoth/core/designsystem
+│   │       └── theme/                               # Color, Type, Shapes, Theme
 │   └── navigation/                                  # Navigation state and engine
 │       ├── build.gradle.kts
 │       └── src/main/kotlin/com/oussamateyib/thoth/core/navigation

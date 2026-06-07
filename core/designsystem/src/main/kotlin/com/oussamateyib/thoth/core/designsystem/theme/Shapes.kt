@@ -1,4 +1,4 @@
-package com.oussamateyib.thoth.ui.theme
+package com.oussamateyib.thoth.core.designsystem.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes

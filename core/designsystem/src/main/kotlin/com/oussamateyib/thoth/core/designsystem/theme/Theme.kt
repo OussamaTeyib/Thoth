@@ -1,4 +1,4 @@
-package com.oussamateyib.thoth.ui.theme
+package com.oussamateyib.thoth.core.designsystem.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
