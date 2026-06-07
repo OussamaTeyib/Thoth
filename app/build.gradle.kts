@@ -164,6 +164,9 @@ dependencies {
     // Color picker
     implementation(libs.colorpicker.compose)
 
+    // Metadata
+    ksp(libs.kotlin.metadata.jvm)
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
