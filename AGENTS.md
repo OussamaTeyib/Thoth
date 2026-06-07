@@ -59,8 +59,7 @@ Thoth/
 │       │   │       ├── MainActivity.kt              # App entry point
 │       │   │       ├── ThothApplication.kt          # Application-level setup
 │       │   │       ├── core/
-│       │   │       │   ├── database/                # ThothDatabase (Room)
-│       │   │       │   └── navigation/              # Navigation state and engine
+│       │   │       │   └── database/                # ThothDatabase (Room)
 │       │   │       ├── di/                          # App-level Hilt modules
 │       │   │       ├── feature/
 │       │   │       │   └── notes/                   # Note-taking feature
@@ -79,6 +78,12 @@ Thoth/
 │       │   │           └── theme/                   # Color, Type, Shapes, Theme
 │       │   └── res/                                 # Drawables, launcher icons, strings, themes
 │       └── test/                                    # Unit tests
+├── core/
+│   └── navigation/                                  # Navigation state and engine
+│       ├── build.gradle.kts
+│       └── src/main/kotlin/com/oussamateyib/thoth/core/navigation
+│           ├── NavigationState.kt
+│           └── Navigator.kt
 ├── gradle/                                          # Wrapper and version catalog
 ├── build.gradle.kts
 ├── settings.gradle.kts
