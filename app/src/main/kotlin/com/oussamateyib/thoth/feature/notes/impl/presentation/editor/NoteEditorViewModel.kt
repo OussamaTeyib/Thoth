@@ -48,9 +48,7 @@ class NoteEditorViewModel @AssistedInject constructor(
 
             else -> viewModelScope.launch {
                 when (val note = getNoteByIdUseCase(noteId)) {
-                    null -> viewModelScope.launch {
-                        _events.emit(NoteEditorUiEvent.NoteNotFound)
-                    }
+                    null -> _events.emit(NoteEditorUiEvent.NoteNotFound)
 
                     else -> _state.update {
                         it.copy(
