@@ -28,5 +28,8 @@ dependencyResolutionManagement {
     }
 }
 
+// Enable type-safe accessors
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "Thoth"
 include(":app")
