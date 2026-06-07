@@ -11,7 +11,7 @@ This is a note-taking app for Android.
 ## Downloads
 
 | Channel                | Source                                                                                                  |
-| :--------------------- | :------------------------------------------------------------------------------------------------------ |
+|------------------------|---------------------------------------------------------------------------------------------------------|
 | **Stable Releases**    | [GitHub Releases](https://github.com/OussamaTeyib/Thoth/releases)                                       |
 | **Canary (CI) Builds** | [GitHub Actions](https://github.com/OussamaTeyib/Thoth/actions/workflows/build.yml?query=branch%3Amain) |
 
@@ -22,7 +22,8 @@ This is a note-taking app for Android.
 > A signed-in GitHub account is required to retrieve CI-generated artifacts.
 >
 > The page linked above only displays builds produced from the `main` branch.
-> Builds originating from pull requests may contain unfinished or unverified changes, so sticking to `main` builds is generally recommended unless specifically requested for testing purposes.
+> Builds originating from pull requests may contain unfinished or unverified changes, so sticking to
+`main` builds is generally recommended unless specifically requested for testing purposes.
 
 ---
 
@@ -50,10 +51,10 @@ If you want to use your own signing key for release builds, set the following en
    ```
 
 2. Build the project:
-   - Open the project in Android Studio.
-   - Let Gradle sync.
-   - Use **Run** to launch on a device or emulator.
-   - Use **Build** > **Build Bundle(s) / APK(s)** to generate APK or AAB.
+    - Open the project in Android Studio.
+    - Let Gradle sync.
+    - Use **Run** to launch on a device or emulator.
+    - Use **Build** > **Build Bundle(s) / APK(s)** to generate APK or AAB.
 
 ---
 

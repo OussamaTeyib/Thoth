@@ -20,7 +20,7 @@
 **Thoth** is a note-taking app for Android.
 
 | Property       | Value                                        |
-| -------------- | -------------------------------------------- |
+|----------------|----------------------------------------------|
 | Language       | Kotlin                                       |
 | Build system   | Gradle                                       |
 | Android SDK    | `compileSdk` 37, `minSdk` 24, `targetSdk` 37 |
@@ -98,7 +98,7 @@ Thoth/
 ### Prerequisites
 
 | Tool        | Version                      |
-| ----------- | ---------------------------- |
+|-------------|------------------------------|
 | JDK         | 17                           |
 | Android SDK | Managed automatically by AGP |
 
@@ -136,7 +136,7 @@ Thoth/
 Release builds read signing credentials from the following **environment variables**:
 
 | Variable         | Description                                            |
-| ---------------- | ------------------------------------------------------ |
+|------------------|--------------------------------------------------------|
 | `STORE_FILE`     | Absolute path to the `.jks` / `.p12` keystore          |
 | `STORE_PASSWORD` | Keystore password                                      |
 | `KEY_ALIAS`      | Key alias inside the keystore                          |
@@ -191,7 +191,8 @@ All workflows are defined in `.github/workflows/`.
 5. Run lint
 6. Analyze dependencies.
 7. Rename artifacts to a consistent `Thoth_*` naming scheme.
-8. Upload artifacts: debug/release APKs, debug/release AABs, ProGuard mapping, build logs, lint reports, dependency analysis reports.
+8. Upload artifacts: debug/release APKs, debug/release AABs, ProGuard mapping, build logs, lint
+   reports, dependency analysis reports.
 9. Generate build-provenance attestations for all output artifacts.
 
 ### `release.yml` — triggered on version tag push
@@ -199,7 +200,8 @@ All workflows are defined in `.github/workflows/`.
 1. Build and sign release APKs and AABs.
 2. Rename artifacts to `Thoth_<version>_*`, move ProGuard mapping.
 3. Generate `SHA256SUMS` and sign it with GPG.
-4. Create a GitHub Release with auto-generated notes, attach APKs, AAB, mapping, `SHA256SUMS`, and `SHA256SUMS.asc`. Also opens a discussion under **Announcements**.
+4. Create a GitHub Release with auto-generated notes, attach APKs, AAB, mapping, `SHA256SUMS`, and
+   `SHA256SUMS.asc`. Also opens a discussion under **Announcements**.
 
 ### `dependency-submission.yml`  — triggered on
 
@@ -215,13 +217,13 @@ Submits the dependency graph to GitHub for security analysis.
 - Pull requests targeting `main`
 - Manual dispatch
 
-Runs GitHub's CodeQL static analysis on `java-kotlin`, building the project fresh with `--no-build-cache`.
+Runs GitHub's CodeQL static analysis on `java-kotlin`.
 
 ---
 
 ## 6. Important Constraints
 
 | Rule                                        | Reason                                                                                                  |
-| ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+|---------------------------------------------|---------------------------------------------------------------------------------------------------------|
 | **Always use `./gradlew`, never `gradle`.** | The wrapper pins the exact Gradle version required for reproducible builds.                             |
 | **Lint is treated as errors.**              | `warningsAsErrors = true` in the lint configuration. All lint warnings must be resolved before merging. |
