@@ -47,38 +47,62 @@ Thoth/
 │   └── SECURITY.md
 ├── app/
 │   ├── build.gradle.kts                             # App-level Gradle build script
-│   ├── schemas/                                     # Room database schema snapshots
-│   │   └── com.oussamateyib.thoth.core.database.ThothDatabase/
-│   │       └── 1.json
-│   └── src/
-│       ├── androidTest/                             # Instrumented (on-device) tests
-│       ├── main/
-│       │   ├── AndroidManifest.xml
-│       │   ├── kotlin/
-│       │   │   └── com/oussamateyib/thoth/
-│       │   │       ├── MainActivity.kt              # App entry point
-│       │   │       ├── ThothApplication.kt          # Application-level setup
-│       │   │       ├── core/
-│       │   │       │   ├── database/                # ThothDatabase (Room)
-│       │   │       │   └── navigation/              # Navigation state and engine
-│       │   │       ├── di/                          # App-level Hilt modules
-│       │   │       ├── feature/
-│       │   │       │   └── notes/                   # Note-taking feature
-│       │   │       │       ├── api                  # Public API (navigation keys)
-│       │   │       │       └── impl
-│       │   │       │           ├── data/            # Room DAO, entities, repository impl, mappers
-│       │   │       │           ├── di/              # Feature-scoped Hilt modules
-│       │   │       │           ├── domain/          # Use cases, domain models, repository interfaces, utils
-│       │   │       │           ├── navigation/      # Navigation entries
-│       │   │       │           └── presentation/    # Compose screens, ViewModels, components
-│       │   │       │               ├── editor/      # Note editor screen
-│       │   │       │               └── list/        # Note list screen
-│       │   │       └── ui/
-│       │   │           ├── ThothApp.kt              # Root composable
-│       │   │           ├── ThothAppState.kt         # App-level state
-│       │   │           └── theme/                   # Color, Type, Shapes, Theme
-│       │   └── res/                                 # Drawables, launcher icons, strings, themes
-│       └── test/                                    # Unit tests
+│   └── src/main/
+│       ├── AndroidManifest.xml
+│       ├── kotlin/
+│       │   └── com/oussamateyib/thoth/
+│       │       ├── MainActivity.kt                  # App entry point
+│       │       ├── ThothApplication.kt              # Application-level setup
+│       │       └── ui/
+│       │           ├── ThothApp.kt                  # Root composable
+│       │           └── ThothAppState.kt             # App-level state
+│       └── res/                                     # Launcher icons, strings, themes
+├── core/
+│   ├── data/                                        # Central data layer
+│   │   ├── build.gradle.kts
+│   │   └── src/main/kotlin/com/oussamateyib/thoth/core/data/
+│   │       ├── di/                                  # Repository bindings
+│   │       ├── model/                               # Mappers
+│   │       └── repository/                          # Repositories (interfaces and implementations)
+│   ├── database/                                    # Local persistent storage
+│   │   ├── build.gradle.kts
+│   │   ├── schemas/                                 # Room database schema snapshots
+│   │   └── src/main/kotlin/com/oussamateyib/thoth/core/database/
+│   │       ├── dao/                                 # Room DAOs
+│   │       ├── di/                                  # Database Hilt modules
+│   │       ├── model/                               # Room entities
+│   │       └── ThothDatabase.kt
+│   ├── designsystem/                                # Core UI components, themes
+│   │   ├── build.gradle.kts
+│   │   └── src/main/kotlin/com/oussamateyib/thoth/core/designsystem/
+│   │       └── theme/
+│   ├── domain/                                      # Business logic wrappers
+│   │   ├── build.gradle.kts
+│   │   └── src/main/kotlin/com/oussamateyib/thoth/core/domain
+│   │       └── *UseCase.kt                          # use cases
+│   ├── model/                                       # Pure Kotlin data objects
+│   │   ├── build.gradle.kts
+│   │   └── src/main/kotlin/com/oussamateyib/thoth/core/model/
+│   │       └── data/                                # models
+│   └── navigation/                                  # Navigation state and engine
+│       ├── build.gradle.kts
+│       └── src/main/kotlin/com/oussamateyib/thoth/core/navigation/
+│           ├── NavigationState.kt
+│           └── Navigator.kt
+├── feature/
+│   └── notes/                                       # Note-taking feature
+│       ├── api                                      # Public API
+│       │   ├── build.gradle.kts
+│       │   └── src/main/kotlin/com/oussamateyib/thoth/feature/api/
+│       │       └── NotesNavKey.kt                   # Navigation keys
+│       └── impl
+│           ├── build.gradle.kts
+│           └── src/main/
+│               ├── kotlin/com/oussamateyib/thoth/feature/impl/
+│               │   ├── navigation/                  # Navigation entries
+│               │   ├── editor/                      # Note editor screen
+│               │   └── list/                        # Note list screen
+│               └── res/                             # Drawables, strings
 ├── gradle/                                          # Wrapper and version catalog
 ├── build.gradle.kts
 ├── settings.gradle.kts

@@ -37,7 +37,7 @@ jobs:
 
       - name: Ensure Room schemas are up to date
         run: |
-          git diff --exit-code app/schemas/ || (
+          git diff --exit-code core/database/schemas/ || (
             echo "::error::Room schemas are out of date. Run the build locally and commit the result."
             exit 1
           )
