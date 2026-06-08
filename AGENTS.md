@@ -68,7 +68,7 @@ Thoth/
 │   │   ├── build.gradle.kts
 │   │   ├── schemas/                                 # Room database schema snapshots
 │   │   └── src/main/kotlin/com/oussamateyib/thoth/core/database/
-│   │       ├── doa/                                 # Room DAOs
+│   │       ├── dao/                                 # Room DAOs
 │   │       ├── di/                                  # Database Hilt modules
 │   │       ├── model/                               # Room entities
 │   │       └── ThothDatabase.kt
