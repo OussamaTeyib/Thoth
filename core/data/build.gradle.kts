@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.dependency.analysis)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
 }
 
@@ -29,6 +30,10 @@ dependencies {
 
     api(libs.dagger)
     implementation(libs.dagger.hilt.core)
+    compileOnly(libs.hilt.android)
     implementation(libs.javax.inject)
     api(libs.kotlinx.coroutines.core)
+
+    ksp(libs.hilt.compiler)
+    ksp(libs.kotlin.metadata.jvm)
 }
