@@ -35,3 +35,5 @@ rootProject.name = "Thoth"
 include(":app")
 include(":core:designsystem")
 include(":core:navigation")
+include(":feature:notes:api")
+include(":feature:notes:impl")

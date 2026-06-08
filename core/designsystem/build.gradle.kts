@@ -11,10 +11,11 @@ android {
 
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
-    api(libs.androidx.compose.runtime)
-    api(libs.androidx.compose.material3)
+
     implementation(libs.androidx.compose.foundation)
+    api(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.text)
     implementation(libs.androidx.compose.ui.unit)
+    api(libs.androidx.compose.runtime)
 }

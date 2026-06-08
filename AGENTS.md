@@ -61,17 +61,6 @@ Thoth/
 │       │   │       ├── core/
 │       │   │       │   └── database/                # ThothDatabase (Room)
 │       │   │       ├── di/                          # App-level Hilt modules
-│       │   │       ├── feature/
-│       │   │       │   └── notes/                   # Note-taking feature
-│       │   │       │       ├── api                  # Public API (navigation keys)
-│       │   │       │       └── impl
-│       │   │       │           ├── data/            # Room DAO, entities, repository impl, mappers
-│       │   │       │           ├── di/              # Feature-scoped Hilt modules
-│       │   │       │           ├── domain/          # Use cases, domain models, repository interfaces, utils
-│       │   │       │           ├── navigation/      # Navigation entries
-│       │   │       │           └── presentation/    # Compose screens, ViewModels, components
-│       │   │       │               ├── editor/      # Note editor screen
-│       │   │       │               └── list/        # Note list screen
 │       │   │       └── ui/
 │       │   │           ├── ThothApp.kt              # Root composable
 │       │   │           └── ThothAppState.kt         # App-level state
@@ -87,6 +76,22 @@ Thoth/
 │       └── src/main/kotlin/com/oussamateyib/thoth/core/navigation
 │           ├── NavigationState.kt
 │           └── Navigator.kt
+├── feature/
+│   └── notes/                                       # Note-taking feature
+│       ├── api                                      # Public API
+│       │   ├── build.gradle.kts
+│       │   └── src/main/kotlin/com/oussamateyib/thoth/feature/api
+│       │       └── NotesNavKey.kt                   # Navigation keys
+│       └── impl
+│           ├── build.gradle.kts
+│           └── src/main/kotlin/com/oussamateyib/thoth/feature/impl
+│               ├── data/                            # Room DAO, entities, repository impl, mappers
+│               ├── di/                              # Feature-scoped Hilt modules
+│               ├── domain/                          # Use cases, domain models, repository interfaces, utils
+│               ├── navigation/                      # Navigation entries
+│               └── presentation/                    # Compose screens, ViewModels, components
+│                   ├── editor/                      # Note editor screen
+│                   └── list/                        # Note list screen
 ├── gradle/                                          # Wrapper and version catalog
 ├── build.gradle.kts
 ├── settings.gradle.kts
