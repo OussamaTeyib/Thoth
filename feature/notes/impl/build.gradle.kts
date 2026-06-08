@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.dependency.analysis)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
 }
@@ -8,13 +9,26 @@ plugins {
 android {
     namespace = "com.oussamateyib.thoth.feature.notes.impl"
     compileSdk = 37
+
+    defaultConfig {
+        minSdk = 24
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    lint {
+        checkAllWarnings = true
+        warningsAsErrors = true
+    }
 }
 
 dependencies {
-    // TODO: should be removed
-    api(projects.core.database)
-
     implementation(projects.core.designsystem)
+    api(projects.core.domain)
+    api(projects.core.model)
     api(projects.core.navigation)
     implementation(projects.feature.notes.api)
 
@@ -44,4 +58,7 @@ dependencies {
     implementation(libs.hilt.lifecycle.viewmodel.compose)
     api(libs.javax.inject)
     api(libs.kotlinx.coroutines.core)
+
+    ksp(libs.hilt.compiler)
+    ksp(libs.kotlin.metadata.jvm)
 }

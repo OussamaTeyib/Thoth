@@ -13,9 +13,25 @@ room {
 android {
     namespace = "com.oussamateyib.thoth.core.database"
     compileSdk = 37
+
+    defaultConfig {
+        minSdk = 24
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    lint {
+        checkAllWarnings = true
+        warningsAsErrors = true
+    }
 }
 
 dependencies {
+    api(projects.core.model)
+
     implementation(libs.androidx.room.common)
     api(libs.androidx.room.runtime)
     implementation(libs.androidx.sqlite)

@@ -6,10 +6,10 @@ import androidx.navigation3.runtime.NavKey
 import com.oussamateyib.thoth.core.navigation.Navigator
 import com.oussamateyib.thoth.feature.notes.api.NoteEditorNavKey
 import com.oussamateyib.thoth.feature.notes.api.NoteListNavKey
-import com.oussamateyib.thoth.feature.notes.impl.presentation.editor.NoteEditorScreen
-import com.oussamateyib.thoth.feature.notes.impl.presentation.editor.NoteEditorViewModel
-import com.oussamateyib.thoth.feature.notes.impl.presentation.list.NoteListScreen
-import com.oussamateyib.thoth.feature.notes.impl.presentation.list.NoteListViewModel
+import com.oussamateyib.thoth.feature.notes.impl.editor.NoteEditorScreen
+import com.oussamateyib.thoth.feature.notes.impl.editor.NoteEditorViewModel
+import com.oussamateyib.thoth.feature.notes.impl.list.NoteListScreen
+import com.oussamateyib.thoth.feature.notes.impl.list.NoteListViewModel
 
 // Map the navigation keys of the notes feature to their respective screens
 fun EntryProviderScope<NavKey>.notesEntry(
