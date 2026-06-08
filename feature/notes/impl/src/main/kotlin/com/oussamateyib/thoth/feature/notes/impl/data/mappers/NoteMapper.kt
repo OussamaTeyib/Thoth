@@ -1,6 +1,6 @@
 package com.oussamateyib.thoth.feature.notes.impl.data.mappers
 
-import com.oussamateyib.thoth.feature.notes.impl.data.local.NoteEntity
+import com.oussamateyib.thoth.core.database.model.NoteEntity
 import com.oussamateyib.thoth.feature.notes.impl.domain.model.Note
 
 fun NoteEntity.toDomain(): Note = Note(

@@ -4,12 +4,6 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.room)
-}
-
-// Configure Room schema export directory
-room {
-    schemaDirectory("$projectDir/schemas")
 }
 
 // Detect if the current build is for an Android App Bundle (AAB)
@@ -104,6 +98,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.database)
     implementation(projects.core.designsystem)
     implementation(projects.core.navigation)
     implementation(projects.feature.notes.api)
@@ -124,18 +119,12 @@ dependencies {
     implementation(libs.androidx.fragment)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
-    implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.navigation3.runtime)
-    implementation(libs.androidx.room.common)
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.sqlite)
+    implementation(libs.androidx.navigation3.ui)
     implementation(libs.dagger)
     implementation(libs.dagger.hilt.core)
     implementation(libs.hilt.android)
-    implementation(libs.javax.inject)
-    implementation(libs.kotlinx.coroutines.core)
 
-    ksp(libs.androidx.room.compiler)
     ksp(libs.hilt.compiler)
     ksp(libs.kotlin.metadata.jvm)
 }

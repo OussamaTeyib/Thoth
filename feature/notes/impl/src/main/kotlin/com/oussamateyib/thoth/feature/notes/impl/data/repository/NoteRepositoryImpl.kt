@@ -1,7 +1,7 @@
 package com.oussamateyib.thoth.feature.notes.impl.data.repository
 
-import com.oussamateyib.thoth.feature.notes.impl.data.local.NoteDao
-import com.oussamateyib.thoth.feature.notes.impl.data.local.NoteEntity
+import com.oussamateyib.thoth.core.database.dao.NoteDao
+import com.oussamateyib.thoth.core.database.model.NoteEntity
 import com.oussamateyib.thoth.feature.notes.impl.data.mappers.toDomain
 import com.oussamateyib.thoth.feature.notes.impl.data.mappers.toEntity
 import com.oussamateyib.thoth.feature.notes.impl.domain.model.Note

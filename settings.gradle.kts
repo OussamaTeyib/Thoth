@@ -33,6 +33,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "Thoth"
 include(":app")
+include(":core:database")
 include(":core:designsystem")
 include(":core:navigation")
 include(":feature:notes:api")

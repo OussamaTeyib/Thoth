@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.dependency.analysis)
-    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
 }
@@ -12,6 +11,9 @@ android {
 }
 
 dependencies {
+    // TODO: should be removed
+    api(projects.core.database)
+
     implementation(projects.core.designsystem)
     api(projects.core.navigation)
     implementation(projects.feature.notes.api)
@@ -35,7 +37,6 @@ dependencies {
     api(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     api(libs.androidx.navigation3.runtime)
-    implementation(libs.androidx.room.common)
     implementation(libs.colorpicker.compose)
     api(libs.dagger)
     implementation(libs.dagger.hilt.core)
@@ -43,7 +44,4 @@ dependencies {
     implementation(libs.hilt.lifecycle.viewmodel.compose)
     api(libs.javax.inject)
     api(libs.kotlinx.coroutines.core)
-
-    ksp(libs.hilt.compiler)
-    ksp(libs.kotlin.metadata.jvm)
 }
