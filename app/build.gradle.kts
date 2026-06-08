@@ -10,7 +10,6 @@ plugins {
 val isBuildingBundle = gradle.startParameter.taskNames.any { it.lowercase().contains("bundle") }
 
 android {
-    // Application configuration
     namespace = "com.oussamateyib.thoth"
     compileSdk = 37
 
@@ -24,13 +23,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    // Java configuration
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    // ABI splits configuration
     splits {
         abi {
             // Disable ABI splits when building an App Bundle to avoid conflicts
@@ -44,7 +41,6 @@ android {
         }
     }
 
-    // Signing configuration
     signingConfigs {
         create("release") {
             // Use environment variables if provided
@@ -60,7 +56,6 @@ android {
         }
     }
 
-    // Build types configuration
     buildTypes {
         getByName("release") {
             // Enable code shrinking and obfuscation
@@ -76,7 +71,7 @@ android {
             signingConfig = if (System.getenv("STORE_FILE") != null) {
                 signingConfigs.getByName("release")
             } else {
-                signingConfigs.getByName("debug")  // Fallback to debug keystore
+                signingConfigs.getByName("debug") // Fallback to debug keystore
             }
 
             // Exclude dependency metadata
@@ -90,7 +85,6 @@ android {
         }
     }
 
-    // lint configuration
     lint {
         checkAllWarnings = true
         warningsAsErrors = true
