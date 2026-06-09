@@ -31,10 +31,6 @@ This is a note-taking app for Android.
 
 ### Prerequisites
 
-Before you begin, ensure you have the following installed:
-
-- **Java Development Kit (JDK)** — JDK 17
-
 If you want to use your own signing key for release builds, set the following environment variables:
 
 - **STORE_FILE** — Path to the keystore
