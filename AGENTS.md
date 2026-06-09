@@ -121,10 +121,10 @@ Thoth/
 
 ### Prerequisites
 
-| Tool        | Version                      |
-|-------------|------------------------------|
-| JDK         | 17                           |
-| Android SDK | Managed automatically by AGP |
+| Tool        | Version                              |
+|-------------|--------------------------------------|
+| JDK         | 17 (Managed automatically by Gradle) |
+| Android SDK | Managed automatically by AGP         |
 
 ### Gradle tasks
 

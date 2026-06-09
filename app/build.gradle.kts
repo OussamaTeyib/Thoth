@@ -6,6 +6,12 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
 // Detect if the current build is for an Android App Bundle (AAB)
 val isBuildingBundle = gradle.startParameter.taskNames.any { it.lowercase().contains("bundle") }
 
@@ -19,13 +25,6 @@ android {
         targetSdk = 37
         versionCode = 1
         versionName = "1.0.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 
     splits {

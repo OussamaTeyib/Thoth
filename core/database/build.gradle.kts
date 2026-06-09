@@ -5,6 +5,12 @@ plugins {
     alias(libs.plugins.room)
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
 // Configure Room schema export directory
 room {
     schemaDirectory("$projectDir/schemas")
@@ -16,11 +22,6 @@ android {
 
     defaultConfig {
         minSdk = 24
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 
     lint {
