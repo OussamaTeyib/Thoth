@@ -123,7 +123,7 @@ Thoth/
 
 | Tool        | Version                              |
 |-------------|--------------------------------------|
-| JDK         | 17 (Managed automatically by Gradle) |
+| JDK         | 21 (Managed automatically by Gradle) |
 | Android SDK | Managed automatically by AGP         |
 
 ### Gradle tasks
