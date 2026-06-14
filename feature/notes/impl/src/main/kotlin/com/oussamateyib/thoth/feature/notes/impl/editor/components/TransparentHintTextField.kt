@@ -3,13 +3,13 @@ package com.oussamateyib.thoth.feature.notes.impl.editor.components
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.TextStyle
-import com.oussamateyib.thoth.core.designsystem.theme.DarkGray
 
 @Composable
 internal fun TransparentHintTextField(
@@ -39,7 +39,7 @@ internal fun TransparentHintTextField(
         if (isHintVisible) {
             Text(
                 text = hint,
-                color = DarkGray
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
     }
