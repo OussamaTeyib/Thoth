@@ -34,15 +34,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussamateyib.thoth.feature.notes.impl.R
 import com.oussamateyib.thoth.feature.notes.impl.list.components.NoteItem
 import com.oussamateyib.thoth.feature.notes.impl.list.components.OrderSection
-import com.oussamateyib.thoth.feature.notes.impl.R
 import kotlinx.coroutines.launch
 
 @Composable
@@ -121,8 +120,7 @@ internal fun NoteListScreen(
                     contentDescription = stringResource(R.string.add_note)
                 )
             }
-        },
-        containerColor = Color.Transparent,
+        }
     ) { innerPadding ->
         Column(
             modifier = Modifier
