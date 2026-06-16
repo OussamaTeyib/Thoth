@@ -8,9 +8,27 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+
+@Immutable
+data class ExtendedColorScheme(
+    val butterYellow: ColorFamily,
+    val peachCream: ColorFamily,
+    val coralMist: ColorFamily,
+    val roseBlush: ColorFamily,
+    val lavender: ColorFamily,
+    val periwinkle: ColorFamily,
+    val skyBlue: ColorFamily,
+    val mintGreen: ColorFamily,
+    val sage: ColorFamily,
+    val pistachio: ColorFamily,
+    val aquaMist: ColorFamily,
+    val silverCloud: ColorFamily,
+)
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -240,6 +258,456 @@ private val highContrastDarkColorScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDarkHighContrast,
 )
 
+val extendedLight = ExtendedColorScheme(
+    butterYellow = ColorFamily(
+        butterYellowLight,
+        onButterYellowLight,
+        butterYellowContainerLight,
+        onButterYellowContainerLight,
+    ),
+    peachCream = ColorFamily(
+        peachCreamLight,
+        onPeachCreamLight,
+        peachCreamContainerLight,
+        onPeachCreamContainerLight,
+    ),
+    coralMist = ColorFamily(
+        coralMistLight,
+        onCoralMistLight,
+        coralMistContainerLight,
+        onCoralMistContainerLight,
+    ),
+    roseBlush = ColorFamily(
+        roseBlushLight,
+        onRoseBlushLight,
+        roseBlushContainerLight,
+        onRoseBlushContainerLight,
+    ),
+    lavender = ColorFamily(
+        lavenderLight,
+        onLavenderLight,
+        lavenderContainerLight,
+        onLavenderContainerLight,
+    ),
+    periwinkle = ColorFamily(
+        periwinkleLight,
+        onPeriwinkleLight,
+        periwinkleContainerLight,
+        onPeriwinkleContainerLight,
+    ),
+    skyBlue = ColorFamily(
+        skyBlueLight,
+        onSkyBlueLight,
+        skyBlueContainerLight,
+        onSkyBlueContainerLight,
+    ),
+    mintGreen = ColorFamily(
+        mintGreenLight,
+        onMintGreenLight,
+        mintGreenContainerLight,
+        onMintGreenContainerLight,
+    ),
+    sage = ColorFamily(
+        sageLight,
+        onSageLight,
+        sageContainerLight,
+        onSageContainerLight,
+    ),
+    pistachio = ColorFamily(
+        pistachioLight,
+        onPistachioLight,
+        pistachioContainerLight,
+        onPistachioContainerLight,
+    ),
+    aquaMist = ColorFamily(
+        aquaMistLight,
+        onAquaMistLight,
+        aquaMistContainerLight,
+        onAquaMistContainerLight,
+    ),
+    silverCloud = ColorFamily(
+        silverCloudLight,
+        onSilverCloudLight,
+        silverCloudContainerLight,
+        onSilverCloudContainerLight,
+    ),
+)
+
+val extendedDark = ExtendedColorScheme(
+    butterYellow = ColorFamily(
+        butterYellowDark,
+        onButterYellowDark,
+        butterYellowContainerDark,
+        onButterYellowContainerDark,
+    ),
+    peachCream = ColorFamily(
+        peachCreamDark,
+        onPeachCreamDark,
+        peachCreamContainerDark,
+        onPeachCreamContainerDark,
+    ),
+    coralMist = ColorFamily(
+        coralMistDark,
+        onCoralMistDark,
+        coralMistContainerDark,
+        onCoralMistContainerDark,
+    ),
+    roseBlush = ColorFamily(
+        roseBlushDark,
+        onRoseBlushDark,
+        roseBlushContainerDark,
+        onRoseBlushContainerDark,
+    ),
+    lavender = ColorFamily(
+        lavenderDark,
+        onLavenderDark,
+        lavenderContainerDark,
+        onLavenderContainerDark,
+    ),
+    periwinkle = ColorFamily(
+        periwinkleDark,
+        onPeriwinkleDark,
+        periwinkleContainerDark,
+        onPeriwinkleContainerDark,
+    ),
+    skyBlue = ColorFamily(
+        skyBlueDark,
+        onSkyBlueDark,
+        skyBlueContainerDark,
+        onSkyBlueContainerDark,
+    ),
+    mintGreen = ColorFamily(
+        mintGreenDark,
+        onMintGreenDark,
+        mintGreenContainerDark,
+        onMintGreenContainerDark,
+    ),
+    sage = ColorFamily(
+        sageDark,
+        onSageDark,
+        sageContainerDark,
+        onSageContainerDark,
+    ),
+    pistachio = ColorFamily(
+        pistachioDark,
+        onPistachioDark,
+        pistachioContainerDark,
+        onPistachioContainerDark,
+    ),
+    aquaMist = ColorFamily(
+        aquaMistDark,
+        onAquaMistDark,
+        aquaMistContainerDark,
+        onAquaMistContainerDark,
+    ),
+    silverCloud = ColorFamily(
+        silverCloudDark,
+        onSilverCloudDark,
+        silverCloudContainerDark,
+        onSilverCloudContainerDark,
+    ),
+)
+
+val extendedLightMediumContrast = ExtendedColorScheme(
+    butterYellow = ColorFamily(
+        butterYellowLightMediumContrast,
+        onButterYellowLightMediumContrast,
+        butterYellowContainerLightMediumContrast,
+        onButterYellowContainerLightMediumContrast,
+    ),
+    peachCream = ColorFamily(
+        peachCreamLightMediumContrast,
+        onPeachCreamLightMediumContrast,
+        peachCreamContainerLightMediumContrast,
+        onPeachCreamContainerLightMediumContrast,
+    ),
+    coralMist = ColorFamily(
+        coralMistLightMediumContrast,
+        onCoralMistLightMediumContrast,
+        coralMistContainerLightMediumContrast,
+        onCoralMistContainerLightMediumContrast,
+    ),
+    roseBlush = ColorFamily(
+        roseBlushLightMediumContrast,
+        onRoseBlushLightMediumContrast,
+        roseBlushContainerLightMediumContrast,
+        onRoseBlushContainerLightMediumContrast,
+    ),
+    lavender = ColorFamily(
+        lavenderLightMediumContrast,
+        onLavenderLightMediumContrast,
+        lavenderContainerLightMediumContrast,
+        onLavenderContainerLightMediumContrast,
+    ),
+    periwinkle = ColorFamily(
+        periwinkleLightMediumContrast,
+        onPeriwinkleLightMediumContrast,
+        periwinkleContainerLightMediumContrast,
+        onPeriwinkleContainerLightMediumContrast,
+    ),
+    skyBlue = ColorFamily(
+        skyBlueLightMediumContrast,
+        onSkyBlueLightMediumContrast,
+        skyBlueContainerLightMediumContrast,
+        onSkyBlueContainerLightMediumContrast,
+    ),
+    mintGreen = ColorFamily(
+        mintGreenLightMediumContrast,
+        onMintGreenLightMediumContrast,
+        mintGreenContainerLightMediumContrast,
+        onMintGreenContainerLightMediumContrast,
+    ),
+    sage = ColorFamily(
+        sageLightMediumContrast,
+        onSageLightMediumContrast,
+        sageContainerLightMediumContrast,
+        onSageContainerLightMediumContrast,
+    ),
+    pistachio = ColorFamily(
+        pistachioLightMediumContrast,
+        onPistachioLightMediumContrast,
+        pistachioContainerLightMediumContrast,
+        onPistachioContainerLightMediumContrast,
+    ),
+    aquaMist = ColorFamily(
+        aquaMistLightMediumContrast,
+        onAquaMistLightMediumContrast,
+        aquaMistContainerLightMediumContrast,
+        onAquaMistContainerLightMediumContrast,
+    ),
+    silverCloud = ColorFamily(
+        silverCloudLightMediumContrast,
+        onSilverCloudLightMediumContrast,
+        silverCloudContainerLightMediumContrast,
+        onSilverCloudContainerLightMediumContrast,
+    ),
+)
+
+val extendedLightHighContrast = ExtendedColorScheme(
+    butterYellow = ColorFamily(
+        butterYellowLightHighContrast,
+        onButterYellowLightHighContrast,
+        butterYellowContainerLightHighContrast,
+        onButterYellowContainerLightHighContrast,
+    ),
+    peachCream = ColorFamily(
+        peachCreamLightHighContrast,
+        onPeachCreamLightHighContrast,
+        peachCreamContainerLightHighContrast,
+        onPeachCreamContainerLightHighContrast,
+    ),
+    coralMist = ColorFamily(
+        coralMistLightHighContrast,
+        onCoralMistLightHighContrast,
+        coralMistContainerLightHighContrast,
+        onCoralMistContainerLightHighContrast,
+    ),
+    roseBlush = ColorFamily(
+        roseBlushLightHighContrast,
+        onRoseBlushLightHighContrast,
+        roseBlushContainerLightHighContrast,
+        onRoseBlushContainerLightHighContrast,
+    ),
+    lavender = ColorFamily(
+        lavenderLightHighContrast,
+        onLavenderLightHighContrast,
+        lavenderContainerLightHighContrast,
+        onLavenderContainerLightHighContrast,
+    ),
+    periwinkle = ColorFamily(
+        periwinkleLightHighContrast,
+        onPeriwinkleLightHighContrast,
+        periwinkleContainerLightHighContrast,
+        onPeriwinkleContainerLightHighContrast,
+    ),
+    skyBlue = ColorFamily(
+        skyBlueLightHighContrast,
+        onSkyBlueLightHighContrast,
+        skyBlueContainerLightHighContrast,
+        onSkyBlueContainerLightHighContrast,
+    ),
+    mintGreen = ColorFamily(
+        mintGreenLightHighContrast,
+        onMintGreenLightHighContrast,
+        mintGreenContainerLightHighContrast,
+        onMintGreenContainerLightHighContrast,
+    ),
+    sage = ColorFamily(
+        sageLightHighContrast,
+        onSageLightHighContrast,
+        sageContainerLightHighContrast,
+        onSageContainerLightHighContrast,
+    ),
+    pistachio = ColorFamily(
+        pistachioLightHighContrast,
+        onPistachioLightHighContrast,
+        pistachioContainerLightHighContrast,
+        onPistachioContainerLightHighContrast,
+    ),
+    aquaMist = ColorFamily(
+        aquaMistLightHighContrast,
+        onAquaMistLightHighContrast,
+        aquaMistContainerLightHighContrast,
+        onAquaMistContainerLightHighContrast,
+    ),
+    silverCloud = ColorFamily(
+        silverCloudLightHighContrast,
+        onSilverCloudLightHighContrast,
+        silverCloudContainerLightHighContrast,
+        onSilverCloudContainerLightHighContrast,
+    ),
+)
+
+val extendedDarkMediumContrast = ExtendedColorScheme(
+    butterYellow = ColorFamily(
+        butterYellowDarkMediumContrast,
+        onButterYellowDarkMediumContrast,
+        butterYellowContainerDarkMediumContrast,
+        onButterYellowContainerDarkMediumContrast,
+    ),
+    peachCream = ColorFamily(
+        peachCreamDarkMediumContrast,
+        onPeachCreamDarkMediumContrast,
+        peachCreamContainerDarkMediumContrast,
+        onPeachCreamContainerDarkMediumContrast,
+    ),
+    coralMist = ColorFamily(
+        coralMistDarkMediumContrast,
+        onCoralMistDarkMediumContrast,
+        coralMistContainerDarkMediumContrast,
+        onCoralMistContainerDarkMediumContrast,
+    ),
+    roseBlush = ColorFamily(
+        roseBlushDarkMediumContrast,
+        onRoseBlushDarkMediumContrast,
+        roseBlushContainerDarkMediumContrast,
+        onRoseBlushContainerDarkMediumContrast,
+    ),
+    lavender = ColorFamily(
+        lavenderDarkMediumContrast,
+        onLavenderDarkMediumContrast,
+        lavenderContainerDarkMediumContrast,
+        onLavenderContainerDarkMediumContrast,
+    ),
+    periwinkle = ColorFamily(
+        periwinkleDarkMediumContrast,
+        onPeriwinkleDarkMediumContrast,
+        periwinkleContainerDarkMediumContrast,
+        onPeriwinkleContainerDarkMediumContrast,
+    ),
+    skyBlue = ColorFamily(
+        skyBlueDarkMediumContrast,
+        onSkyBlueDarkMediumContrast,
+        skyBlueContainerDarkMediumContrast,
+        onSkyBlueContainerDarkMediumContrast,
+    ),
+    mintGreen = ColorFamily(
+        mintGreenDarkMediumContrast,
+        onMintGreenDarkMediumContrast,
+        mintGreenContainerDarkMediumContrast,
+        onMintGreenContainerDarkMediumContrast,
+    ),
+    sage = ColorFamily(
+        sageDarkMediumContrast,
+        onSageDarkMediumContrast,
+        sageContainerDarkMediumContrast,
+        onSageContainerDarkMediumContrast,
+    ),
+    pistachio = ColorFamily(
+        pistachioDarkMediumContrast,
+        onPistachioDarkMediumContrast,
+        pistachioContainerDarkMediumContrast,
+        onPistachioContainerDarkMediumContrast,
+    ),
+    aquaMist = ColorFamily(
+        aquaMistDarkMediumContrast,
+        onAquaMistDarkMediumContrast,
+        aquaMistContainerDarkMediumContrast,
+        onAquaMistContainerDarkMediumContrast,
+    ),
+    silverCloud = ColorFamily(
+        silverCloudDarkMediumContrast,
+        onSilverCloudDarkMediumContrast,
+        silverCloudContainerDarkMediumContrast,
+        onSilverCloudContainerDarkMediumContrast,
+    ),
+)
+
+val extendedDarkHighContrast = ExtendedColorScheme(
+    butterYellow = ColorFamily(
+        butterYellowDarkHighContrast,
+        onButterYellowDarkHighContrast,
+        butterYellowContainerDarkHighContrast,
+        onButterYellowContainerDarkHighContrast,
+    ),
+    peachCream = ColorFamily(
+        peachCreamDarkHighContrast,
+        onPeachCreamDarkHighContrast,
+        peachCreamContainerDarkHighContrast,
+        onPeachCreamContainerDarkHighContrast,
+    ),
+    coralMist = ColorFamily(
+        coralMistDarkHighContrast,
+        onCoralMistDarkHighContrast,
+        coralMistContainerDarkHighContrast,
+        onCoralMistContainerDarkHighContrast,
+    ),
+    roseBlush = ColorFamily(
+        roseBlushDarkHighContrast,
+        onRoseBlushDarkHighContrast,
+        roseBlushContainerDarkHighContrast,
+        onRoseBlushContainerDarkHighContrast,
+    ),
+    lavender = ColorFamily(
+        lavenderDarkHighContrast,
+        onLavenderDarkHighContrast,
+        lavenderContainerDarkHighContrast,
+        onLavenderContainerDarkHighContrast,
+    ),
+    periwinkle = ColorFamily(
+        periwinkleDarkHighContrast,
+        onPeriwinkleDarkHighContrast,
+        periwinkleContainerDarkHighContrast,
+        onPeriwinkleContainerDarkHighContrast,
+    ),
+    skyBlue = ColorFamily(
+        skyBlueDarkHighContrast,
+        onSkyBlueDarkHighContrast,
+        skyBlueContainerDarkHighContrast,
+        onSkyBlueContainerDarkHighContrast,
+    ),
+    mintGreen = ColorFamily(
+        mintGreenDarkHighContrast,
+        onMintGreenDarkHighContrast,
+        mintGreenContainerDarkHighContrast,
+        onMintGreenContainerDarkHighContrast,
+    ),
+    sage = ColorFamily(
+        sageDarkHighContrast,
+        onSageDarkHighContrast,
+        sageContainerDarkHighContrast,
+        onSageContainerDarkHighContrast,
+    ),
+    pistachio = ColorFamily(
+        pistachioDarkHighContrast,
+        onPistachioDarkHighContrast,
+        pistachioContainerDarkHighContrast,
+        onPistachioContainerDarkHighContrast,
+    ),
+    aquaMist = ColorFamily(
+        aquaMistDarkHighContrast,
+        onAquaMistDarkHighContrast,
+        aquaMistContainerDarkHighContrast,
+        onAquaMistContainerDarkHighContrast,
+    ),
+    silverCloud = ColorFamily(
+        silverCloudDarkHighContrast,
+        onSilverCloudDarkHighContrast,
+        silverCloudContainerDarkHighContrast,
+        onSilverCloudContainerDarkHighContrast,
+    ),
+)
+
 @Immutable
 data class ColorFamily(
     val color: Color,
@@ -251,6 +719,14 @@ data class ColorFamily(
 val unspecified_scheme = ColorFamily(
     Color.Unspecified, Color.Unspecified, Color.Unspecified, Color.Unspecified
 )
+
+val LocalExtendedColorScheme = staticCompositionLocalOf { extendedLight }
+
+object ThothTheme {
+    val extendedColorScheme: ExtendedColorScheme
+        @Composable
+        get() = LocalExtendedColorScheme.current
+}
 
 @Composable
 fun ThothTheme(
@@ -269,9 +745,15 @@ fun ThothTheme(
         else -> lightScheme
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = ThothTypography,
-        content = content
-    )
+    val extendedColors = if (darkTheme) extendedDark else extendedLight
+
+    CompositionLocalProvider(
+        LocalExtendedColorScheme provides extendedColors
+    ) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = ThothTypography,
+            content = content
+        )
+    }
 }
