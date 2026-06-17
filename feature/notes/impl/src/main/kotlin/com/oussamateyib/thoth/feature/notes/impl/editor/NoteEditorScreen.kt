@@ -28,8 +28,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.oussamateyib.thoth.feature.notes.impl.editor.components.ColorPicker
-import com.oussamateyib.thoth.feature.notes.impl.editor.components.TransparentHintTextField
+import com.oussamateyib.thoth.core.designsystem.components.TransparentTextField
+import com.oussamateyib.thoth.core.ui.ColorPicker
 import com.oussamateyib.thoth.feature.notes.impl.R
 
 @Composable
@@ -144,7 +144,7 @@ internal fun NoteEditorScreen(
                 .padding(innerPadding)
                 .padding(horizontal = 20.dp, vertical = 12.dp)
         ) {
-            TransparentHintTextField(
+            TransparentTextField(
                 text = state.title.text,
                 hint = stringResource(state.title.hint),
                 isHintVisible = state.title.isHintVisible,
@@ -158,7 +158,7 @@ internal fun NoteEditorScreen(
                 textStyle = MaterialTheme.typography.headlineMedium,
             )
             Spacer(modifier = Modifier.height(12.dp))
-            TransparentHintTextField(
+            TransparentTextField(
                 text = state.content.text,
                 hint = stringResource(state.content.hint),
                 isHintVisible = state.content.isHintVisible,

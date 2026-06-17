@@ -1,4 +1,4 @@
-package com.oussamateyib.thoth.feature.notes.impl.editor.components
+package com.oussamateyib.thoth.core.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,7 @@ import com.github.skydoves.colorpicker.compose.HsvColorPicker
 import com.github.skydoves.colorpicker.compose.rememberColorPickerController
 
 @Composable
-internal fun ColorPicker(
+fun ColorPicker(
     selectedColor: Int,
     onColorChange: (Int) -> Unit,
     modifier: Modifier = Modifier

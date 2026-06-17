@@ -1,4 +1,4 @@
-package com.oussamateyib.thoth.feature.notes.impl.editor.components
+package com.oussamateyib.thoth.core.designsystem.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,7 +12,7 @@ import androidx.compose.ui.text.TextStyle
 import com.oussamateyib.thoth.core.designsystem.theme.DarkGray
 
 @Composable
-internal fun TransparentHintTextField(
+fun TransparentTextField(
     text: String,
     hint: String,
     modifier: Modifier = Modifier,

@@ -40,8 +40,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.oussamateyib.thoth.feature.notes.impl.list.components.NoteItem
-import com.oussamateyib.thoth.feature.notes.impl.list.components.OrderSection
+import com.oussamateyib.thoth.core.ui.NoteItem
+import com.oussamateyib.thoth.core.ui.NoteOrderSection
 import com.oussamateyib.thoth.feature.notes.impl.R
 import kotlinx.coroutines.launch
 
@@ -135,7 +135,7 @@ internal fun NoteListScreen(
                 enter = fadeIn(tween(200)) + expandVertically(),
                 exit = fadeOut(tween(200)) + shrinkVertically()
             ) {
-                OrderSection(
+                NoteOrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 8.dp),
