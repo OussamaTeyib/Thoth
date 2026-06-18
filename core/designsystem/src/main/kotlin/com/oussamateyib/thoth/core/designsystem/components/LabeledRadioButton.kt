@@ -1,4 +1,4 @@
-package com.oussamateyib.thoth.feature.notes.impl.list.components
+package com.oussamateyib.thoth.core.designsystem.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun DefaultRadioButton(
+fun LabeledRadioButton(
     text: String,
     selected: Boolean,
     onSelect: () -> Unit,

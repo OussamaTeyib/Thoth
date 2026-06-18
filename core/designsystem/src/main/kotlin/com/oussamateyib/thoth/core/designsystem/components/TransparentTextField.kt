@@ -1,7 +1,6 @@
-package com.oussamateyib.thoth.feature.notes.impl.editor.components
+package com.oussamateyib.thoth.core.designsystem.components
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -12,8 +11,8 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.TextStyle
 
 @Composable
-internal fun TransparentHintTextField(
-    text: String,
+fun TransparentTextField(
+    value: String,
     hint: String,
     modifier: Modifier = Modifier,
     isHintVisible: Boolean = true,
@@ -22,25 +21,26 @@ internal fun TransparentHintTextField(
     singleLine: Boolean = false,
     onFocusChange: (FocusState) -> Unit
 ) {
-    Box(
+    BasicTextField(
+        value = value,
+        onValueChange = onValueChange,
+        singleLine = singleLine,
+        textStyle = textStyle,
         modifier = modifier
-    ) {
-        BasicTextField(
-            value = text,
-            onValueChange = onValueChange,
-            singleLine = singleLine,
-            textStyle = textStyle,
-            modifier = Modifier
-                .fillMaxWidth()
-                .onFocusChanged {
-                    onFocusChange(it)
+            .onFocusChanged {
+                onFocusChange(it)
+            },
+        decorationBox = { innerTextField ->
+            Box {
+                if (isHintVisible) {
+                    Text(
+                        text = hint,
+                        style = textStyle,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 }
-        )
-        if (isHintVisible) {
-            Text(
-                text = hint,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
+                innerTextField()
+            }
         }
-    }
+    )
 }

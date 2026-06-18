@@ -75,7 +75,8 @@ Thoth/
 │   ├── designsystem/                                # Core UI components, themes
 │   │   ├── build.gradle.kts
 │   │   └── src/main/kotlin/com/oussamateyib/thoth/core/designsystem/
-│   │       └── theme/
+│   │       ├── theme/
+│   │       └── components/
 │   ├── domain/                                      # Business logic wrappers
 │   │   ├── build.gradle.kts
 │   │   └── src/main/kotlin/com/oussamateyib/thoth/core/domain
@@ -84,11 +85,16 @@ Thoth/
 │   │   ├── build.gradle.kts
 │   │   └── src/main/kotlin/com/oussamateyib/thoth/core/model/
 │   │       └── data/                                # models
-│   └── navigation/                                  # Navigation state and engine
+│   ├── navigation/                                  # Navigation state and engine
+│   │   ├── build.gradle.kts
+│   │   └── src/main/kotlin/com/oussamateyib/thoth/core/navigation/
+│   │       ├── NavigationState.kt
+│   │       └── Navigator.kt
+│   └── ui/                                          # Shared data-driven UI components
 │       ├── build.gradle.kts
-│       └── src/main/kotlin/com/oussamateyib/thoth/core/navigation/
-│           ├── NavigationState.kt
-│           └── Navigator.kt
+│       └── src/main
+│           ├── kotlin/com/oussamateyib/thoth/core/ui
+│           └── res/                                 # Drawables, strings
 ├── feature/
 │   └── notes/                                       # Note-taking feature
 │       ├── api                                      # Public API

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ascending">Ascending</string>
+    <string name="color">Color</string>
+    <string name="date">Date</string>
+    <string name="delete_note">Delete note</string>
+    <string name="descending">Descending</string>
+    <string name="title">Title</string>
+</resources>

@@ -6,7 +6,6 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -39,9 +37,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussamateyib.thoth.core.ui.NoteOrderSection
+import com.oussamateyib.thoth.core.ui.noteItems
 import com.oussamateyib.thoth.feature.notes.impl.R
-import com.oussamateyib.thoth.feature.notes.impl.list.components.NoteItem
-import com.oussamateyib.thoth.feature.notes.impl.list.components.OrderSection
 import kotlinx.coroutines.launch
 
 @Composable
@@ -133,7 +131,7 @@ internal fun NoteListScreen(
                 enter = fadeIn(tween(200)) + expandVertically(),
                 exit = fadeOut(tween(200)) + shrinkVertically()
             ) {
-                OrderSection(
+                NoteOrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 8.dp),
@@ -147,33 +145,24 @@ internal fun NoteListScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
-                items(
-                    state.notes,
-                    key = { it.id!! }
-                ) { note ->
-                    NoteItem(
-                        note = note,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                onNoteClick(note.id!!)
-                            },
-                        onDeleteClick = {
-                            onEvent(NoteListEvent.DeleteNote(note))
-                            scope.launch {
-                                val result = snackbarHostState.showSnackbar(
-                                    message = noteDeletedMessage,
-                                    actionLabel = undoLabel,
-                                    duration = SnackbarDuration.Short
-                                )
-                                if (result == SnackbarResult.ActionPerformed) {
-                                    onEvent(NoteListEvent.RestoreNote)
-                                }
+                noteItems(
+                    items = state.notes,
+                    onNoteClick = onNoteClick,
+                    onDeleteClick = { note ->
+                        onEvent(NoteListEvent.DeleteNote(note))
+                        scope.launch {
+                            val result = snackbarHostState.showSnackbar(
+                                message = noteDeletedMessage,
+                                actionLabel = undoLabel,
+                                duration = SnackbarDuration.Short
+                            )
+                            if (result == SnackbarResult.ActionPerformed) {
+                                onEvent(NoteListEvent.RestoreNote)
                             }
                         }
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                }
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
         }
     }
