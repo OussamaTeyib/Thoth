@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -145,7 +146,7 @@ internal fun NoteEditorScreen(
                 .padding(horizontal = 20.dp, vertical = 12.dp)
         ) {
             TransparentTextField(
-                text = state.title.text,
+                value = state.title.text,
                 hint = stringResource(state.title.hint),
                 isHintVisible = state.title.isHintVisible,
                 onValueChange = {
@@ -156,10 +157,11 @@ internal fun NoteEditorScreen(
                 },
                 singleLine = true,
                 textStyle = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(12.dp))
             TransparentTextField(
-                text = state.content.text,
+                value = state.content.text,
                 hint = stringResource(state.content.hint),
                 isHintVisible = state.content.isHintVisible,
                 onValueChange = {
@@ -169,7 +171,9 @@ internal fun NoteEditorScreen(
                     onEvent(NoteEditorEvent.ChangeContentFocus(it))
                 },
                 textStyle = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
             )
         }
     }
