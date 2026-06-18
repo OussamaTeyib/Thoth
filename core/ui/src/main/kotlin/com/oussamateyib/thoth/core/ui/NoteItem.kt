@@ -1,4 +1,4 @@
-package com.oussamateyib.thoth.feature.notes.impl.list.components
+package com.oussamateyib.thoth.core.ui
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
@@ -27,10 +27,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
 import com.oussamateyib.thoth.core.model.data.Note
-import com.oussamateyib.thoth.feature.notes.impl.R
 
 @Composable
-internal fun NoteItem(
+fun NoteItem(
     note: Note,
     modifier: Modifier = Modifier,
     cornerRadius: Dp = 10.dp,

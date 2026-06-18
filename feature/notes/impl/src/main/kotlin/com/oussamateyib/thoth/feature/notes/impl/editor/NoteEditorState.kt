@@ -1,7 +1,7 @@
 package com.oussamateyib.thoth.feature.notes.impl.editor
 
 import androidx.compose.ui.graphics.toArgb
-import com.oussamateyib.thoth.feature.notes.impl.editor.util.NoteColors
+import com.oussamateyib.thoth.core.designsystem.theme.NoteColors
 import com.oussamateyib.thoth.feature.notes.impl.R
 
 data class NoteEditorState(
