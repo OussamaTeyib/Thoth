@@ -16,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -34,12 +33,12 @@ fun NoteItem(
     Box(
         modifier = modifier
             .background(
-                color = Color(note.color),
+                color = note.color.asColor(),
                 shape = RoundedCornerShape(cornerRadius)
             )
             .border(
                 width = 1.dp,
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.outline,
                 shape = RoundedCornerShape(cornerRadius)
             )
     ) {
@@ -51,7 +50,6 @@ fun NoteItem(
             Text(
                 text = note.title,
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -59,7 +57,6 @@ fun NoteItem(
             Text(
                 text = note.content,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface,
                 maxLines = 10,
                 overflow = TextOverflow.Ellipsis
             )

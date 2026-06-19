@@ -30,7 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.core.designsystem.components.TransparentTextField
-import com.oussamateyib.thoth.core.ui.ColorPicker
+import com.oussamateyib.thoth.core.ui.asColor
 import com.oussamateyib.thoth.feature.notes.impl.R
 
 @Composable
@@ -73,13 +73,15 @@ internal fun NoteEditorScreen(
 ) {
     if (state.isLoading) return
 
+    val noteColor = state.color.asColor()
+
     val noteBackgroundAnimatable = remember {
-        Animatable(Color(state.color))
+        Animatable(noteColor)
     }
 
     LaunchedEffect(state.color) {
         noteBackgroundAnimatable.animateTo(
-            targetValue = Color(state.color),
+            targetValue = noteColor,
             animationSpec = tween(durationMillis = 400)
         )
     }
@@ -95,6 +97,7 @@ internal fun NoteEditorScreen(
                 onEvent(NoteEditorEvent.ToggleColorPicker)
             }
         ) {
+            /* TODO: Should be reviewed
             ColorPicker(
                 selectedColor = state.color,
                 onColorChange = {
@@ -102,6 +105,7 @@ internal fun NoteEditorScreen(
                 },
                 modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
             )
+             */
         }
     }
 

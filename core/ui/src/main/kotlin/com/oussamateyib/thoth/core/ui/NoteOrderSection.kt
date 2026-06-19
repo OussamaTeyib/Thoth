@@ -26,12 +26,6 @@ fun NoteOrderSection(
             modifier = Modifier.fillMaxWidth()
         ) {
             LabeledRadioButton(
-                text = stringResource(R.string.color),
-                selected = noteOrder is NoteOrder.Color,
-                onSelect = { onOrderChange(NoteOrder.Color(noteOrder.orderType)) }
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            LabeledRadioButton(
                 text = stringResource(R.string.date),
                 selected = noteOrder is NoteOrder.Date,
                 onSelect = { onOrderChange(NoteOrder.Date(noteOrder.orderType)) }
