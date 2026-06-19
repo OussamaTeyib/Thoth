@@ -10,6 +10,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -722,11 +723,10 @@ val unspecified_scheme = ColorFamily(
 
 val LocalExtendedColorScheme = staticCompositionLocalOf { extendedLight }
 
-object ThothTheme {
-    val extendedColorScheme: ExtendedColorScheme
-        @Composable
-        get() = LocalExtendedColorScheme.current
-}
+val MaterialTheme.extendedColorScheme: ExtendedColorScheme
+    @Composable
+    @ReadOnlyComposable
+    get() = LocalExtendedColorScheme.current
 
 @Composable
 fun ThothTheme(
