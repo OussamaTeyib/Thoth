@@ -2,6 +2,7 @@ package com.oussamateyib.thoth.core.designsystem.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +27,7 @@ fun TransparentTextField(
         value = value,
         onValueChange = onValueChange,
         singleLine = singleLine,
-        textStyle = textStyle,
+        textStyle = textStyle.copy(color = LocalContentColor.current),
         modifier = modifier
             .onFocusChanged {
                 onFocusChange(it)
