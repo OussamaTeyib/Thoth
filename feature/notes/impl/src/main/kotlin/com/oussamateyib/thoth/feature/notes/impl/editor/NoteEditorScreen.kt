@@ -30,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.core.designsystem.components.TransparentTextField
+import com.oussamateyib.thoth.core.ui.ColorPicker
 import com.oussamateyib.thoth.core.ui.asColor
 import com.oussamateyib.thoth.feature.notes.impl.R
 
@@ -97,15 +98,13 @@ internal fun NoteEditorScreen(
                 onEvent(NoteEditorEvent.ToggleColorPicker)
             }
         ) {
-            /* TODO: Should be reviewed
             ColorPicker(
                 selectedColor = state.color,
                 onColorChange = {
                     onEvent(NoteEditorEvent.ChangeColor(it))
                 },
-                modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp)
             )
-             */
         }
     }
 
