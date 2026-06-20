@@ -1,6 +1,5 @@
 package com.oussamateyib.thoth.core.ui
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyListScope
@@ -11,8 +10,9 @@ import com.oussamateyib.thoth.core.model.data.Note
 
 fun LazyListScope.noteItems(
     items: List<Note>,
+    selectedItems: Set<Int>,
     onNoteClick: (Int) -> Unit,
-    onDeleteClick: (Note) -> Unit,
+    onNoteLongClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) = items(
     items = items,
@@ -20,13 +20,10 @@ fun LazyListScope.noteItems(
 ) { note ->
     NoteItem(
         note = note,
-        modifier = modifier
-            .clickable {
-                onNoteClick(note.id!!)
-            },
-        onDeleteClick = {
-            onDeleteClick(note)
-        }
+        isSelected = selectedItems.contains(note.id),
+        modifier = modifier,
+        onClick = { onNoteClick(note.id!!) },
+        onLongClick = { onNoteLongClick(note.id!!) }
     )
     Spacer(modifier = Modifier.height(16.dp))
 }
