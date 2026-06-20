@@ -132,7 +132,7 @@ internal fun NoteEditorScreen(
                         }
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.dropper_eye),
+                            painter = painterResource(R.drawable.palette),
                             contentDescription = stringResource(R.string.pick_color)
                         )
                     }
