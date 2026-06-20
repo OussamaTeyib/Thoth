@@ -753,6 +753,7 @@ fun ThothTheme(
         MaterialTheme(
             colorScheme = colorScheme,
             typography = ThothTypography,
+            shapes = ThothShapes,
             content = content
         )
     }
