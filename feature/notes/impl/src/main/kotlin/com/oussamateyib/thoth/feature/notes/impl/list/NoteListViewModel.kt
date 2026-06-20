@@ -120,7 +120,10 @@ class NoteListViewModel @Inject constructor(
                     }
                 }
                 _state.update {
-                    it.copy(selectedNoteIds = emptySet())
+                    it.copy(
+                        isColorPickerVisible = false,
+                        selectedNoteIds = emptySet()
+                    )
                 }
             }
         }
