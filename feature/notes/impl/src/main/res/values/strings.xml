@@ -2,9 +2,9 @@
 <resources>
     <string name="add_note">Add note</string>
     <string name="back">Back</string>
+    <string name="change_color">Change color</string>
     <string name="clear_selection">Clear selection</string>
     <string name="delete_selected_notes">Delete selected notes</string>
-    <string name="change_color">Change color</string>
     <string name="list_screen_top_bar_title">My Notes</string>
     <string name="note_content_hint">What’s on your mind…</string>
     <string name="note_not_found">This note could not be found.</string>
