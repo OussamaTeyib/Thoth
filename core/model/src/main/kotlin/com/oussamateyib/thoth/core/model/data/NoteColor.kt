@@ -11,7 +11,6 @@ enum class NoteColor {
     SkyBlue,
     MintGreen,
     Sage,
-    Pistachio,
     AquaMist,
     SilverCloud
 }

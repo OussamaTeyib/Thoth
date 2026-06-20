@@ -26,7 +26,6 @@ data class ExtendedColorScheme(
     val skyBlue: ColorFamily,
     val mintGreen: ColorFamily,
     val sage: ColorFamily,
-    val pistachio: ColorFamily,
     val aquaMist: ColorFamily,
     val silverCloud: ColorFamily,
 )
@@ -314,12 +313,6 @@ val extendedLight = ExtendedColorScheme(
         sageContainerLight,
         onSageContainerLight,
     ),
-    pistachio = ColorFamily(
-        pistachioLight,
-        onPistachioLight,
-        pistachioContainerLight,
-        onPistachioContainerLight,
-    ),
     aquaMist = ColorFamily(
         aquaMistLight,
         onAquaMistLight,
@@ -388,12 +381,6 @@ val extendedDark = ExtendedColorScheme(
         onSageDark,
         sageContainerDark,
         onSageContainerDark,
-    ),
-    pistachio = ColorFamily(
-        pistachioDark,
-        onPistachioDark,
-        pistachioContainerDark,
-        onPistachioContainerDark,
     ),
     aquaMist = ColorFamily(
         aquaMistDark,
@@ -464,12 +451,6 @@ val extendedLightMediumContrast = ExtendedColorScheme(
         sageContainerLightMediumContrast,
         onSageContainerLightMediumContrast,
     ),
-    pistachio = ColorFamily(
-        pistachioLightMediumContrast,
-        onPistachioLightMediumContrast,
-        pistachioContainerLightMediumContrast,
-        onPistachioContainerLightMediumContrast,
-    ),
     aquaMist = ColorFamily(
         aquaMistLightMediumContrast,
         onAquaMistLightMediumContrast,
@@ -538,12 +519,6 @@ val extendedLightHighContrast = ExtendedColorScheme(
         onSageLightHighContrast,
         sageContainerLightHighContrast,
         onSageContainerLightHighContrast,
-    ),
-    pistachio = ColorFamily(
-        pistachioLightHighContrast,
-        onPistachioLightHighContrast,
-        pistachioContainerLightHighContrast,
-        onPistachioContainerLightHighContrast,
     ),
     aquaMist = ColorFamily(
         aquaMistLightHighContrast,
@@ -614,12 +589,6 @@ val extendedDarkMediumContrast = ExtendedColorScheme(
         sageContainerDarkMediumContrast,
         onSageContainerDarkMediumContrast,
     ),
-    pistachio = ColorFamily(
-        pistachioDarkMediumContrast,
-        onPistachioDarkMediumContrast,
-        pistachioContainerDarkMediumContrast,
-        onPistachioContainerDarkMediumContrast,
-    ),
     aquaMist = ColorFamily(
         aquaMistDarkMediumContrast,
         onAquaMistDarkMediumContrast,
@@ -688,12 +657,6 @@ val extendedDarkHighContrast = ExtendedColorScheme(
         onSageDarkHighContrast,
         sageContainerDarkHighContrast,
         onSageContainerDarkHighContrast,
-    ),
-    pistachio = ColorFamily(
-        pistachioDarkHighContrast,
-        onPistachioDarkHighContrast,
-        pistachioContainerDarkHighContrast,
-        onPistachioContainerDarkHighContrast,
     ),
     aquaMist = ColorFamily(
         aquaMistDarkHighContrast,

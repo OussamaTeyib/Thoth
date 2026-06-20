@@ -21,7 +21,6 @@ fun NoteColor.asColor(): Color {
         NoteColor.SkyBlue -> extended.skyBlue.colorContainer
         NoteColor.MintGreen -> extended.mintGreen.colorContainer
         NoteColor.Sage -> extended.sage.colorContainer
-        NoteColor.Pistachio -> extended.pistachio.colorContainer
         NoteColor.AquaMist -> extended.aquaMist.colorContainer
         NoteColor.SilverCloud -> extended.silverCloud.colorContainer
     }
@@ -40,7 +39,6 @@ fun NoteColor.asLabel(): String = stringResource(
         NoteColor.SkyBlue -> R.string.note_color_sky_blue
         NoteColor.MintGreen -> R.string.note_color_mint_green
         NoteColor.Sage -> R.string.note_color_sage
-        NoteColor.Pistachio -> R.string.note_color_pistachio
         NoteColor.AquaMist -> R.string.note_color_aqua_mist
         NoteColor.SilverCloud -> R.string.note_color_silver_cloud
     }
