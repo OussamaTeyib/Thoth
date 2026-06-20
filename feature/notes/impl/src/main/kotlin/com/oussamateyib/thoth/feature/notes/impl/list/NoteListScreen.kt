@@ -1,5 +1,6 @@
 package com.oussamateyib.thoth.feature.notes.impl.list
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
@@ -76,7 +77,11 @@ internal fun NoteListScreen(
     // Connect the TopAppBar scroll behavior to the Scaffold
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
-    val noteDeletedMessage = stringResource(R.string.note_deleted)
+    BackHandler(enabled = state.isSelectionMode) {
+        onEvent(NoteListEvent.ClearSelection)
+    }
+
+    val selectedNotesDeletedMessage = stringResource(R.string.selected_notes_deleted)
     val undoLabel = stringResource(R.string.undo)
 
     Scaffold(
@@ -86,20 +91,47 @@ internal fun NoteListScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.list_screen_top_bar_title),
+                        text = if (state.isSelectionMode) {
+                            "${state.selectedNoteIds.size}"
+                        } else {
+                            stringResource(R.string.list_screen_top_bar_title)
+                        },
                         style = MaterialTheme.typography.headlineMedium
                     )
                 },
                 actions = {
-                    IconButton(
-                        onClick = {
-                            onEvent(NoteListEvent.ToggleOrderSection)
+                    if (state.isSelectionMode) {
+                        IconButton(
+                            onClick = {
+                                onEvent(NoteListEvent.DeleteSelectedNotes)
+                                scope.launch {
+                                    val result = snackbarHostState.showSnackbar(
+                                        message = selectedNotesDeletedMessage,
+                                        actionLabel = undoLabel,
+                                        duration = SnackbarDuration.Short
+                                    )
+                                    if (result == SnackbarResult.ActionPerformed) {
+                                        onEvent(NoteListEvent.RestoreDeletedNotes)
+                                    }
+                                }
+                            }
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.delete),
+                                contentDescription = stringResource(R.string.delete_selected_notes)
+                            )
                         }
-                    ) {
-                        Icon(
-                            painter = painterResource(R.drawable.sort),
-                            contentDescription = stringResource(R.string.sort_notes)
-                        )
+                    } else {
+                        IconButton(
+                            onClick = {
+                                onEvent(NoteListEvent.ToggleOrderSection)
+                            }
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.sort),
+                                contentDescription = stringResource(R.string.sort_notes)
+                            )
+                        }
                     }
                 },
                 scrollBehavior = scrollBehavior
@@ -149,19 +181,16 @@ internal fun NoteListScreen(
             ) {
                 noteItems(
                     items = state.notes,
-                    onNoteClick = onNoteClick,
-                    onDeleteClick = { note ->
-                        onEvent(NoteListEvent.DeleteNote(note))
-                        scope.launch {
-                            val result = snackbarHostState.showSnackbar(
-                                message = noteDeletedMessage,
-                                actionLabel = undoLabel,
-                                duration = SnackbarDuration.Short
-                            )
-                            if (result == SnackbarResult.ActionPerformed) {
-                                onEvent(NoteListEvent.RestoreNote)
-                            }
+                    selectedItems = state.selectedNoteIds,
+                    onNoteClick = {
+                        if (state.isSelectionMode) {
+                            onEvent(NoteListEvent.SelectNote(it))
+                        } else {
+                            onNoteClick(it)
                         }
+                    },
+                    onNoteLongClick = {
+                        onEvent(NoteListEvent.SelectNote(it))
                     },
                     modifier = Modifier.fillMaxWidth()
                 )

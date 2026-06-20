@@ -1,27 +1,27 @@
 package com.oussamateyib.thoth.core.ui
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipPath
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -31,13 +31,22 @@ import com.oussamateyib.thoth.core.model.data.Note
 @Composable
 fun NoteItem(
     note: Note,
+    isSelected: Boolean,
     modifier: Modifier = Modifier,
     cornerRadius: Dp = 10.dp,
     cutCornerSize: Dp = 30.dp,
-    onDeleteClick: () -> Unit
+    onClick: () -> Unit,
+    onLongClick: () -> Unit
 ) {
     Box(
         modifier = modifier
+            .combinedClickable(
+                onClickLabel = stringResource(R.string.open_note),
+                onClick = onClick,
+                onLongClick = onLongClick,
+                onLongClickLabel = stringResource(R.string.select_note)
+            )
+            .semantics { selected = isSelected }
     ) {
         Canvas(
             modifier = Modifier.matchParentSize() // Avoid influencing the Box's size
@@ -64,6 +73,12 @@ fun NoteItem(
                     cornerRadius = CornerRadius(cornerRadius.toPx())
                 )
             }
+
+            drawPath(
+                path = clipPath,
+                color = Color.Black,
+                style = Stroke(width = (if (isSelected) 4.dp else 1.dp).toPx())
+            )
         }
         Column(
             modifier = Modifier
@@ -85,15 +100,6 @@ fun NoteItem(
                 color = MaterialTheme.colorScheme.onSurface,
                 maxLines = 10,
                 overflow = TextOverflow.Ellipsis
-            )
-        }
-        IconButton(
-            onClick = onDeleteClick,
-            modifier = Modifier.align(Alignment.BottomEnd)
-        ) {
-            Icon(
-                painter = painterResource(R.drawable.delete),
-                contentDescription = stringResource(R.string.delete_note)
             )
         }
     }

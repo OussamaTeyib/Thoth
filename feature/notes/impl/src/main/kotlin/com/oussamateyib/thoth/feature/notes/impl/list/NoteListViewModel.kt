@@ -57,24 +57,48 @@ class NoteListViewModel @Inject constructor(
                 }
             }
 
-            is NoteListEvent.DeleteNote -> {
-                viewModelScope.launch {
-                    deleteNoteUseCase(event.note)
-                }
+            is NoteListEvent.SelectNote -> {
                 _state.update {
-                    it.copy(recentlyDeletedNote = event.note)
+                    val updatedIds = if (event.id in it.selectedNoteIds) {
+                        it.selectedNoteIds - event.id
+                    } else {
+                        it.selectedNoteIds + event.id
+                    }
+                    it.copy(selectedNoteIds = updatedIds)
                 }
             }
 
-            NoteListEvent.RestoreNote -> {
-                val snapshot = _state.value
+            NoteListEvent.ClearSelection -> {
+                _state.update {
+                    it.copy(selectedNoteIds = emptySet())
+                }
+            }
 
-                // If no note was recently deleted, do nothing
+            NoteListEvent.DeleteSelectedNotes -> {
+                val notesToDelete =
+                    state.value.notes.filter { it.id!! in state.value.selectedNoteIds }
                 viewModelScope.launch {
-                    insertNoteUseCase(snapshot.recentlyDeletedNote ?: return@launch)
+                    notesToDelete.forEach {
+                        deleteNoteUseCase(it)
+                    }
                 }
                 _state.update {
-                    it.copy(recentlyDeletedNote = null)
+                    it.copy(
+                        selectedNoteIds = emptySet(),
+                        recentlyDeletedNotes = notesToDelete
+                    )
+                }
+            }
+
+            NoteListEvent.RestoreDeletedNotes -> {
+                val snapshot = state.value
+                viewModelScope.launch {
+                    snapshot.recentlyDeletedNotes.forEach {
+                        insertNoteUseCase(it)
+                    }
+                }
+                _state.update {
+                    it.copy(recentlyDeletedNotes = emptyList())
                 }
             }
         }
