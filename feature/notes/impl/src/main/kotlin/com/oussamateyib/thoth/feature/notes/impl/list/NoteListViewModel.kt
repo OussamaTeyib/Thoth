@@ -92,10 +92,9 @@ class NoteListViewModel @Inject constructor(
             }
 
             NoteListEvent.RestoreDeletedNotes -> {
-                val snapshot = state.value
-
+                val notesToRestore = state.value.recentlyDeletedNotes
                 viewModelScope.launch {
-                    snapshot.recentlyDeletedNotes.forEach {
+                    notesToRestore.forEach {
                         insertNoteUseCase(it)
                     }
                 }
