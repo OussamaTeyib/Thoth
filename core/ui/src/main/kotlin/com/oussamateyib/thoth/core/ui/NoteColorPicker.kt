@@ -31,9 +31,9 @@ import com.oussamateyib.thoth.core.ui.util.PaletteLayout
 
 @Composable
 fun NoteColorPicker(
-    selectedColor: NoteColor,
     onColorChange: (NoteColor) -> Unit,
     modifier: Modifier = Modifier,
+    selectedColor: NoteColor? = null,
     layout: PaletteLayout = PaletteLayout.Grid
 ) {
     when (layout) {

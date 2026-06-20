@@ -1,5 +1,6 @@
 package com.oussamateyib.thoth.feature.notes.impl.list
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
@@ -12,8 +13,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -24,6 +27,7 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -36,7 +40,9 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussamateyib.thoth.core.ui.NoteColorPicker
 import com.oussamateyib.thoth.core.ui.NoteOrderSection
 import com.oussamateyib.thoth.core.ui.noteItems
 import com.oussamateyib.thoth.feature.notes.impl.R
@@ -75,7 +81,30 @@ internal fun NoteListScreen(
     // Connect the TopAppBar scroll behavior to the Scaffold
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
-    val noteDeletedMessage = stringResource(R.string.note_deleted)
+    BackHandler(enabled = state.isSelectionMode) {
+        onEvent(NoteListEvent.ClearSelection)
+    }
+
+    if (state.isColorPickerVisible) {
+        Dialog(
+            onDismissRequest = { onEvent(NoteListEvent.ToggleColorPicker) }
+        ) {
+            Surface(
+                shape = RoundedCornerShape(16.dp),
+                modifier = Modifier.width(280.dp)
+            ) {
+                NoteColorPicker(
+                    selectedColor = state.commonSelectedColor,
+                    onColorChange = {
+                        onEvent(NoteListEvent.ChangeColor(it))
+                    },
+                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
+                )
+            }
+        }
+    }
+
+    val selectedNotesDeletedMessage = stringResource(R.string.selected_notes_deleted)
     val undoLabel = stringResource(R.string.undo)
 
     Scaffold(
@@ -83,22 +112,71 @@ internal fun NoteListScreen(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
+                navigationIcon = {
+                    if (state.isSelectionMode) {
+                        IconButton(
+                            onClick = { onEvent(NoteListEvent.ClearSelection) }
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.close),
+                                contentDescription = stringResource(R.string.clear_selection)
+                            )
+                        }
+                    }
+                },
                 title = {
                     Text(
-                        text = stringResource(R.string.list_screen_top_bar_title),
+                        text = if (state.isSelectionMode) {
+                            "${state.selectedNoteIds.size}"
+                        } else {
+                            stringResource(R.string.list_screen_top_bar_title)
+                        },
                         style = MaterialTheme.typography.headlineMedium
                     )
                 },
                 actions = {
-                    IconButton(
-                        onClick = {
-                            onEvent(NoteListEvent.ToggleOrderSection)
+                    if (state.isSelectionMode) {
+                        IconButton(
+                            onClick = {
+                                onEvent(NoteListEvent.ToggleColorPicker)
+                            }
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.palette),
+                                contentDescription = stringResource(R.string.change_color)
+                            )
                         }
-                    ) {
-                        Icon(
-                            painter = painterResource(R.drawable.sort),
-                            contentDescription = stringResource(R.string.sort_notes)
-                        )
+                        IconButton(
+                            onClick = {
+                                onEvent(NoteListEvent.DeleteSelectedNotes)
+                                scope.launch {
+                                    val result = snackbarHostState.showSnackbar(
+                                        message = selectedNotesDeletedMessage,
+                                        actionLabel = undoLabel,
+                                        duration = SnackbarDuration.Short
+                                    )
+                                    if (result == SnackbarResult.ActionPerformed) {
+                                        onEvent(NoteListEvent.RestoreDeletedNotes)
+                                    }
+                                }
+                            }
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.delete),
+                                contentDescription = stringResource(R.string.delete_selected_notes)
+                            )
+                        }
+                    } else {
+                        IconButton(
+                            onClick = {
+                                onEvent(NoteListEvent.ToggleOrderSection)
+                            }
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.sort),
+                                contentDescription = stringResource(R.string.sort_notes)
+                            )
+                        }
                     }
                 },
                 scrollBehavior = scrollBehavior
@@ -147,19 +225,16 @@ internal fun NoteListScreen(
             ) {
                 noteItems(
                     items = state.notes,
-                    onNoteClick = onNoteClick,
-                    onDeleteClick = { note ->
-                        onEvent(NoteListEvent.DeleteNote(note))
-                        scope.launch {
-                            val result = snackbarHostState.showSnackbar(
-                                message = noteDeletedMessage,
-                                actionLabel = undoLabel,
-                                duration = SnackbarDuration.Short
-                            )
-                            if (result == SnackbarResult.ActionPerformed) {
-                                onEvent(NoteListEvent.RestoreNote)
-                            }
+                    selectedItems = state.selectedNoteIds,
+                    onNoteClick = {
+                        if (state.isSelectionMode) {
+                            onEvent(NoteListEvent.SelectNote(it))
+                        } else {
+                            onNoteClick(it)
                         }
+                    },
+                    onNoteLongClick = {
+                        onEvent(NoteListEvent.SelectNote(it))
                     },
                     modifier = Modifier.fillMaxWidth()
                 )

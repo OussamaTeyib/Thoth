@@ -3,7 +3,6 @@
     <string name="ascending">Ascending</string>
     <string name="color">Color</string>
     <string name="date">Date</string>
-    <string name="delete_note">Delete note</string>
     <string name="descending">Descending</string>
     <string name="note_color_default">Default</string>
     <string name="note_color_butter_yellow">Butter Yellow</string>
@@ -17,5 +16,7 @@
     <string name="note_color_sage">Sage</string>
     <string name="note_color_aqua_mist">Aqua Mist</string>
     <string name="note_color_silver_cloud">Silver Cloud</string>
+    <string name="open_note">Open note</string>
+    <string name="select_note">Select note</string>
     <string name="title">Title</string>
 </resources>

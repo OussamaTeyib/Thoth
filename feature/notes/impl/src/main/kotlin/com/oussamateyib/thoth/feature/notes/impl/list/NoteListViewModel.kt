@@ -6,7 +6,6 @@ import com.oussamateyib.thoth.core.domain.DeleteNoteUseCase
 import com.oussamateyib.thoth.core.domain.GetNotesStreamUseCase
 import com.oussamateyib.thoth.core.domain.InsertNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,6 +14,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
@@ -57,24 +57,70 @@ class NoteListViewModel @Inject constructor(
                 }
             }
 
-            is NoteListEvent.DeleteNote -> {
-                viewModelScope.launch {
-                    deleteNoteUseCase(event.note)
-                }
+            is NoteListEvent.SelectNote -> {
                 _state.update {
-                    it.copy(recentlyDeletedNote = event.note)
+                    val updatedIds = if (event.id in it.selectedNoteIds) {
+                        it.selectedNoteIds - event.id
+                    } else {
+                        it.selectedNoteIds + event.id
+                    }
+                    it.copy(selectedNoteIds = updatedIds)
                 }
             }
 
-            NoteListEvent.RestoreNote -> {
-                val snapshot = _state.value
+            NoteListEvent.ClearSelection -> {
+                _state.update {
+                    it.copy(selectedNoteIds = emptySet())
+                }
+            }
 
-                // If no note was recently deleted, do nothing
+            NoteListEvent.DeleteSelectedNotes -> {
+                val notesToDelete = state.value.notes
+                    .filter { it.id in state.value.selectedNoteIds }
+
                 viewModelScope.launch {
-                    insertNoteUseCase(snapshot.recentlyDeletedNote ?: return@launch)
+                    notesToDelete.forEach {
+                        deleteNoteUseCase(it)
+                    }
                 }
                 _state.update {
-                    it.copy(recentlyDeletedNote = null)
+                    it.copy(
+                        selectedNoteIds = emptySet(),
+                        recentlyDeletedNotes = notesToDelete
+                    )
+                }
+            }
+
+            NoteListEvent.RestoreDeletedNotes -> {
+                val notesToRestore = state.value.recentlyDeletedNotes
+                viewModelScope.launch {
+                    notesToRestore.forEach {
+                        insertNoteUseCase(it)
+                    }
+                }
+                _state.update {
+                    it.copy(recentlyDeletedNotes = emptyList())
+                }
+            }
+
+            NoteListEvent.ToggleColorPicker -> {
+                _state.update {
+                    it.copy(isColorPickerVisible = !it.isColorPickerVisible)
+                }
+            }
+
+            is NoteListEvent.ChangeColor -> {
+                val notesToUpdate = state.value.notes
+                    .filter { it.id in state.value.selectedNoteIds }
+                    .map { it.copy(color = event.color) }
+
+                viewModelScope.launch {
+                    notesToUpdate.forEach {
+                        insertNoteUseCase(it)
+                    }
+                }
+                _state.update {
+                    it.copy(selectedNoteIds = emptySet())
                 }
             }
         }

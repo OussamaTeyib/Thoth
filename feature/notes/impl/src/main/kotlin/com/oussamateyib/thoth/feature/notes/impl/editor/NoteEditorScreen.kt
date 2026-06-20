@@ -32,6 +32,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.core.designsystem.components.TransparentTextField
 import com.oussamateyib.thoth.core.ui.NoteColorPicker
 import com.oussamateyib.thoth.core.ui.asColor
+import com.oussamateyib.thoth.core.ui.util.PaletteLayout
 import com.oussamateyib.thoth.feature.notes.impl.R
 
 @Composable
@@ -103,7 +104,8 @@ internal fun NoteEditorScreen(
                 onColorChange = {
                     onEvent(NoteEditorEvent.ChangeColor(it))
                 },
-                modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp)
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp),
+                layout = PaletteLayout.Row
             )
         }
     }
@@ -133,7 +135,7 @@ internal fun NoteEditorScreen(
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.palette),
-                            contentDescription = stringResource(R.string.pick_color)
+                            contentDescription = stringResource(R.string.change_color)
                         )
                     }
                 }
