@@ -77,7 +77,7 @@ fun NoteColorPicker(
                             contentDescription = null, // already described by parent semantics
                             tint = contentColorFor(color.asColor()),
                             modifier = Modifier
-                                .size(20.dp)
+                                .size(35.dp)
                                 .align(Alignment.Center)
                         )
                     }
