@@ -1,20 +1,23 @@
 package com.oussamateyib.thoth.core.ui
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -28,19 +31,21 @@ fun NoteItem(
     note: Note,
     modifier: Modifier = Modifier,
     cornerRadius: Dp = 10.dp,
+    onClick: () -> Unit,
     onDeleteClick: () -> Unit
 ) {
-    Box(
-        modifier = modifier
-            .background(
-                color = note.color.asColor(),
-                shape = RoundedCornerShape(cornerRadius)
-            )
-            .border(
-                width = 1.dp,
-                color = MaterialTheme.colorScheme.outline,
-                shape = RoundedCornerShape(cornerRadius)
-            )
+    val containerColor = note.color.asColor()
+    val onContainerColor = contentColorFor(containerColor)
+
+    OutlinedCard(
+        modifier = modifier,
+        onClick = onClick,
+        shape = RoundedCornerShape(cornerRadius),
+        colors = CardDefaults.outlinedCardColors(
+            containerColor = containerColor,
+            contentColor = onContainerColor
+        ),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
     ) {
         Column(
             modifier = Modifier
@@ -60,15 +65,19 @@ fun NoteItem(
                 maxLines = 10,
                 overflow = TextOverflow.Ellipsis
             )
-        }
-        IconButton(
-            onClick = onDeleteClick,
-            modifier = Modifier.align(Alignment.BottomEnd)
-        ) {
-            Icon(
-                painter = painterResource(R.drawable.delete),
-                contentDescription = stringResource(R.string.delete_note)
-            )
+            Spacer(modifier = Modifier.height(3.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                IconButton(onClick = onDeleteClick) {
+                    Icon(
+                        painter = painterResource(R.drawable.delete),
+                        contentDescription = stringResource(R.string.delete_note),
+                        tint = onContainerColor
+                    )
+                }
+            }
         }
     }
 }
