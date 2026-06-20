@@ -14,9 +14,9 @@ import com.github.skydoves.colorpicker.compose.rememberColorPickerController
 
 @Composable
 fun ColorPicker(
-    selectedColor: Int,
     onColorChange: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    selectedColor: Int? = null,
 ) {
     val controller = rememberColorPickerController()
 
@@ -29,7 +29,7 @@ fun ColorPicker(
                 .fillMaxWidth()
                 .height(250.dp),
             controller = controller,
-            initialColor = Color(selectedColor),
+            initialColor = selectedColor?.let { Color(selectedColor) },
             onColorChanged = { envelope ->
                 if (envelope.fromUser) {
                     onColorChange(envelope.color.toArgb())

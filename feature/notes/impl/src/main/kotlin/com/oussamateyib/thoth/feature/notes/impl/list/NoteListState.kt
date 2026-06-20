@@ -9,8 +9,16 @@ data class NoteListState(
     val selectedNoteIds: Set<Int> = emptySet(),
     val noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
     val isOrderSectionVisible: Boolean = false,
+    val isColorPickerVisible: Boolean = false,
     val recentlyDeletedNotes: List<Note> = emptyList(),
 ) {
     val isSelectionMode: Boolean
         get() = selectedNoteIds.isNotEmpty()
+
+    val commonSelectedColor: Int?
+        get() = notes
+            .filter { it.id in selectedNoteIds }
+            .map { it.color }
+            .distinct()
+            .singleOrNull()
 }

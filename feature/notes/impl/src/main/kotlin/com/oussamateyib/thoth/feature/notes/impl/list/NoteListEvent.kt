@@ -9,4 +9,6 @@ sealed class NoteListEvent {
     object ClearSelection : NoteListEvent()
     object DeleteSelectedNotes : NoteListEvent()
     object RestoreDeletedNotes : NoteListEvent()
+    data class ChangeColor(val color: Int) : NoteListEvent()
+    object ToggleColorPicker : NoteListEvent()
 }

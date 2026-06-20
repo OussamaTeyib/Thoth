@@ -13,8 +13,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -25,6 +27,7 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -38,7 +41,9 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussamateyib.thoth.core.ui.ColorPicker
 import com.oussamateyib.thoth.core.ui.NoteOrderSection
 import com.oussamateyib.thoth.core.ui.noteItems
 import com.oussamateyib.thoth.feature.notes.impl.R
@@ -81,6 +86,25 @@ internal fun NoteListScreen(
         onEvent(NoteListEvent.ClearSelection)
     }
 
+    if (state.isColorPickerVisible) {
+        Dialog(
+            onDismissRequest = { onEvent(NoteListEvent.ToggleColorPicker) }
+        ) {
+            Surface(
+                shape = RoundedCornerShape(16.dp),
+                modifier = Modifier.width(280.dp)
+            ) {
+                ColorPicker(
+                    selectedColor = state.commonSelectedColor,
+                    onColorChange = {
+                        onEvent(NoteListEvent.ChangeColor(it))
+                    },
+                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
+                )
+            }
+        }
+    }
+
     val selectedNotesDeletedMessage = stringResource(R.string.selected_notes_deleted)
     val undoLabel = stringResource(R.string.undo)
 
@@ -113,6 +137,16 @@ internal fun NoteListScreen(
                 },
                 actions = {
                     if (state.isSelectionMode) {
+                        IconButton(
+                            onClick = {
+                                onEvent(NoteListEvent.ToggleColorPicker)
+                            }
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.dropper_eye),
+                                contentDescription = stringResource(R.string.pick_color)
+                            )
+                        }
                         IconButton(
                             onClick = {
                                 onEvent(NoteListEvent.DeleteSelectedNotes)

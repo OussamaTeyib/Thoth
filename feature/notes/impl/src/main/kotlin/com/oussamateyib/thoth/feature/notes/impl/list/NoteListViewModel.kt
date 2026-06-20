@@ -6,7 +6,6 @@ import com.oussamateyib.thoth.core.domain.DeleteNoteUseCase
 import com.oussamateyib.thoth.core.domain.GetNotesStreamUseCase
 import com.oussamateyib.thoth.core.domain.InsertNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,6 +14,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
@@ -75,8 +75,9 @@ class NoteListViewModel @Inject constructor(
             }
 
             NoteListEvent.DeleteSelectedNotes -> {
-                val notesToDelete =
-                    state.value.notes.filter { it.id!! in state.value.selectedNoteIds }
+                val notesToDelete = state.value.notes
+                    .filter { it.id in state.value.selectedNoteIds }
+
                 viewModelScope.launch {
                     notesToDelete.forEach {
                         deleteNoteUseCase(it)
@@ -92,6 +93,7 @@ class NoteListViewModel @Inject constructor(
 
             NoteListEvent.RestoreDeletedNotes -> {
                 val snapshot = state.value
+
                 viewModelScope.launch {
                     snapshot.recentlyDeletedNotes.forEach {
                         insertNoteUseCase(it)
@@ -99,6 +101,27 @@ class NoteListViewModel @Inject constructor(
                 }
                 _state.update {
                     it.copy(recentlyDeletedNotes = emptyList())
+                }
+            }
+
+            NoteListEvent.ToggleColorPicker -> {
+                _state.update {
+                    it.copy(isColorPickerVisible = !it.isColorPickerVisible)
+                }
+            }
+
+            is NoteListEvent.ChangeColor -> {
+                val notesToUpdate = state.value.notes
+                    .filter { it.id in state.value.selectedNoteIds }
+                    .map { it.copy(color = event.color) }
+
+                viewModelScope.launch {
+                    notesToUpdate.forEach {
+                        insertNoteUseCase(it)
+                    }
+                }
+                _state.update {
+                    it.copy(selectedNoteIds = emptySet())
                 }
             }
         }
