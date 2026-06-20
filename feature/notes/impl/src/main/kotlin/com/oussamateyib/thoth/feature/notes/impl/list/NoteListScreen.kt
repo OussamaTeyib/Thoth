@@ -186,6 +186,9 @@ internal fun NoteListScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
+                    if (state.isSelectionMode) {
+                        onEvent(NoteListEvent.ClearSelection)
+                    }
                     onAddNote()
                 },
                 containerColor = MaterialTheme.colorScheme.primary,
