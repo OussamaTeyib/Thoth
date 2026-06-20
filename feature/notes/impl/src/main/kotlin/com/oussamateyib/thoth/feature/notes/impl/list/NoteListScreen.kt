@@ -89,6 +89,18 @@ internal fun NoteListScreen(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
+                navigationIcon = {
+                    if (state.isSelectionMode) {
+                        IconButton(
+                            onClick = { onEvent(NoteListEvent.ClearSelection) }
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.close),
+                                contentDescription = stringResource(R.string.clear_selection)
+                            )
+                        }
+                    }
+                },
                 title = {
                     Text(
                         text = if (state.isSelectionMode) {
