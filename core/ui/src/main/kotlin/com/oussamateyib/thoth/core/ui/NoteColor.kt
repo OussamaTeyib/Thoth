@@ -3,6 +3,7 @@ package com.oussamateyib.thoth.core.ui
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import com.oussamateyib.thoth.core.designsystem.theme.extendedColorScheme
 import com.oussamateyib.thoth.core.model.data.NoteColor
 
@@ -25,3 +26,22 @@ fun NoteColor.asColor(): Color {
         NoteColor.SilverCloud -> extended.silverCloud.colorContainer
     }
 }
+
+@Composable
+fun NoteColor.asLabel(): String = stringResource(
+    when (this) {
+        NoteColor.Default -> R.string.note_color_default
+        NoteColor.ButterYellow -> R.string.note_color_butter_yellow
+        NoteColor.PeachCream -> R.string.note_color_peach_cream
+        NoteColor.CoralMist -> R.string.note_color_coral_mist
+        NoteColor.RoseBlush -> R.string.note_color_rose_blush
+        NoteColor.Lavender -> R.string.note_color_lavender
+        NoteColor.Periwinkle -> R.string.note_color_periwinkle
+        NoteColor.SkyBlue -> R.string.note_color_sky_blue
+        NoteColor.MintGreen -> R.string.note_color_mint_green
+        NoteColor.Sage -> R.string.note_color_sage
+        NoteColor.Pistachio -> R.string.note_color_pistachio
+        NoteColor.AquaMist -> R.string.note_color_aqua_mist
+        NoteColor.SilverCloud -> R.string.note_color_silver_cloud
+    }
+)
