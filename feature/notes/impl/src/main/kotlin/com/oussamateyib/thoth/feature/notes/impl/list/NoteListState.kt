@@ -9,7 +9,7 @@ data class NoteListState(
     val notes: List<Note> = emptyList(),
     val selectedNoteIds: Set<Int> = emptySet(),
     val noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
-    val isOrderSectionVisible: Boolean = false,
+    val isSortSheetVisible: Boolean = false,
     val isColorPickerVisible: Boolean = false,
     val recentlyDeletedNotes: List<Note> = emptyList(),
 ) {

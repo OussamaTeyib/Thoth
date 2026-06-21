@@ -18,5 +18,6 @@
     <string name="note_color_silver_cloud">Silver Cloud</string>
     <string name="open_note">Open note</string>
     <string name="select_note">Select note</string>
+    <string name="sort_by">Sort by</string>
     <string name="title">Title</string>
 </resources>

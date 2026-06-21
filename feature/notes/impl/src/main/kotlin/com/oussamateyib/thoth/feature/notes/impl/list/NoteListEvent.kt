@@ -5,7 +5,7 @@ import com.oussamateyib.thoth.core.model.data.NoteColor
 
 sealed class NoteListEvent {
     data class Order(val noteOrder: NoteOrder) : NoteListEvent()
-    object ToggleOrderSection : NoteListEvent()
+    object ToggleSortSheet : NoteListEvent()
     data class SelectNote(val id: Int) : NoteListEvent()
     object ClearSelection : NoteListEvent()
     object DeleteSelectedNotes : NoteListEvent()
