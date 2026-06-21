@@ -7,8 +7,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -80,11 +81,12 @@ internal fun NoteListScreen(
     }
 
     if (state.isColorPickerVisible) {
-        Dialog(
+        BasicAlertDialog(
             onDismissRequest = { onEvent(NoteListEvent.ToggleColorPicker) }
         ) {
             Surface(
-                shape = RoundedCornerShape(16.dp),
+                shape = MaterialTheme.shapes.extraLarge,
+                tonalElevation = AlertDialogDefaults.TonalElevation,
                 modifier = Modifier.width(280.dp)
             ) {
                 NoteColorPicker(
@@ -129,6 +131,13 @@ internal fun NoteListScreen(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = if (state.isSelectionMode) {
+                        MaterialTheme.colorScheme.secondaryContainer
+                    } else {
+                        MaterialTheme.colorScheme.surface
+                    }
+                ),
                 navigationIcon = {
                     if (state.isSelectionMode) {
                         IconButton(
@@ -206,10 +215,7 @@ internal fun NoteListScreen(
                         onEvent(NoteListEvent.ClearSelection)
                     }
                     onAddNote()
-                },
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary,
-                shape = CircleShape
+                }
             ) {
                 Icon(
                     painter = painterResource(R.drawable.add),
