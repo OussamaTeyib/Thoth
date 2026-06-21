@@ -18,6 +18,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -97,7 +98,8 @@ internal fun NoteEditorScreen(
             sheetState = sheetState,
             onDismissRequest = {
                 onEvent(NoteEditorEvent.ToggleColorPicker)
-            }
+            },
+            containerColor = noteBackgroundAnimatable.value
         ) {
             NoteColorPicker(
                 selectedColor = state.color,
@@ -114,6 +116,9 @@ internal fun NoteEditorScreen(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent
+                ),
                 title = {},
                 navigationIcon = {
                     IconButton(
@@ -141,7 +146,7 @@ internal fun NoteEditorScreen(
                 }
             )
         },
-        containerColor = Color.Transparent
+        containerColor = noteBackgroundAnimatable.value,
     ) { innerPadding ->
         Column(
             modifier = Modifier
