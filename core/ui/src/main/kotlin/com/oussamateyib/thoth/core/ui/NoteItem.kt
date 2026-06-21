@@ -47,7 +47,7 @@ fun NoteItem(
             containerColor = containerColor
         ),
         border = BorderStroke(
-            width = if (isSelected) 4.dp else 1.dp,
+            width = if (isSelected) 3.dp else 1.dp,
             color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
         )
     ) {
