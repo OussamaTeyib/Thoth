@@ -86,7 +86,7 @@ internal fun ColorSwatch(
     ) {
         Box(
             modifier = Modifier
-                .size(if (isSelected) 45.dp else 40.dp)
+                .size(45.dp)
                 .clip(CircleShape)
                 .background(color.asColor())
                 .border(
