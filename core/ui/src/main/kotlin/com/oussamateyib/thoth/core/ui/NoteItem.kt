@@ -12,7 +12,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -33,7 +32,6 @@ fun NoteItem(
     onLongClick: () -> Unit
 ) {
     val containerColor = note.color.asColor()
-    val onContainerColor = contentColorFor(containerColor)
 
     OutlinedCard(
         modifier = modifier
@@ -46,8 +44,7 @@ fun NoteItem(
             .semantics { selected = isSelected },
         shape = RoundedCornerShape(cornerRadius),
         colors = CardDefaults.outlinedCardColors(
-            containerColor = containerColor,
-            contentColor = onContainerColor
+            containerColor = containerColor
         ),
         border = BorderStroke(
             width = if (isSelected) 4.dp else 1.dp,

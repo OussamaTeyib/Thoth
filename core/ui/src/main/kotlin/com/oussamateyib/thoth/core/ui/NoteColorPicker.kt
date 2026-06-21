@@ -16,7 +16,6 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -103,7 +102,6 @@ internal fun ColorSwatch(
                 Icon(
                     painter = painterResource(R.drawable.check),
                     contentDescription = null, // already described by parent semantics
-                    tint = contentColorFor(color.asColor()),
                     modifier = Modifier
                         .size(35.dp)
                         .align(Alignment.Center)
