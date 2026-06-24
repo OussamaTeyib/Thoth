@@ -31,6 +31,7 @@ fun EntryProviderScope<NavKey>.notesEntry(
 
     entry<NoteEditorNavKey> { key ->
         val viewModel = hiltViewModel<NoteEditorViewModel, NoteEditorViewModel.Factory> { factory ->
+            // Pass the note ID to the ViewModel constructor
             factory.create(noteId = key.noteId)
         }
 

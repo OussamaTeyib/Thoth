@@ -29,9 +29,13 @@ class NoteListViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             _state
+                // Transform state stream to emit only the noteOrder property
                 .map { it.noteOrder }
+                // Filter out duplicate order emissions
                 .distinctUntilChanged()
+                // Cancel active database queries immediately when a new order emits
                 .flatMapLatest { getNotesStreamUseCase(it) }
+                // Listen continuously to the database stream for any incoming note updates
                 .collect { notes ->
                     _state.update {
                         it.copy(notes = notes)
@@ -112,6 +116,7 @@ class NoteListViewModel @Inject constructor(
             is NoteListEvent.ChangeColor -> {
                 val notesToUpdate = state.value.notes
                     .filter { it.id in state.value.selectedNoteIds }
+                    // Update the color of each selected note
                     .map { it.copy(color = event.color) }
 
                 viewModelScope.launch {

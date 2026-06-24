@@ -82,6 +82,7 @@ internal fun NoteListScreen(
     // Connect the TopAppBar scroll behavior to the Scaffold
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
+    // Clear selection when back button is pressed in selection mode
     BackHandler(enabled = state.isSelectionMode) {
         onEvent(NoteListEvent.ClearSelection)
     }
@@ -127,6 +128,7 @@ internal fun NoteListScreen(
                 },
                 title = {
                     Text(
+                        // If in selection mode, show the number of selected notes
                         text = if (state.isSelectionMode) {
                             "${state.selectedNoteIds.size}"
                         } else {
