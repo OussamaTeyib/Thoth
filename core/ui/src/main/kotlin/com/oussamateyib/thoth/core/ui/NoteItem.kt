@@ -27,7 +27,6 @@ fun NoteItem(
     note: Note,
     isSelected: Boolean,
     modifier: Modifier = Modifier,
-    cornerRadius: Dp = 10.dp,
     onClick: () -> Unit,
     onLongClick: () -> Unit
 ) {
@@ -42,7 +41,6 @@ fun NoteItem(
                 onLongClickLabel = stringResource(R.string.select_note)
             )
             .semantics { selected = isSelected },
-        shape = RoundedCornerShape(cornerRadius),
         colors = CardDefaults.outlinedCardColors(
             containerColor = containerColor
         ),
