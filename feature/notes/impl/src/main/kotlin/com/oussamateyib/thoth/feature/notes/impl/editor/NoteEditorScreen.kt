@@ -77,6 +77,7 @@ internal fun NoteEditorScreen(
         Animatable(Color(state.color))
     }
 
+    // Animate the background color when the note color changes
     LaunchedEffect(state.color) {
         noteBackgroundAnimatable.animateTo(
             targetValue = Color(state.color),

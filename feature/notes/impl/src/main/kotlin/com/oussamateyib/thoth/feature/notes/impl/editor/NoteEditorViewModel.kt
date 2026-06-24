@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
 @HiltViewModel(assistedFactory = NoteEditorViewModel.Factory::class)
 class NoteEditorViewModel @AssistedInject constructor(
@@ -118,43 +119,40 @@ class NoteEditorViewModel @AssistedInject constructor(
 
             is NoteEditorEvent.ChangeColor -> {
                 _state.update {
-                    it.copy(
-                        color = event.color
-                    )
+                    it.copy(color = event.color)
                 }
                 saveNote()
             }
 
             NoteEditorEvent.ToggleColorPicker -> {
                 _state.update {
-                    it.copy(
-                        isColorPickerVisible = !it.isColorPickerVisible
-                    )
+                    it.copy(isColorPickerVisible = !it.isColorPickerVisible)
                 }
             }
         }
     }
 
     private fun saveNote() {
+        // Cancel any existing save job
         saveJob?.cancel()
         saveJob = viewModelScope.launch {
-            delay(300)
-            val snapshot = _state.value
-            val newId = insertNoteUseCase(
-                Note(
-                    title = snapshot.title.text,
-                    content = snapshot.content.text,
-                    timestamp = System.currentTimeMillis(),
-                    color = snapshot.color,
-                    id = snapshot.id
-                )
-            )
-            // Update state if this was a new note
-            if (snapshot.id == null) {
-                _state.update {
-                    it.copy(
-                        id = newId.toInt()
+            // Delay to avoid saving too frequently
+            delay(300.milliseconds)
+
+            with(_state.value) {
+                val newId = insertNoteUseCase(
+                    Note(
+                        title = title.text,
+                        content = content.text,
+                        timestamp = System.currentTimeMillis(),
+                        color = color,
+                        id = id
                     )
+                )
+
+                // Update the state with the new ID if this was a newly created note
+                id ?: _state.update {
+                    it.copy(id = newId.toInt())
                 }
             }
         }
