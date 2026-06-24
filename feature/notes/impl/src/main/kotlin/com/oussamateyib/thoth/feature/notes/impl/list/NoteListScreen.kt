@@ -1,13 +1,11 @@
 package com.oussamateyib.thoth.feature.notes.impl.list
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,7 +33,6 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.core.ui.NoteColorPicker
 import com.oussamateyib.thoth.core.ui.NoteSortSheet
@@ -72,9 +69,6 @@ internal fun NoteListScreen(
     onAddNote: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
-
-    // Connect the TopAppBar scroll behavior to the Scaffold
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     // Clear selection when back button is pressed in selection mode
     BackHandler(enabled = state.isSelectionMode) {
@@ -122,16 +116,29 @@ internal fun NoteListScreen(
         }
     }
 
+    val scrollBehavior = if (state.isSelectionMode) {
+        TopAppBarDefaults.pinnedScrollBehavior()
+    } else {
+        TopAppBarDefaults.enterAlwaysScrollBehavior()
+    }
+
     val selectedNotesDeletedMessage = stringResource(R.string.selected_notes_deleted)
     val undoLabel = stringResource(R.string.undo)
 
     Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = Modifier
+            // Connect scroll events from the content to the top bar behavior
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = if (state.isSelectionMode) {
+                        MaterialTheme.colorScheme.secondaryContainer
+                    } else {
+                        MaterialTheme.colorScheme.surface
+                    },
+                    scrolledContainerColor = if (state.isSelectionMode) {
                         MaterialTheme.colorScheme.secondaryContainer
                     } else {
                         MaterialTheme.colorScheme.surface
