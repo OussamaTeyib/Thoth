@@ -177,9 +177,7 @@ internal fun NoteEditorScreen(
                     onEvent(NoteEditorEvent.ChangeContentFocus(it))
                 },
                 textStyle = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
+                modifier = Modifier.fillMaxWidth()
             )
         }
     }
