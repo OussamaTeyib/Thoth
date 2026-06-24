@@ -79,9 +79,6 @@ internal fun NoteListScreen(
 ) {
     val scope = rememberCoroutineScope()
 
-    // Connect the TopAppBar scroll behavior to the Scaffold
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-
     // Clear selection when back button is pressed in selection mode
     BackHandler(enabled = state.isSelectionMode) {
         onEvent(NoteListEvent.ClearSelection)
@@ -106,11 +103,19 @@ internal fun NoteListScreen(
         }
     }
 
+    val scrollBehavior = if (state.isSelectionMode) {
+        TopAppBarDefaults.pinnedScrollBehavior()
+    } else {
+        TopAppBarDefaults.enterAlwaysScrollBehavior()
+    }
+
     val selectedNotesDeletedMessage = stringResource(R.string.selected_notes_deleted)
     val undoLabel = stringResource(R.string.undo)
 
     Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = Modifier
+            // Connect scroll events from the content to the top bar behavior
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
