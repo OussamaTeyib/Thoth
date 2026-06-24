@@ -97,6 +97,7 @@ class NoteListViewModel @Inject constructor(
 
             NoteListEvent.RestoreDeletedNotes -> {
                 val notesToRestore = state.value.recentlyDeletedNotes
+
                 viewModelScope.launch {
                     notesToRestore.forEach {
                         insertNoteUseCase(it)

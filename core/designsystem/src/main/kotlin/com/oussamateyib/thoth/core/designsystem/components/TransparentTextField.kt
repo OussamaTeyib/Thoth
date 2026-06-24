@@ -40,6 +40,7 @@ fun TransparentTextField(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
+                // Display the actual text field
                 innerTextField()
             }
         }

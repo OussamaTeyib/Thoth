@@ -686,6 +686,7 @@ val unspecified_scheme = ColorFamily(
 
 val LocalExtendedColorScheme = staticCompositionLocalOf { extendedLight }
 
+// Exposes custom colors globally through the MaterialTheme object
 val MaterialTheme.extendedColorScheme: ExtendedColorScheme
     @Composable
     @ReadOnlyComposable

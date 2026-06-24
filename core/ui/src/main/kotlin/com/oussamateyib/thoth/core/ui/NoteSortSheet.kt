@@ -91,8 +91,7 @@ internal fun SortOptionRow(
                     val isAscending = orderType is OrderType.Ascending
                     Icon(
                         painter = painterResource(if (isAscending) R.drawable.arrow_upward else R.drawable.arrow_downward),
-                        contentDescription = stringResource(if (isAscending) R.string.ascending else R.string.descending),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        contentDescription = stringResource(if (isAscending) R.string.ascending else R.string.descending)
                     )
                 }
             }

@@ -101,9 +101,7 @@ internal fun NoteListScreen(
         }
     }
 
-    val sheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true
-    )
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     if (state.isSortSheetVisible) {
         ModalBottomSheet(

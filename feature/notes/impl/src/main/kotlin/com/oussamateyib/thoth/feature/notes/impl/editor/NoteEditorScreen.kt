@@ -92,9 +92,7 @@ internal fun NoteEditorScreen(
         )
     }
 
-    val sheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true
-    )
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     if (state.isColorPickerVisible) {
         ModalBottomSheet(
