@@ -224,31 +224,27 @@ internal fun NoteListScreen(
             }
         }
     ) { innerPadding ->
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
                 .padding(horizontal = 16.dp)
         ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                noteItems(
-                    items = state.notes,
-                    selectedItems = state.selectedNoteIds,
-                    onNoteClick = {
-                        if (state.isSelectionMode) {
-                            onEvent(NoteListEvent.SelectNote(it))
-                        } else {
-                            onNoteClick(it)
-                        }
-                    },
-                    onNoteLongClick = {
+            noteItems(
+                items = state.notes,
+                selectedItems = state.selectedNoteIds,
+                onNoteClick = {
+                    if (state.isSelectionMode) {
                         onEvent(NoteListEvent.SelectNote(it))
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
+                    } else {
+                        onNoteClick(it)
+                    }
+                },
+                onNoteLongClick = {
+                    onEvent(NoteListEvent.SelectNote(it))
+                },
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }
