@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GetNoteByIdUseCase @Inject constructor(
     private val repository: NotesRepository
 ) {
-    suspend operator fun invoke(id: Int) = repository.getNoteById(id)
+    suspend operator fun invoke(id: Long) = repository.getNoteById(id)
 }

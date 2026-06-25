@@ -7,7 +7,7 @@ import com.oussamateyib.thoth.core.model.data.NoteColor
 
 data class NoteListState(
     val notes: List<Note> = emptyList(),
-    val selectedNoteIds: Set<Int> = emptySet(),
+    val selectedNoteIds: Set<Long> = emptySet(),
     val noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
     val isSortSheetVisible: Boolean = false,
     val isColorPickerVisible: Boolean = false,

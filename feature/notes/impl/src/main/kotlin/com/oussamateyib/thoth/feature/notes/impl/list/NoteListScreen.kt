@@ -42,7 +42,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun NoteListScreen(
-    onNoteClick: (Int) -> Unit,
+    onNoteClick: (Long) -> Unit,
     onAddNote: () -> Unit,
     viewModel: NoteListViewModel
 ) {
@@ -65,7 +65,7 @@ internal fun NoteListScreen(
     state: NoteListState,
     snackbarHostState: SnackbarHostState,
     onEvent: (NoteListEvent) -> Unit,
-    onNoteClick: (Int) -> Unit,
+    onNoteClick: (Long) -> Unit,
     onAddNote: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
