@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.thoth.dependency.analysis)
 }
 
 java {
