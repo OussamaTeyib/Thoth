@@ -17,7 +17,7 @@ internal object DatabaseModule {
     @Singleton
     fun provideThothDatabase(
         @ApplicationContext context: Context
-    ): ThothDatabase = Room.databaseBuilder(
+    ) = Room.databaseBuilder(
         context,
         ThothDatabase::class.java,
         "thoth-database"
