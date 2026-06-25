@@ -10,9 +10,9 @@ import com.oussamateyib.thoth.core.model.data.Note
 
 fun LazyListScope.noteItems(
     items: List<Note>,
-    selectedItems: Set<Long>,
-    onNoteClick: (Long) -> Unit,
-    onNoteLongClick: (Long) -> Unit,
+    selectedItemIds: Set<Long>,
+    onItemClick: (Long) -> Unit,
+    onItemLongClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) = items(
     items = items,
@@ -21,10 +21,10 @@ fun LazyListScope.noteItems(
 ) { note ->
     NoteItem(
         note = note,
-        isSelected = selectedItems.contains(note.id),
+        isSelected = selectedItemIds.contains(note.id),
         modifier = modifier,
-        onClick = { onNoteClick(note.id) },
-        onLongClick = { onNoteLongClick(note.id) }
+        onClick = { onItemClick(note.id) },
+        onLongClick = { onItemLongClick(note.id) }
     )
     Spacer(modifier = Modifier.height(16.dp))
 }

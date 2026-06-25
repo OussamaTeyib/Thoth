@@ -239,15 +239,15 @@ internal fun NoteListScreen(
         ) {
             noteItems(
                 items = state.notes,
-                selectedItems = state.selectedNoteIds,
-                onNoteClick = {
+                selectedItemIds = state.selectedNoteIds,
+                onItemClick = {
                     if (state.isSelectionMode) {
                         onEvent(NoteListEvent.SelectNote(it))
                     } else {
                         onNoteClick(it)
                     }
                 },
-                onNoteLongClick = {
+                onItemLongClick = {
                     onEvent(NoteListEvent.SelectNote(it))
                 },
                 modifier = Modifier.fillMaxWidth()
