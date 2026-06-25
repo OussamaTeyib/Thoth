@@ -4,6 +4,7 @@
 .gradle/
 .kotlin/
 [Bb]uild*/
+!build-logic
 local.properties
 
 # IDE files
