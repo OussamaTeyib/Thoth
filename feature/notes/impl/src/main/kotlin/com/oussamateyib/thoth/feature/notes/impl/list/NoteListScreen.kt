@@ -1,27 +1,19 @@
 package com.oussamateyib.thoth.feature.notes.impl.list
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
@@ -31,20 +23,19 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.oussamateyib.thoth.core.ui.ColorPicker
-import com.oussamateyib.thoth.core.ui.NoteOrderSection
+import com.oussamateyib.thoth.core.ui.NoteColorPicker
+import com.oussamateyib.thoth.core.ui.NoteSortSheet
 import com.oussamateyib.thoth.core.ui.noteItems
 import com.oussamateyib.thoth.feature.notes.impl.R
 import kotlinx.coroutines.launch
@@ -85,14 +76,15 @@ internal fun NoteListScreen(
     }
 
     if (state.isColorPickerVisible) {
-        Dialog(
+        BasicAlertDialog(
             onDismissRequest = { onEvent(NoteListEvent.ToggleColorPicker) }
         ) {
             Surface(
-                shape = RoundedCornerShape(16.dp),
+                shape = MaterialTheme.shapes.extraLarge,
+                tonalElevation = AlertDialogDefaults.TonalElevation,
                 modifier = Modifier.width(280.dp)
             ) {
-                ColorPicker(
+                NoteColorPicker(
                     selectedColor = state.commonSelectedColor,
                     onColorChange = {
                         onEvent(NoteListEvent.ChangeColor(it))
@@ -100,6 +92,27 @@ internal fun NoteListScreen(
                     modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
                 )
             }
+        }
+    }
+
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+
+    if (state.isSortSheetVisible) {
+        ModalBottomSheet(
+            sheetState = sheetState,
+            onDismissRequest = {
+                onEvent(NoteListEvent.ToggleSortSheet)
+            }
+        ) {
+            NoteSortSheet(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                noteOrder = state.noteOrder,
+                onOrderChange = {
+                    onEvent(NoteListEvent.Order(it))
+                }
+            )
         }
     }
 
@@ -119,6 +132,18 @@ internal fun NoteListScreen(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = if (state.isSelectionMode) {
+                        MaterialTheme.colorScheme.secondaryContainer
+                    } else {
+                        MaterialTheme.colorScheme.surface
+                    },
+                    scrolledContainerColor = if (state.isSelectionMode) {
+                        MaterialTheme.colorScheme.secondaryContainer
+                    } else {
+                        MaterialTheme.colorScheme.surface
+                    }
+                ),
                 navigationIcon = {
                     if (state.isSelectionMode) {
                         IconButton(
@@ -150,7 +175,7 @@ internal fun NoteListScreen(
                             }
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.dropper_eye),
+                                painter = painterResource(R.drawable.palette),
                                 contentDescription = stringResource(R.string.change_color)
                             )
                         }
@@ -177,7 +202,7 @@ internal fun NoteListScreen(
                     } else {
                         IconButton(
                             onClick = {
-                                onEvent(NoteListEvent.ToggleOrderSection)
+                                onEvent(NoteListEvent.ToggleSortSheet)
                             }
                         ) {
                             Icon(
@@ -197,60 +222,36 @@ internal fun NoteListScreen(
                         onEvent(NoteListEvent.ClearSelection)
                     }
                     onAddNote()
-                },
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary,
-                shape = CircleShape
+                }
             ) {
                 Icon(
                     painter = painterResource(R.drawable.add),
                     contentDescription = stringResource(R.string.add_note)
                 )
             }
-        },
-        containerColor = Color.Transparent,
+        }
     ) { innerPadding ->
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
                 .padding(horizontal = 16.dp)
         ) {
-            AnimatedVisibility(
-                visible = state.isOrderSectionVisible,
-                enter = fadeIn(tween(200)) + expandVertically(),
-                exit = fadeOut(tween(200)) + shrinkVertically()
-            ) {
-                NoteOrderSection(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    noteOrder = state.noteOrder,
-                    onOrderChange = {
-                        onEvent(NoteListEvent.Order(it))
-                    }
-                )
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            LazyColumn(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                noteItems(
-                    items = state.notes,
-                    selectedItems = state.selectedNoteIds,
-                    onNoteClick = {
-                        if (state.isSelectionMode) {
-                            onEvent(NoteListEvent.SelectNote(it))
-                        } else {
-                            onNoteClick(it)
-                        }
-                    },
-                    onNoteLongClick = {
+            noteItems(
+                items = state.notes,
+                selectedItems = state.selectedNoteIds,
+                onNoteClick = {
+                    if (state.isSelectionMode) {
                         onEvent(NoteListEvent.SelectNote(it))
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
+                    } else {
+                        onNoteClick(it)
+                    }
+                },
+                onNoteLongClick = {
+                    onEvent(NoteListEvent.SelectNote(it))
+                },
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }

@@ -35,13 +35,12 @@ dependencies {
     implementation(projects.feature.notes.api)
 
     implementation(platform(libs.androidx.compose.bom))
-
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.compose.animation)
     implementation(libs.androidx.compose.animation.core)
     implementation(libs.androidx.compose.foundation)
-    implementation(libs.androidx.compose.foundation.layout)
+    api(libs.androidx.compose.foundation.layout)
     implementation(libs.androidx.compose.material3)
     api(libs.androidx.compose.runtime)
     api(libs.androidx.compose.ui)

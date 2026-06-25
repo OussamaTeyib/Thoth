@@ -47,17 +47,17 @@ class NoteListViewModel @Inject constructor(
     fun onEvent(event: NoteListEvent) {
         when (event) {
             is NoteListEvent.Order -> {
-                if (state.value.noteOrder::class == event.noteOrder::class &&
-                    state.value.noteOrder.orderType == event.noteOrder.orderType
-                ) return
                 _state.update {
-                    it.copy(noteOrder = event.noteOrder)
+                    it.copy(
+                        noteOrder = event.noteOrder,
+                        isSortSheetVisible = false
+                    )
                 }
             }
 
-            NoteListEvent.ToggleOrderSection -> {
+            NoteListEvent.ToggleSortSheet -> {
                 _state.update {
-                    it.copy(isOrderSectionVisible = !it.isOrderSectionVisible)
+                    it.copy(isSortSheetVisible = !it.isSortSheetVisible)
                 }
             }
 
@@ -97,6 +97,7 @@ class NoteListViewModel @Inject constructor(
 
             NoteListEvent.RestoreDeletedNotes -> {
                 val notesToRestore = state.value.recentlyDeletedNotes
+
                 viewModelScope.launch {
                     notesToRestore.forEach {
                         insertNoteUseCase(it)

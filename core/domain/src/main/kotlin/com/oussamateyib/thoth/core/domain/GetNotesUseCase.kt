@@ -22,11 +22,6 @@ class GetNotesStreamUseCase @Inject constructor(
                 is OrderType.Ascending -> notes.sortedBy { it.timestamp }
                 is OrderType.Descending -> notes.sortedByDescending { it.timestamp }
             }
-
-            is NoteOrder.Color -> when (noteOrder.orderType) {
-                is OrderType.Ascending -> notes.sortedBy { it.color }
-                is OrderType.Descending -> notes.sortedByDescending { it.color }
-            }
         }
     }
 }

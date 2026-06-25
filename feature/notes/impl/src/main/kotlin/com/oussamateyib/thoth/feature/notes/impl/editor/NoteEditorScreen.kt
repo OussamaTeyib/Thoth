@@ -20,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -32,7 +33,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.core.designsystem.components.TransparentTextField
-import com.oussamateyib.thoth.core.ui.ColorPicker
+import com.oussamateyib.thoth.core.ui.NoteColorPicker
+import com.oussamateyib.thoth.core.ui.asColor
+import com.oussamateyib.thoth.core.ui.util.PaletteLayout
 import com.oussamateyib.thoth.feature.notes.impl.R
 
 @Composable
@@ -75,35 +78,37 @@ internal fun NoteEditorScreen(
 ) {
     if (state.isLoading) return
 
+    val noteColor = state.color.asColor()
+
     val noteBackgroundAnimatable = remember {
-        Animatable(Color(state.color))
+        Animatable(noteColor)
     }
 
     // Animate the background color when the note color changes
     LaunchedEffect(state.color) {
         noteBackgroundAnimatable.animateTo(
-            targetValue = Color(state.color),
+            targetValue = noteColor,
             animationSpec = tween(durationMillis = 400)
         )
     }
 
-    val sheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true
-    )
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     if (state.isColorPickerVisible) {
         ModalBottomSheet(
             sheetState = sheetState,
             onDismissRequest = {
                 onEvent(NoteEditorEvent.ToggleColorPicker)
-            }
+            },
+            containerColor = noteBackgroundAnimatable.value
         ) {
-            ColorPicker(
+            NoteColorPicker(
                 selectedColor = state.color,
                 onColorChange = {
                     onEvent(NoteEditorEvent.ChangeColor(it))
                 },
-                modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp),
+                layout = PaletteLayout.Row
             )
         }
     }
@@ -114,6 +119,9 @@ internal fun NoteEditorScreen(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent
+                ),
                 title = {},
                 navigationIcon = {
                     IconButton(
@@ -134,14 +142,14 @@ internal fun NoteEditorScreen(
                         }
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.dropper_eye),
+                            painter = painterResource(R.drawable.palette),
                             contentDescription = stringResource(R.string.change_color)
                         )
                     }
                 }
             )
         },
-        containerColor = Color.Transparent
+        containerColor = noteBackgroundAnimatable.value,
     ) { innerPadding ->
         Column(
             modifier = Modifier
