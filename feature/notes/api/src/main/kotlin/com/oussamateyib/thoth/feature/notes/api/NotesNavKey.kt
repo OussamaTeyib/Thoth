@@ -7,4 +7,4 @@ import kotlinx.serialization.Serializable
 data object NoteListNavKey : NavKey
 
 @Serializable
-data class NoteEditorNavKey(val noteId: Int = -1) : NavKey
+data class NoteEditorNavKey(val noteId: Long = 0L) : NavKey

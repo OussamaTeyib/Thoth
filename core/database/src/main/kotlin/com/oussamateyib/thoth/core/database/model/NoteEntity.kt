@@ -7,8 +7,8 @@ import com.oussamateyib.thoth.core.model.data.NoteColor
 
 @Entity(tableName = "notes")
 data class NoteEntity(
-    @PrimaryKey
-    val id: Int? = null,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0L,
     val title: String,
     val content: String,
     val timestamp: Long,

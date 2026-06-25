@@ -22,13 +22,13 @@ import kotlin.time.Duration.Companion.milliseconds
 
 @HiltViewModel(assistedFactory = NoteEditorViewModel.Factory::class)
 class NoteEditorViewModel @AssistedInject constructor(
-    @Assisted private val noteId: Int,
+    @Assisted private val noteId: Long,
     getNoteByIdUseCase: GetNoteByIdUseCase,
     private val insertNoteUseCase: InsertNoteUseCase
 ) : ViewModel() {
     @AssistedFactory
     interface Factory {
-        fun create(noteId: Int): NoteEditorViewModel
+        fun create(noteId: Long): NoteEditorViewModel
     }
 
     private val _state = MutableStateFlow(NoteEditorState())
@@ -41,10 +41,8 @@ class NoteEditorViewModel @AssistedInject constructor(
 
     init {
         when (noteId) {
-            -1 -> _state.update {
-                it.copy(
-                    isLoading = false
-                )
+            0L -> _state.update {
+                it.copy(isLoading = false)
             }
 
             else -> viewModelScope.launch {
@@ -53,6 +51,7 @@ class NoteEditorViewModel @AssistedInject constructor(
 
                     else -> _state.update {
                         it.copy(
+                            id = noteId,
                             title = NoteEditorTextFieldState(
                                 text = note.title,
                                 hint = R.string.note_title_hint,
@@ -64,7 +63,6 @@ class NoteEditorViewModel @AssistedInject constructor(
                                 isHintVisible = note.content.isEmpty()
                             ),
                             color = note.color,
-                            id = noteId,
                             isLoading = false
                         )
                     }
@@ -142,17 +140,19 @@ class NoteEditorViewModel @AssistedInject constructor(
             with(_state.value) {
                 val newId = insertNoteUseCase(
                     Note(
+                        id = id,
                         title = title.text,
                         content = content.text,
                         timestamp = System.currentTimeMillis(),
-                        color = color,
-                        id = id
+                        color = color
                     )
                 )
 
                 // Update the state with the new ID if this was a newly created note
-                id ?: _state.update {
-                    it.copy(id = newId.toInt())
+                if (id == 0L) {
+                    _state.update {
+                        it.copy(id = newId)
+                    }
                 }
             }
         }
