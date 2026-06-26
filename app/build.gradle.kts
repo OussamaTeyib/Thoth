@@ -1,16 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.thoth.android.lint)
-    alias(libs.plugins.thoth.dependency.analysis)
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+    alias(libs.plugins.thoth.android.application)
 }
 
 // Detect if the current build is for an Android App Bundle (AAB)
@@ -18,12 +10,9 @@ val isBuildingBundle = gradle.startParameter.taskNames.any { it.lowercase().cont
 
 android {
     namespace = "com.oussamateyib.thoth"
-    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.oussamateyib.thoth"
-        minSdk = 24
-        targetSdk = 37
         versionCode = 1
         versionName = "1.0.0"
     }

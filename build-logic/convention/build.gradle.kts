@@ -18,6 +18,10 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        register("androidApplication") {
+            id = libs.plugins.thoth.android.application.get().pluginId
+            implementationClass = "AndroidApplicationConventionPlugin"
+        }
         register("androidLint") {
             id = libs.plugins.thoth.android.lint.get().pluginId
             implementationClass = "AndroidLintConventionPlugin"
