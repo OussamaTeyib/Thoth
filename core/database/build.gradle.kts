@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.thoth.android.lint)
     alias(libs.plugins.thoth.dependency.analysis)
 }
 
@@ -22,11 +23,6 @@ android {
 
     defaultConfig {
         minSdk = 24
-    }
-
-    lint {
-        checkAllWarnings = true
-        warningsAsErrors = true
     }
 }
 

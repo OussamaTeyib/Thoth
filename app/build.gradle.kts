@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.thoth.android.lint)
     alias(libs.plugins.thoth.dependency.analysis)
 }
 
@@ -82,11 +83,6 @@ android {
             // Exclude VCS metadata
             vcsInfo.include = false
         }
-    }
-
-    lint {
-        checkAllWarnings = true
-        warningsAsErrors = true
     }
 }
 

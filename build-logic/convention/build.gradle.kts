@@ -1,5 +1,6 @@
 plugins {
     `kotlin-dsl`
+    alias(libs.plugins.android.lint)
 }
 
 group = "com.oussamateyib.thoth.buildlogic"
@@ -11,11 +12,16 @@ java {
 }
 
 dependencies {
+    implementation(libs.android.gradle.plugin)
     implementation(libs.dependency.analysis.gradle.plugin)
 }
 
 gradlePlugin {
     plugins {
+        register("androidLint") {
+            id = libs.plugins.thoth.android.lint.get().pluginId
+            implementationClass = "AndroidLintConventionPlugin"
+        }
         register("dependencyAnalysis") {
             id = libs.plugins.thoth.dependency.analysis.get().pluginId
             implementationClass = "DependencyAnalysisConventionPlugin"
