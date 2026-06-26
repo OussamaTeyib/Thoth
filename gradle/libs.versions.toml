@@ -60,6 +60,8 @@ kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 # Dependencies of the included build-logic
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle-api", version.ref = "androidGradlePlugin" }
 dependency-analysis-gradle-plugin = { group = "com.autonomousapps", name = "dependency-analysis-gradle-plugin", version.ref = "dependencyAnalysis" }
+ksp-gradle-plugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+room-gradle-plugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -76,6 +78,7 @@ room = { id = "androidx.room", version.ref = "room" }
 # Plugins defined by this project
 thoth-android-application = { id = "thoth.android.application" }
 thoth-android-library = { id = "thoth.android.library" }
+thoth-android-room = { id = "thoth.android.room" }
 thoth-android-lint = { id = "thoth.android.lint" }
 thoth-dependency-analysis = { id = "thoth.dependency.analysis" }
 thoth-jvm-library = { id = "thoth.jvm.library" }

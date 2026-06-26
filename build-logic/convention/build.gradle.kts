@@ -12,8 +12,10 @@ java {
 }
 
 dependencies {
-    implementation(libs.android.gradle.plugin)
-    implementation(libs.dependency.analysis.gradle.plugin)
+    compileOnly(libs.android.gradle.plugin)
+    compileOnly(libs.dependency.analysis.gradle.plugin)
+    compileOnly(libs.ksp.gradle.plugin)
+    compileOnly(libs.room.gradle.plugin)
 }
 
 gradlePlugin {
@@ -29,6 +31,10 @@ gradlePlugin {
         register("androidLint") {
             id = libs.plugins.thoth.android.lint.get().pluginId
             implementationClass = "AndroidLintConventionPlugin"
+        }
+        register("androidRoom") {
+            id = libs.plugins.thoth.android.room.get().pluginId
+            implementationClass = "AndroidRoomConventionPlugin"
         }
         register("dependencyAnalysis") {
             id = libs.plugins.thoth.dependency.analysis.get().pluginId
