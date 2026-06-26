@@ -1,15 +1,7 @@
 plugins {
-    alias(libs.plugins.android.library)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
-    alias(libs.plugins.thoth.android.lint)
-    alias(libs.plugins.thoth.dependency.analysis)
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+    alias(libs.plugins.thoth.android.library)
 }
 
 // Configure Room schema export directory
@@ -19,11 +11,6 @@ room {
 
 android {
     namespace = "com.oussamateyib.thoth.core.database"
-    compileSdk = 37
-
-    defaultConfig {
-        minSdk = 24
-    }
 }
 
 dependencies {

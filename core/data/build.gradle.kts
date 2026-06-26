@@ -1,24 +1,11 @@
 plugins {
-    alias(libs.plugins.android.library)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.thoth.android.lint)
-    alias(libs.plugins.thoth.dependency.analysis)
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+    alias(libs.plugins.thoth.android.library)
 }
 
 android {
     namespace = "com.oussamateyib.thoth.core.data"
-    compileSdk = 37
-
-    defaultConfig {
-        minSdk = 24
-    }
 }
 
 dependencies {
