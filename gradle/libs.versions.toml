@@ -77,3 +77,4 @@ room = { id = "androidx.room", version.ref = "room" }
 thoth-android-application = { id = "thoth.android.application" }
 thoth-android-lint = { id = "thoth.android.lint" }
 thoth-dependency-analysis = { id = "thoth.dependency.analysis" }
+thoth-jvm-library = { id = "thoth.jvm.library" }

@@ -30,5 +30,9 @@ gradlePlugin {
             id = libs.plugins.thoth.dependency.analysis.get().pluginId
             implementationClass = "DependencyAnalysisConventionPlugin"
         }
+        register("jvmLibrary") {
+            id = libs.plugins.thoth.jvm.library.get().pluginId
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
     }
 }
