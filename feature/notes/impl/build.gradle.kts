@@ -1,8 +1,7 @@
 plugins {
-    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.thoth.android.library)
+    alias(libs.plugins.thoth.hilt)
 }
 
 android {
@@ -35,13 +34,7 @@ dependencies {
     api(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     api(libs.androidx.navigation3.runtime)
-    api(libs.dagger)
-    implementation(libs.dagger.hilt.core)
-    implementation(libs.hilt.android)
     implementation(libs.hilt.lifecycle.viewmodel.compose)
     api(libs.javax.inject)
     api(libs.kotlinx.coroutines.core)
-
-    ksp(libs.hilt.compiler)
-    ksp(libs.kotlin.metadata.jvm)
 }

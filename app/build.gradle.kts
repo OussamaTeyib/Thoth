@@ -1,8 +1,7 @@
 plugins {
-    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.thoth.android.application)
+    alias(libs.plugins.thoth.hilt)
 }
 
 // Detect if the current build is for an Android App Bundle (AAB)
@@ -101,10 +100,4 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
-    implementation(libs.dagger)
-    implementation(libs.dagger.hilt.core)
-    implementation(libs.hilt.android)
-
-    ksp(libs.hilt.compiler)
-    ksp(libs.kotlin.metadata.jvm)
 }

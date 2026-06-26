@@ -81,4 +81,5 @@ thoth-android-library = { id = "thoth.android.library" }
 thoth-android-room = { id = "thoth.android.room" }
 thoth-android-lint = { id = "thoth.android.lint" }
 thoth-dependency-analysis = { id = "thoth.dependency.analysis" }
+thoth-hilt = { id = "thoth.hilt" }
 thoth-jvm-library = { id = "thoth.jvm.library" }
