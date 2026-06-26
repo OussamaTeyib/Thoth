@@ -60,7 +60,8 @@ android {
             // Enable code shrinking and obfuscation
             isMinifyEnabled = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt")
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
 
             // Remove unused resources
