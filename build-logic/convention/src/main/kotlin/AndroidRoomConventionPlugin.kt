@@ -13,10 +13,12 @@ class AndroidRoomConventionPlugin : Plugin<Project> {
             apply(plugin = "androidx.room")
             apply(plugin = "com.google.devtools.ksp")
 
+            // Tell Room to generate Kotlin code instead of Java
             extensions.configure<KspExtension> {
                 arg("room.generateKotlin", "true")
             }
 
+            // Set the directory where Room schema export files are stored
             extensions.configure<RoomExtension> {
                 schemaDirectory("$projectDir/schemas")
             }

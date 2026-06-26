@@ -47,6 +47,7 @@ Thoth/
 │   └── SECURITY.md
 ├── app/
 │   ├── build.gradle.kts                             # App-level Gradle build script
+│   ├── proguard-rules.pro                           # Proguard configuration
 │   └── src/main/
 │       ├── AndroidManifest.xml
 │       ├── kotlin/
@@ -57,6 +58,12 @@ Thoth/
 │       │           ├── ThothApp.kt                  # Root composable
 │       │           └── ThothAppState.kt             # App-level state
 │       └── res/                                     # Launcher icons, strings, themes
+├── build-logic/                                     # Custom Gradle build logic
+│   └── convention/                                  # Shared build configuration plugins
+│       ├── build.gradle.kts
+│       └── src/main/kotlin/
+│           ├── com/oussamateyib/thoth/              # Shared configuration logic
+│           └── *ConventionPlugin.kt                 # Project convention plugins
 ├── core/
 │   ├── data/                                        # Central data layer
 │   │   ├── build.gradle.kts
