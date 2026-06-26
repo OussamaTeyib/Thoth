@@ -14,6 +14,7 @@ abstract class AndroidLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
+                lint.targetSdk = 37
             }
         }
     }
