@@ -1,14 +1,10 @@
 plugins {
-    alias(libs.plugins.compose)
     alias(libs.plugins.thoth.android.library)
+    alias(libs.plugins.thoth.android.library.compose)
 }
 
 android {
     namespace = "com.oussamateyib.thoth.core.ui"
-
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
@@ -16,7 +12,6 @@ dependencies {
     api(projects.core.domain)
     api(projects.core.model)
 
-    implementation(platform(libs.androidx.compose.bom))
     api(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.foundation.layout)
     implementation(libs.androidx.compose.material3)

@@ -1,15 +1,11 @@
 plugins {
-    alias(libs.plugins.compose)
     alias(libs.plugins.thoth.android.library)
+    alias(libs.plugins.thoth.android.library.compose)
     alias(libs.plugins.thoth.hilt)
 }
 
 android {
     namespace = "com.oussamateyib.thoth.feature.notes.impl"
-
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
@@ -20,7 +16,6 @@ dependencies {
     implementation(projects.core.ui)
     implementation(projects.feature.notes.api)
 
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.compose.animation)

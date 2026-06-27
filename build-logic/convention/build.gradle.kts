@@ -30,12 +30,20 @@ dependencyAnalysis {
 gradlePlugin {
     plugins {
         register("androidApplication") {
-            id = libs.plugins.thoth.android.application.get().pluginId
+            id = libs.plugins.thoth.android.application.asProvider().get().pluginId
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+        register("androidApplicationCompose") {
+            id = libs.plugins.thoth.android.application.compose.get().pluginId
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
         register("androidLibrary") {
-            id = libs.plugins.thoth.android.library.get().pluginId
+            id = libs.plugins.thoth.android.library.asProvider().get().pluginId
             implementationClass = "AndroidLibraryConventionPlugin"
+        }
+        register("androidLibraryCompose") {
+            id = libs.plugins.thoth.android.library.compose.get().pluginId
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
         register("androidLint") {
             id = libs.plugins.thoth.android.lint.get().pluginId

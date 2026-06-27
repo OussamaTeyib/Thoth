@@ -77,7 +77,9 @@ room = { id = "androidx.room", version.ref = "room" }
 
 # Plugins defined by this project
 thoth-android-application = { id = "thoth.android.application" }
+thoth-android-application-compose = { id = "thoth.android.application.compose" }
 thoth-android-library = { id = "thoth.android.library" }
+thoth-android-library-compose = { id = "thoth.android.library.compose" }
 thoth-android-room = { id = "thoth.android.room" }
 thoth-android-lint = { id = "thoth.android.lint" }
 thoth-dependency-analysis = { id = "thoth.dependency.analysis" }

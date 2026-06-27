@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.compose)
     alias(libs.plugins.thoth.android.application)
+    alias(libs.plugins.thoth.android.application.compose)
     alias(libs.plugins.thoth.hilt)
 }
 
@@ -14,10 +14,6 @@ android {
         applicationId = "com.oussamateyib.thoth"
         versionCode = 1
         versionName = "1.0.0"
-    }
-
-    buildFeatures {
-        compose = true
     }
 
     splits {
@@ -88,7 +84,6 @@ dependencies {
     implementation(projects.feature.notes.api)
     implementation(projects.feature.notes.impl)
 
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.annotation)
