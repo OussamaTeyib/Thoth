@@ -1,6 +1,7 @@
 plugins {
     `kotlin-dsl`
     alias(libs.plugins.android.lint)
+    alias(libs.plugins.dependency.analysis)
 }
 
 group = "com.oussamateyib.thoth.buildlogic"
@@ -16,6 +17,14 @@ dependencies {
     compileOnly(libs.dependency.analysis.gradle.plugin)
     compileOnly(libs.ksp.gradle.plugin)
     compileOnly(libs.room.gradle.plugin)
+}
+
+dependencyAnalysis {
+    issues {
+        onUnusedDependencies {
+            severity("fail")
+        }
+    }
 }
 
 gradlePlugin {
