@@ -1,10 +1,14 @@
 plugins {
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.compose)
     alias(libs.plugins.thoth.android.library)
 }
 
 android {
     namespace = "com.oussamateyib.thoth.core.designsystem"
+
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {

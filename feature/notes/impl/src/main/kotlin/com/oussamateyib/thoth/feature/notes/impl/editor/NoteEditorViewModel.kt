@@ -2,13 +2,13 @@ package com.oussamateyib.thoth.feature.notes.impl.editor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.oussamateyib.thoth.core.domain.GetNoteByIdUseCase
+import com.oussamateyib.thoth.core.domain.InsertNoteUseCase
+import com.oussamateyib.thoth.core.model.data.Note
 import com.oussamateyib.thoth.feature.notes.impl.R
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import com.oussamateyib.thoth.core.model.data.Note
-import com.oussamateyib.thoth.core.domain.GetNoteByIdUseCase
-import com.oussamateyib.thoth.core.domain.InsertNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

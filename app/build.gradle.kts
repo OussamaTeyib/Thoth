@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.compose)
     alias(libs.plugins.thoth.android.application)
     alias(libs.plugins.thoth.hilt)
 }
@@ -14,6 +14,10 @@ android {
         applicationId = "com.oussamateyib.thoth"
         versionCode = 1
         versionName = "1.0.0"
+    }
+
+    buildFeatures {
+        compose = true
     }
 
     splits {
