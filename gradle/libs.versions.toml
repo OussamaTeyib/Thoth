@@ -82,8 +82,8 @@ thoth-android-feature-api = { id = "thoth.android.feature.api" }
 thoth-android-feature-impl = { id = "thoth.android.feature.impl" }
 thoth-android-library = { id = "thoth.android.library" }
 thoth-android-library-compose = { id = "thoth.android.library.compose" }
-thoth-android-room = { id = "thoth.android.room" }
 thoth-android-lint = { id = "thoth.android.lint" }
+thoth-android-room = { id = "thoth.android.room" }
 thoth-dependency-analysis = { id = "thoth.dependency.analysis" }
 thoth-hilt = { id = "thoth.hilt" }
 thoth-jvm-library = { id = "thoth.jvm.library" }
