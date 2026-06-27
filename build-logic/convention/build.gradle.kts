@@ -37,6 +37,10 @@ gradlePlugin {
             id = libs.plugins.thoth.android.application.compose.get().pluginId
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
+        register("androidFeatureApi") {
+            id = libs.plugins.thoth.android.feature.api.get().pluginId
+            implementationClass = "AndroidFeatureApiConventionPlugin"
+        }
         register("androidLibrary") {
             id = libs.plugins.thoth.android.library.asProvider().get().pluginId
             implementationClass = "AndroidLibraryConventionPlugin"
