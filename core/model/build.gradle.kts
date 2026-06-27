@@ -1,9 +1,3 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+    alias(libs.plugins.thoth.jvm.library)
 }

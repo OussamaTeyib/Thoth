@@ -52,7 +52,9 @@ jobs:
         run: ./gradlew lint lintRelease
 
       - name: Analyze dependencies
-        run: ./gradlew buildHealth
+        run: |
+          ./gradlew buildHealth
+          ./gradlew -p build-logic :convention:projectHealth
 
       - name: Rename artifacts
         run: |

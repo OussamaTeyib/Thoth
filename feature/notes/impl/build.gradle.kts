@@ -1,44 +1,20 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.dependency.analysis)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.ksp)
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+    alias(libs.plugins.thoth.android.feature.impl)
+    alias(libs.plugins.thoth.android.library.compose)
+    alias(libs.plugins.thoth.hilt)
 }
 
 android {
     namespace = "com.oussamateyib.thoth.feature.notes.impl"
-    compileSdk = 37
-
-    defaultConfig {
-        minSdk = 24
-    }
-
-    buildFeatures {
-        compose = true
-    }
-
-    lint {
-        checkAllWarnings = true
-        warningsAsErrors = true
-    }
 }
 
 dependencies {
     implementation(projects.core.designsystem)
     api(projects.core.domain)
     api(projects.core.model)
-    api(projects.core.navigation)
     implementation(projects.core.ui)
     implementation(projects.feature.notes.api)
 
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.compose.animation)
@@ -55,14 +31,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     api(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    api(libs.androidx.navigation3.runtime)
-    api(libs.dagger)
-    implementation(libs.dagger.hilt.core)
-    implementation(libs.hilt.android)
     implementation(libs.hilt.lifecycle.viewmodel.compose)
     api(libs.javax.inject)
     api(libs.kotlinx.coroutines.core)
-
-    ksp(libs.hilt.compiler)
-    ksp(libs.kotlin.metadata.jvm)
 }

@@ -1,6 +1,5 @@
 pluginManagement {
     repositories {
-        includeBuild("build-logic")
         gradlePluginPortal()
         google {
             content {
@@ -9,12 +8,7 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
-        mavenCentral()
     }
-}
-
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention").version("1.0.0")
 }
 
 dependencyResolutionManagement {
@@ -29,19 +23,12 @@ dependencyResolutionManagement {
         }
         mavenCentral()
     }
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
+    }
 }
 
-// Enable type-safe accessors
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-rootProject.name = "Thoth"
-include(":app")
-include(":core:data")
-include(":core:database")
-include(":core:domain")
-include(":core:designsystem")
-include(":core:model")
-include(":core:navigation")
-include(":core:ui")
-include(":feature:notes:api")
-include(":feature:notes:impl")
+rootProject.name = "build-logic"
+include(":convention")

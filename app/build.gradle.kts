@@ -1,15 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.dependency.analysis)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.ksp)
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+    alias(libs.plugins.thoth.android.application)
+    alias(libs.plugins.thoth.android.application.compose)
+    alias(libs.plugins.thoth.hilt)
 }
 
 // Detect if the current build is for an Android App Bundle (AAB)
@@ -17,18 +9,11 @@ val isBuildingBundle = gradle.startParameter.taskNames.any { it.lowercase().cont
 
 android {
     namespace = "com.oussamateyib.thoth"
-    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.oussamateyib.thoth"
-        minSdk = 24
-        targetSdk = 37
         versionCode = 1
         versionName = "1.0.0"
-    }
-
-    buildFeatures {
-        compose = true
     }
 
     splits {
@@ -88,11 +73,6 @@ android {
             vcsInfo.include = false
         }
     }
-
-    lint {
-        checkAllWarnings = true
-        warningsAsErrors = true
-    }
 }
 
 dependencies {
@@ -104,7 +84,6 @@ dependencies {
     implementation(projects.feature.notes.api)
     implementation(projects.feature.notes.impl)
 
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.annotation)
@@ -121,10 +100,4 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
-    implementation(libs.dagger)
-    implementation(libs.dagger.hilt.core)
-    implementation(libs.hilt.android)
-
-    ksp(libs.hilt.compiler)
-    ksp(libs.kotlin.metadata.jvm)
 }

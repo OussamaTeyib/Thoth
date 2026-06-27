@@ -1,35 +1,13 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.dependency.analysis)
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+    alias(libs.plugins.thoth.android.library)
+    alias(libs.plugins.thoth.android.library.compose)
 }
 
 android {
     namespace = "com.oussamateyib.thoth.core.designsystem"
-    compileSdk = 37
-
-    defaultConfig {
-        minSdk = 24
-    }
-
-    buildFeatures {
-        compose = true
-    }
-
-    lint {
-        checkAllWarnings = true
-        warningsAsErrors = true
-    }
 }
 
 dependencies {
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.foundation.layout)
     api(libs.androidx.compose.material3)
