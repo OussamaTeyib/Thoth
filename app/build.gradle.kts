@@ -27,6 +27,10 @@ android {
         versionName = "1.0.0"
     }
 
+    buildFeatures {
+        compose = true
+    }
+
     splits {
         abi {
             // Disable ABI splits when building an App Bundle to avoid conflicts

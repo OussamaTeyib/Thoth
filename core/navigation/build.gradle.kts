@@ -18,6 +18,10 @@ android {
         minSdk = 24
     }
 
+    buildFeatures {
+        compose = true
+    }
+
     lint {
         checkAllWarnings = true
         warningsAsErrors = true
