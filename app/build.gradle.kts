@@ -45,7 +45,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             // Enable code shrinking and obfuscation
             isMinifyEnabled = true
             proguardFiles(
