@@ -79,6 +79,7 @@ room = { id = "androidx.room", version.ref = "room" }
 thoth-android-application = { id = "thoth.android.application" }
 thoth-android-application-compose = { id = "thoth.android.application.compose" }
 thoth-android-feature-api = { id = "thoth.android.feature.api" }
+thoth-android-feature-impl = { id = "thoth.android.feature.impl" }
 thoth-android-library = { id = "thoth.android.library" }
 thoth-android-library-compose = { id = "thoth.android.library.compose" }
 thoth-android-room = { id = "thoth.android.room" }

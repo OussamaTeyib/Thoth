@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.thoth.android.library)
+    alias(libs.plugins.thoth.android.feature.impl)
     alias(libs.plugins.thoth.android.library.compose)
     alias(libs.plugins.thoth.hilt)
 }
@@ -12,7 +12,6 @@ dependencies {
     implementation(projects.core.designsystem)
     api(projects.core.domain)
     api(projects.core.model)
-    api(projects.core.navigation)
     implementation(projects.core.ui)
     implementation(projects.feature.notes.api)
 
@@ -32,7 +31,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     api(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    api(libs.androidx.navigation3.runtime)
     implementation(libs.hilt.lifecycle.viewmodel.compose)
     api(libs.javax.inject)
     api(libs.kotlinx.coroutines.core)
