@@ -54,13 +54,11 @@ class NoteEditorViewModel @AssistedInject constructor(
                             id = noteId,
                             title = NoteEditorTextFieldState(
                                 text = note.title,
-                                hint = R.string.note_title_hint,
-                                isHintVisible = note.title.isEmpty()
+                                hint = R.string.note_title_hint
                             ),
                             content = NoteEditorTextFieldState(
                                 text = note.content,
-                                hint = R.string.note_content_hint,
-                                isHintVisible = note.content.isEmpty()
+                                hint = R.string.note_content_hint
                             ),
                             color = note.color,
                             isLoading = false
@@ -84,16 +82,6 @@ class NoteEditorViewModel @AssistedInject constructor(
                 saveNote()
             }
 
-            is NoteEditorEvent.ChangeTitleFocus -> {
-                _state.update {
-                    it.copy(
-                        title = it.title.copy(
-                            isHintVisible = !event.focusState.isFocused && it.title.text.isEmpty()
-                        )
-                    )
-                }
-            }
-
             is NoteEditorEvent.EnteredContent -> {
                 _state.update {
                     it.copy(
@@ -103,16 +91,6 @@ class NoteEditorViewModel @AssistedInject constructor(
                     )
                 }
                 saveNote()
-            }
-
-            is NoteEditorEvent.ChangeContentFocus -> {
-                _state.update {
-                    it.copy(
-                        content = it.content.copy(
-                            isHintVisible = !event.focusState.isFocused && it.content.text.isEmpty()
-                        )
-                    )
-                }
             }
 
             is NoteEditorEvent.ChangeColor -> {

@@ -5,6 +5,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CardDefaults
@@ -16,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.oussamateyib.thoth.core.model.data.Note
@@ -24,9 +26,9 @@ import com.oussamateyib.thoth.core.model.data.Note
 fun NoteItem(
     note: Note,
     isSelected: Boolean,
-    modifier: Modifier = Modifier,
     onClick: () -> Unit,
-    onLongClick: () -> Unit
+    onLongClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val containerColor = note.color.asColor()
 
@@ -52,19 +54,28 @@ fun NoteItem(
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            Text(
-                text = note.title,
-                style = MaterialTheme.typography.titleLarge,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = note.content,
-                style = MaterialTheme.typography.bodyMedium,
-                maxLines = 10,
-                overflow = TextOverflow.Ellipsis
-            )
+            if (!note.title.isEmpty()) {
+                Text(
+                    text = note.title,
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        textDirection = TextDirection.Content
+                    ),
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+            if (!note.content.isEmpty()) {
+                if (note.title.isNotEmpty()) Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = note.content,
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        textDirection = TextDirection.Content
+                    ),
+                    maxLines = 10,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
         }
     }
 }

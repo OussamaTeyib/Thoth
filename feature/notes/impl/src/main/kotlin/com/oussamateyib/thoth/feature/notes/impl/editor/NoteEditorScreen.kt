@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -25,11 +27,18 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.core.designsystem.components.TransparentTextField
@@ -113,6 +122,22 @@ internal fun NoteEditorScreen(
         }
     }
 
+    var titleFieldValue by remember {
+        mutableStateOf(TextFieldValue(text = state.title.text))
+    }
+    var contentFieldValue by remember {
+        mutableStateOf(TextFieldValue(text = state.content.text))
+    }
+
+    val contentFocusRequester = remember { FocusRequester() }
+
+    // Autofocus the content field when opening a new note
+    LaunchedEffect(Unit) {
+        if (state.id == 0L) {
+            contentFocusRequester.requestFocus()
+        }
+    }
+
     val verticalScroll = rememberScrollState()
 
     Scaffold(
@@ -160,32 +185,41 @@ internal fun NoteEditorScreen(
                 .verticalScroll(verticalScroll)
         ) {
             TransparentTextField(
-                value = state.title.text,
+                value = titleFieldValue,
                 hint = stringResource(state.title.hint),
-                isHintVisible = state.title.isHintVisible,
+                isHintVisible = state.title.text.isEmpty(),
                 onValueChange = {
-                    onEvent(NoteEditorEvent.EnteredTitle(it))
+                    titleFieldValue = it
+                    onEvent(NoteEditorEvent.EnteredTitle(it.text))
                 },
-                onFocusChange = {
-                    onEvent(NoteEditorEvent.ChangeTitleFocus(it))
-                },
-                singleLine = true,
                 textStyle = MaterialTheme.typography.headlineMedium,
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    imeAction = ImeAction.Next
+                ),
+                keyboardActions = KeyboardActions(
+                    onNext = {
+                        // Move focus to the content field and place the cursor at the end
+                        contentFocusRequester.requestFocus()
+                        contentFieldValue = contentFieldValue.copy(
+                            selection = TextRange(contentFieldValue.text.length)
+                        )
+                    }
+                ),
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(12.dp))
             TransparentTextField(
-                value = state.content.text,
+                value = contentFieldValue,
                 hint = stringResource(state.content.hint),
-                isHintVisible = state.content.isHintVisible,
+                isHintVisible = state.content.text.isEmpty(),
                 onValueChange = {
-                    onEvent(NoteEditorEvent.EnteredContent(it))
-                },
-                onFocusChange = {
-                    onEvent(NoteEditorEvent.ChangeContentFocus(it))
+                    contentFieldValue = it
+                    onEvent(NoteEditorEvent.EnteredContent(it.text))
                 },
                 textStyle = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .focusRequester(contentFocusRequester)
             )
         }
     }
