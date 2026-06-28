@@ -21,13 +21,11 @@ fun TransparentTextField(
     textStyle: TextStyle = TextStyle.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    isHintVisible: Boolean = true,
-    singleLine: Boolean = false
+    isHintVisible: Boolean = true
 ) {
     BasicTextField(
         value = value,
         onValueChange = onValueChange,
-        singleLine = singleLine,
         textStyle = textStyle.copy(color = LocalContentColor.current),
         keyboardActions = keyboardActions,
         keyboardOptions = keyboardOptions,

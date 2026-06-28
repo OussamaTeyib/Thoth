@@ -56,7 +56,6 @@ fun NoteItem(
                 Text(
                     text = note.title,
                     style = MaterialTheme.typography.titleLarge,
-                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
             }

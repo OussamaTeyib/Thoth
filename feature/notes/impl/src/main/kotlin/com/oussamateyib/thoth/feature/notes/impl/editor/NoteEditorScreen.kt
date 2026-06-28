@@ -192,7 +192,6 @@ internal fun NoteEditorScreen(
                     titleFieldValue = it
                     onEvent(NoteEditorEvent.EnteredTitle(it.text))
                 },
-                singleLine = true,
                 textStyle = MaterialTheme.typography.headlineMedium,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Next
