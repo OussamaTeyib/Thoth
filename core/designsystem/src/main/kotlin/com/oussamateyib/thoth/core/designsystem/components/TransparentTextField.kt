@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextDirection
 
 @Composable
 fun TransparentTextField(
@@ -26,12 +27,18 @@ fun TransparentTextField(
     BasicTextField(
         value = value,
         onValueChange = onValueChange,
-        textStyle = textStyle.copy(color = LocalContentColor.current),
+        textStyle = textStyle.copy(
+            color = LocalContentColor.current,
+            textDirection = TextDirection.Content
+        ),
         keyboardActions = keyboardActions,
         keyboardOptions = keyboardOptions,
         modifier = modifier,
         decorationBox = { innerTextField ->
-            Box {
+            Box(
+                // Ensure children occupy the full width
+                propagateMinConstraints = true
+            ) {
                 if (isHintVisible) {
                     Text(
                         text = hint,
