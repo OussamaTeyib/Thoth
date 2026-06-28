@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.milliseconds
 
 @HiltViewModel(assistedFactory = NoteEditorViewModel.Factory::class)
@@ -121,7 +122,7 @@ class NoteEditorViewModel @AssistedInject constructor(
                         id = id,
                         title = title.text,
                         content = content.text,
-                        timestamp = System.currentTimeMillis(),
+                        timestamp = Clock.System.now(),
                         color = color
                     )
                 )
