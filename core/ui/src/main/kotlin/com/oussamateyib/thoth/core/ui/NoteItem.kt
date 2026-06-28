@@ -52,19 +52,23 @@ fun NoteItem(
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            Text(
-                text = note.title,
-                style = MaterialTheme.typography.titleLarge,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = note.content,
-                style = MaterialTheme.typography.bodyMedium,
-                maxLines = 10,
-                overflow = TextOverflow.Ellipsis
-            )
+            if (!note.title.isEmpty()) {
+                Text(
+                    text = note.title,
+                    style = MaterialTheme.typography.titleLarge,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            if (!note.content.isEmpty()) {
+                if (note.title.isNotEmpty()) Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = note.content,
+                    style = MaterialTheme.typography.bodyMedium,
+                    maxLines = 10,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
         }
     }
 }
