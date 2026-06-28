@@ -187,13 +187,10 @@ internal fun NoteEditorScreen(
             TransparentTextField(
                 value = titleFieldValue,
                 hint = stringResource(state.title.hint),
-                isHintVisible = state.title.isHintVisible,
+                isHintVisible = state.title.text.isEmpty(),
                 onValueChange = {
                     titleFieldValue = it
                     onEvent(NoteEditorEvent.EnteredTitle(it.text))
-                },
-                onFocusChange = {
-                    onEvent(NoteEditorEvent.ChangeTitleFocus(it))
                 },
                 singleLine = true,
                 textStyle = MaterialTheme.typography.headlineMedium,
@@ -215,13 +212,10 @@ internal fun NoteEditorScreen(
             TransparentTextField(
                 value = contentFieldValue,
                 hint = stringResource(state.content.hint),
-                isHintVisible = state.content.isHintVisible,
+                isHintVisible = state.content.text.isEmpty(),
                 onValueChange = {
                     contentFieldValue = it
                     onEvent(NoteEditorEvent.EnteredContent(it.text))
-                },
-                onFocusChange = {
-                    onEvent(NoteEditorEvent.ChangeContentFocus(it))
                 },
                 textStyle = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier

@@ -9,8 +9,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusState
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 
@@ -19,7 +17,6 @@ fun TransparentTextField(
     value: TextFieldValue,
     hint: String,
     onValueChange: (TextFieldValue) -> Unit,
-    onFocusChange: (FocusState) -> Unit,
     modifier: Modifier = Modifier,
     textStyle: TextStyle = TextStyle.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
@@ -34,10 +31,7 @@ fun TransparentTextField(
         textStyle = textStyle.copy(color = LocalContentColor.current),
         keyboardActions = keyboardActions,
         keyboardOptions = keyboardOptions,
-        modifier = modifier
-            .onFocusChanged {
-                onFocusChange(it)
-            },
+        modifier = modifier,
         decorationBox = { innerTextField ->
             Box {
                 if (isHintVisible) {
