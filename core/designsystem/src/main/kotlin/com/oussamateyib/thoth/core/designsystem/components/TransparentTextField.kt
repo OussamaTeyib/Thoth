@@ -2,6 +2,7 @@ package com.oussamateyib.thoth.core.designsystem.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -11,15 +12,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
 
 @Composable
 fun TransparentTextField(
-    value: String,
+    value: TextFieldValue,
     hint: String,
-    onValueChange: (String) -> Unit,
+    onValueChange: (TextFieldValue) -> Unit,
     onFocusChange: (FocusState) -> Unit,
     modifier: Modifier = Modifier,
     textStyle: TextStyle = TextStyle.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     isHintVisible: Boolean = true,
     singleLine: Boolean = false
@@ -29,6 +32,7 @@ fun TransparentTextField(
         onValueChange = onValueChange,
         singleLine = singleLine,
         textStyle = textStyle.copy(color = LocalContentColor.current),
+        keyboardActions = keyboardActions,
         keyboardOptions = keyboardOptions,
         modifier = modifier
             .onFocusChanged {
