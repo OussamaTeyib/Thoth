@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.oussamateyib.thoth.core.model.data.Note
 import com.oussamateyib.thoth.core.model.data.NoteColor
+import kotlin.time.Instant
 
 @Entity(tableName = "notes")
 data class NoteEntity(
@@ -11,7 +12,7 @@ data class NoteEntity(
     val id: Long = 0L,
     val title: String,
     val content: String,
-    val timestamp: Long,
+    val timestamp: Instant,
     val color: NoteColor
 )
 
