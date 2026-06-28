@@ -131,6 +131,13 @@ internal fun NoteEditorScreen(
 
     val contentFocusRequester = remember { FocusRequester() }
 
+    // Autofocus the content field when opening a new note
+    LaunchedEffect(Unit) {
+        if (state.id == 0L) {
+            contentFocusRequester.requestFocus()
+        }
+    }
+
     val verticalScroll = rememberScrollState()
 
     Scaffold(
