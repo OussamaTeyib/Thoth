@@ -15,12 +15,12 @@ import androidx.compose.ui.text.TextStyle
 fun TransparentTextField(
     value: String,
     hint: String,
+    onValueChange: (String) -> Unit,
+    onFocusChange: (FocusState) -> Unit,
+    textStyle: TextStyle,
     modifier: Modifier = Modifier,
     isHintVisible: Boolean = true,
-    onValueChange: (String) -> Unit,
-    textStyle: TextStyle,
-    singleLine: Boolean = false,
-    onFocusChange: (FocusState) -> Unit
+    singleLine: Boolean = false
 ) {
     BasicTextField(
         value = value,

@@ -24,9 +24,9 @@ import com.oussamateyib.thoth.core.model.data.Note
 fun NoteItem(
     note: Note,
     isSelected: Boolean,
-    modifier: Modifier = Modifier,
     onClick: () -> Unit,
-    onLongClick: () -> Unit
+    onLongClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val containerColor = note.color.asColor()
 

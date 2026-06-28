@@ -16,7 +16,7 @@ fun LazyListScope.noteItems(
     modifier: Modifier = Modifier
 ) = items(
     items = items,
-    // Assigns unique identifiers to optimize list state and reordering performance
+    // Assign unique identifiers to optimize list state and reordering performance
     key = { it.id }
 ) { note ->
     NoteItem(

@@ -28,9 +28,9 @@ import com.oussamateyib.thoth.core.domain.util.OrderType
 
 @Composable
 fun NoteSortSheet(
+    onOrderChange: (NoteOrder) -> Unit,
     modifier: Modifier = Modifier,
-    noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
-    onOrderChange: (NoteOrder) -> Unit
+    noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending)
 ) {
     Column(
         modifier = modifier
