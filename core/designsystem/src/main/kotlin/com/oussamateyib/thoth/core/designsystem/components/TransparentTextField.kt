@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextDirection
@@ -31,6 +32,7 @@ fun TransparentTextField(
             color = LocalContentColor.current,
             textDirection = TextDirection.Content
         ),
+        cursorBrush = SolidColor(LocalContentColor.current),
         keyboardActions = keyboardActions,
         keyboardOptions = keyboardOptions,
         modifier = modifier,
