@@ -37,6 +37,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.core.ui.NoteColorPicker
 import com.oussamateyib.thoth.core.ui.NoteSortSheet
 import com.oussamateyib.thoth.core.ui.noteItems
+import com.oussamateyib.thoth.core.ui.util.toLocalizedFormat
 import com.oussamateyib.thoth.feature.notes.impl.R
 import kotlinx.coroutines.launch
 
@@ -160,7 +161,7 @@ internal fun NoteListScreen(
                     Text(
                         // If in selection mode, show the number of selected notes
                         text = if (state.isSelectionMode) {
-                            "${state.selectedNoteIds.size}"
+                            state.selectedNoteIds.size.toLocalizedFormat()
                         } else {
                             stringResource(R.string.list_screen_top_bar_title)
                         },
