@@ -30,7 +30,7 @@ import com.oussamateyib.thoth.core.domain.util.OrderType
 fun NoteSortSheet(
     onOrderChange: (NoteOrder) -> Unit,
     modifier: Modifier = Modifier,
-    noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending)
+    noteOrder: NoteOrder = NoteOrder.DateUpdated(OrderType.Descending)
 ) {
     Column(
         modifier = modifier
@@ -43,15 +43,29 @@ fun NoteSortSheet(
         HorizontalDivider()
         Spacer(modifier = Modifier.height(8.dp))
         SortOptionRow(
-            label = stringResource(R.string.date),
-            selected = noteOrder is NoteOrder.Date,
+            label = stringResource(R.string.date_created),
+            selected = noteOrder is NoteOrder.DateCreated,
             orderType = noteOrder.orderType,
             onClick = {
                 onOrderChange(
-                    if (noteOrder is NoteOrder.Date) {
+                    if (noteOrder is NoteOrder.DateCreated) {
                         noteOrder.copy(noteOrder.orderType.toggle())
                     } else {
-                        NoteOrder.Date(noteOrder.orderType)
+                        NoteOrder.DateCreated(noteOrder.orderType)
+                    }
+                )
+            }
+        )
+        SortOptionRow(
+            label = stringResource(R.string.date_modified),
+            selected = noteOrder is NoteOrder.DateUpdated,
+            orderType = noteOrder.orderType,
+            onClick = {
+                onOrderChange(
+                    if (noteOrder is NoteOrder.DateUpdated) {
+                        noteOrder.copy(noteOrder.orderType.toggle())
+                    } else {
+                        NoteOrder.DateUpdated(noteOrder.orderType)
                     }
                 )
             }

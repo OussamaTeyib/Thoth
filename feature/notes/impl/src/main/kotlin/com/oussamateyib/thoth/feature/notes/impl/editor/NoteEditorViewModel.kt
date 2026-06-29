@@ -53,6 +53,7 @@ class NoteEditorViewModel @AssistedInject constructor(
                     else -> _state.update {
                         it.copy(
                             id = noteId,
+                            createdAt = note.createdAt,
                             title = NoteEditorTextFieldState(
                                 text = note.title,
                                 hint = R.string.note_title_hint
@@ -117,20 +118,25 @@ class NoteEditorViewModel @AssistedInject constructor(
             delay(300.milliseconds)
 
             with(_state.value) {
+                val now = Clock.System.now()
                 val newId = insertNoteUseCase(
                     Note(
                         id = id,
                         title = title.text,
                         content = content.text,
-                        timestamp = Clock.System.now(),
+                        createdAt = createdAt ?: now,
+                        updatedAt = now,
                         color = color
                     )
                 )
 
-                // Update the state with the new ID if this was a newly created note
+                // Update the state if this was a newly created note
                 if (id == 0L) {
                     _state.update {
-                        it.copy(id = newId)
+                        it.copy(
+                            id = newId,
+                            createdAt = now
+                        )
                     }
                 }
             }

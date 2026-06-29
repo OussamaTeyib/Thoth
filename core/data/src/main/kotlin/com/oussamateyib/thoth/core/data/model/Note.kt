@@ -7,6 +7,7 @@ internal fun Note.asEntity(): NoteEntity = NoteEntity(
     id = id,
     title = title,
     content = content,
-    timestamp = timestamp,
+    createdAt = createdAt,
+    updatedAt = updatedAt,
     color = color
 )
