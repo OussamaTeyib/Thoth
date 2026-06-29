@@ -9,7 +9,7 @@
     <string name="note_content_hint">Note</string>
     <string name="note_not_found">This note could not be found.</string>
     <string name="note_title_hint">Title</string>
-    <string name="selected_notes_deleted">Selected notes deleted</string>
+    <string name="selected_notes_deleted">Selected notes deleted.</string>
     <string name="sort_notes">Sort notes</string>
     <string name="undo">Undo</string>
 </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_note">إنشاء ملاحظة</string>
+    <string name="back">رجوع</string>
+    <string name="change_color">غيِّر اللون</string>
+    <string name="clear_selection">إلغاء التحديد</string>
+    <string name="delete_selected_notes">حذف الملاحظات المحدَّدة</string>
+    <string name="list_screen_top_bar_title">ملاحظات</string>
+    <string name="note_content_hint">النص</string>
+    <string name="note_not_found">لم يتم العثور على هذه الملاحظة.</string>
+    <string name="note_title_hint">العنوان</string>
+    <string name="selected_notes_deleted">تم حذف الملاحظات المحدَّدة.</string>
+    <string name="sort_notes">رتِّب الملاحظات</string>
+    <string name="undo">تراجع</string>
+</resources>
