@@ -12,7 +12,8 @@ data class NoteEntity(
     val id: Long = 0L,
     val title: String,
     val content: String,
-    val timestamp: Instant,
+    val createdAt: Instant,
+    val updatedAt: Instant,
     val color: NoteColor
 )
 
@@ -20,6 +21,7 @@ fun NoteEntity.asExternalModel(): Note = Note(
     id = id,
     title = title,
     content = content,
-    timestamp = timestamp,
+    createdAt = createdAt,
+    updatedAt = updatedAt,
     color = color
 )
