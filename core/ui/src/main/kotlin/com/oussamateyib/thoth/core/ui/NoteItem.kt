@@ -35,10 +35,10 @@ fun NoteItem(
     OutlinedCard(
         modifier = modifier
             .combinedClickable(
-                onClickLabel = stringResource(R.string.open_note),
+                onClickLabel = stringResource(R.string.core_ui_open_note),
                 onClick = onClick,
                 onLongClick = onLongClick,
-                onLongClickLabel = stringResource(R.string.select_note)
+                onLongClickLabel = stringResource(R.string.core_ui_select_note)
             )
             .semantics { selected = isSelected },
         colors = CardDefaults.outlinedCardColors(

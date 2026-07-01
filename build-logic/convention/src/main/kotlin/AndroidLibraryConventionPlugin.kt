@@ -15,6 +15,14 @@ abstract class AndroidLibraryConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
                 lint.targetSdk = 37
+                // Warn if resources don't start with a unique prefix based on the module path
+                resourcePrefix =
+                    path.split("""\W"""
+                        .toRegex())
+                        .drop(1)
+                        .distinct()
+                        .joinToString(separator = "_")
+                        .lowercase() + "_"
             }
         }
     }

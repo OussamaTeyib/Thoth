@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="add_note">Add note</string>
-    <string name="back">Back</string>
-    <string name="change_color">Change color</string>
-    <string name="clear_selection">Clear selection</string>
-    <string name="delete_selected_notes">Delete selected notes</string>
-    <string name="list_screen_top_bar_title">Notes</string>
-    <string name="note_content_hint">Note</string>
-    <string name="note_not_found">This note could not be found.</string>
-    <string name="note_title_hint">Title</string>
-    <string name="selected_notes_deleted">Selected notes deleted.</string>
-    <string name="sort_notes">Sort notes</string>
-    <string name="undo">Undo</string>
+    <string name="feature_notes_impl_add_note">Add note</string>
+    <string name="feature_notes_impl_back">Back</string>
+    <string name="feature_notes_impl_change_color">Change color</string>
+    <string name="feature_notes_impl_clear_selection">Clear selection</string>
+    <string name="feature_notes_impl_delete_selected_notes">Delete selected notes</string>
+    <string name="feature_notes_impl_list_screen_top_bar_title">Notes</string>
+    <string name="feature_notes_impl_note_content_hint">Note</string>
+    <string name="feature_notes_impl_note_not_found">This note could not be found.</string>
+    <string name="feature_notes_impl_note_title_hint">Title</string>
+    <string name="feature_notes_impl_selected_notes_deleted">Selected notes deleted.</string>
+    <string name="feature_notes_impl_sort_notes">Sort notes</string>
+    <string name="feature_notes_impl_undo">Undo</string>
 </resources>

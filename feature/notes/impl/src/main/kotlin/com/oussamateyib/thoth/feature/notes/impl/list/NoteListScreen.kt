@@ -123,8 +123,8 @@ internal fun NoteListScreen(
         TopAppBarDefaults.enterAlwaysScrollBehavior()
     }
 
-    val selectedNotesDeletedMessage = stringResource(R.string.selected_notes_deleted)
-    val undoLabel = stringResource(R.string.undo)
+    val selectedNotesDeletedMessage = stringResource(R.string.feature_notes_impl_selected_notes_deleted)
+    val undoLabel = stringResource(R.string.feature_notes_impl_undo)
 
     Scaffold(
         modifier = Modifier
@@ -151,8 +151,8 @@ internal fun NoteListScreen(
                             onClick = { onEvent(NoteListEvent.ClearSelection) }
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.close),
-                                contentDescription = stringResource(R.string.clear_selection)
+                                painter = painterResource(R.drawable.feature_notes_impl_close),
+                                contentDescription = stringResource(R.string.feature_notes_impl_clear_selection)
                             )
                         }
                     }
@@ -163,7 +163,7 @@ internal fun NoteListScreen(
                         text = if (state.isSelectionMode) {
                             state.selectedNoteIds.size.toLocalizedFormat()
                         } else {
-                            stringResource(R.string.list_screen_top_bar_title)
+                            stringResource(R.string.feature_notes_impl_list_screen_top_bar_title)
                         },
                         style = MaterialTheme.typography.headlineMedium
                     )
@@ -176,8 +176,8 @@ internal fun NoteListScreen(
                             }
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.palette),
-                                contentDescription = stringResource(R.string.change_color)
+                                painter = painterResource(R.drawable.feature_notes_impl_palette),
+                                contentDescription = stringResource(R.string.feature_notes_impl_change_color)
                             )
                         }
                         IconButton(
@@ -196,8 +196,8 @@ internal fun NoteListScreen(
                             }
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.delete),
-                                contentDescription = stringResource(R.string.delete_selected_notes)
+                                painter = painterResource(R.drawable.feature_notes_impl_delete),
+                                contentDescription = stringResource(R.string.feature_notes_impl_delete_selected_notes)
                             )
                         }
                     } else {
@@ -207,8 +207,8 @@ internal fun NoteListScreen(
                             }
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.sort),
-                                contentDescription = stringResource(R.string.sort_notes)
+                                painter = painterResource(R.drawable.feature_notes_impl_sort),
+                                contentDescription = stringResource(R.string.feature_notes_impl_sort_notes)
                             )
                         }
                     }
@@ -226,8 +226,8 @@ internal fun NoteListScreen(
                 }
             ) {
                 Icon(
-                    painter = painterResource(R.drawable.add),
-                    contentDescription = stringResource(R.string.add_note)
+                    painter = painterResource(R.drawable.feature_notes_impl_add),
+                    contentDescription = stringResource(R.string.feature_notes_impl_add_note)
                 )
             }
         }
