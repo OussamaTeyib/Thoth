@@ -1,4 +1,4 @@
-package com.oussamateyib.thoth.core.designsystem.components
+package com.oussamateyib.thoth.core.designsystem.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.text.BasicTextField

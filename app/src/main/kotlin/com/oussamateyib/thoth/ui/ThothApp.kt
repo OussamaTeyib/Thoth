@@ -12,7 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
-import com.oussamateyib.thoth.core.designsystem.components.ThothNavigationDrawer
+import com.oussamateyib.thoth.core.designsystem.component.ThothNavigationDrawer
 import com.oussamateyib.thoth.core.navigation.Navigator
 import com.oussamateyib.thoth.core.navigation.toEntries
 import com.oussamateyib.thoth.feature.notes.impl.navigation.notesEntry

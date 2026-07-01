@@ -95,9 +95,11 @@ dependencies {
     implementation(libs.androidx.compose.runtime.annotation)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.text)
     implementation(libs.androidx.fragment)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
+    implementation(libs.kotlinx.coroutines.core)
 }

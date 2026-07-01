@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ascending">تصاعديًّا</string>
-    <string name="date_created">تاريخ الإنشاء</string>
-    <string name="date_modified">تاريخ التعديل</string>
-    <string name="descending">تنازليًّا</string>
-    <string name="note_color_default">افتراضي</string>
-    <string name="note_color_butter_yellow">أصفر</string>
-    <string name="note_color_peach_cream">برتقالي فاتح</string>
-    <string name="note_color_coral_mist">مرجاني</string>
-    <string name="note_color_rose_blush">وردي</string>
-    <string name="note_color_lavender">بنفسجي فاتح</string>
-    <string name="note_color_periwinkle">أزرق فاتح</string>
-    <string name="note_color_sky_blue">أزرق سماوي</string>
-    <string name="note_color_mint_green">أخضر فاتح</string>
-    <string name="note_color_sage">أخضر رمادي</string>
-    <string name="note_color_aqua_mist">تركوازي</string>
-    <string name="note_color_silver_cloud">رمادي فاتح</string>
-    <string name="open_note">فتح الملاحظة</string>
-    <string name="select_note">تحديد الملاحظة</string>
-    <string name="sort_by">ترتيب حسب</string>
-    <string name="title">العنوان</string>
+    <string name="core_ui_ascending">تصاعديًّا</string>
+    <string name="core_ui_date_created">تاريخ الإنشاء</string>
+    <string name="core_ui_date_modified">تاريخ التعديل</string>
+    <string name="core_ui_descending">تنازليًّا</string>
+    <string name="core_ui_note_color_default">افتراضي</string>
+    <string name="core_ui_note_color_butter_yellow">أصفر</string>
+    <string name="core_ui_note_color_peach_cream">برتقالي فاتح</string>
+    <string name="core_ui_note_color_coral_mist">مرجاني</string>
+    <string name="core_ui_note_color_rose_blush">وردي</string>
+    <string name="core_ui_note_color_lavender">بنفسجي فاتح</string>
+    <string name="core_ui_note_color_periwinkle">أزرق فاتح</string>
+    <string name="core_ui_note_color_sky_blue">أزرق سماوي</string>
+    <string name="core_ui_note_color_mint_green">أخضر فاتح</string>
+    <string name="core_ui_note_color_sage">أخضر رمادي</string>
+    <string name="core_ui_note_color_aqua_mist">تركوازي</string>
+    <string name="core_ui_note_color_silver_cloud">رمادي فاتح</string>
+    <string name="core_ui_open_note">فتح الملاحظة</string>
+    <string name="core_ui_select_note">تحديد الملاحظة</string>
+    <string name="core_ui_sort_by">ترتيب حسب</string>
+    <string name="core_ui_title">العنوان</string>
 </resources>

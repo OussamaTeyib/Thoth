@@ -36,14 +36,14 @@ fun NoteSortSheet(
         modifier = modifier
     ) {
         Text(
-            text = stringResource(R.string.sort_by),
+            text = stringResource(R.string.core_ui_sort_by),
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp)
         )
         HorizontalDivider()
         Spacer(modifier = Modifier.height(8.dp))
         SortOptionRow(
-            label = stringResource(R.string.date_created),
+            label = stringResource(R.string.core_ui_date_created),
             selected = noteOrder is NoteOrder.DateCreated,
             orderType = noteOrder.orderType,
             onClick = {
@@ -57,7 +57,7 @@ fun NoteSortSheet(
             }
         )
         SortOptionRow(
-            label = stringResource(R.string.date_modified),
+            label = stringResource(R.string.core_ui_date_modified),
             selected = noteOrder is NoteOrder.DateUpdated,
             orderType = noteOrder.orderType,
             onClick = {
@@ -71,7 +71,7 @@ fun NoteSortSheet(
             }
         )
         SortOptionRow(
-            label = stringResource(R.string.title),
+            label = stringResource(R.string.core_ui_title),
             selected = noteOrder is NoteOrder.Title,
             orderType = noteOrder.orderType,
             onClick = {
@@ -104,8 +104,8 @@ internal fun SortOptionRow(
                 if (selected) {
                     val isAscending = orderType is OrderType.Ascending
                     Icon(
-                        painter = painterResource(if (isAscending) R.drawable.arrow_upward else R.drawable.arrow_downward),
-                        contentDescription = stringResource(if (isAscending) R.string.ascending else R.string.descending)
+                        painter = painterResource(if (isAscending) R.drawable.core_ui_arrow_upward else R.drawable.core_ui_arrow_downward),
+                        contentDescription = stringResource(if (isAscending) R.string.core_ui_ascending else R.string.core_ui_descending)
                     )
                 }
             }

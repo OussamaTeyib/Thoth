@@ -101,7 +101,7 @@ internal fun ColorSwatch(
             if (isSelected) {
                 // Selected color indicator
                 Icon(
-                    painter = painterResource(R.drawable.check),
+                    painter = painterResource(R.drawable.core_ui_check),
                     contentDescription = null, // Already described by parent semantics
                     modifier = Modifier
                         .size(35.dp)
