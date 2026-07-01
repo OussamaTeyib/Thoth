@@ -9,6 +9,7 @@
     <string name="feature_notes_impl_note_content_hint">النص</string>
     <string name="feature_notes_impl_note_not_found">لم يتم العثور على هذه الملاحظة.</string>
     <string name="feature_notes_impl_note_title_hint">العنوان</string>
+    <string name="feature_notes_impl_note_open_navigation_drawer">فتح درج التنقل</string>
     <string name="feature_notes_impl_selected_notes_deleted">تم حذف الملاحظات المحدَّدة.</string>
     <string name="feature_notes_impl_sort_notes">رتِّب الملاحظات</string>
     <string name="feature_notes_impl_undo">تراجع</string>

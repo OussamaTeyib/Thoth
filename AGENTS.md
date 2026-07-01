@@ -54,6 +54,7 @@ Thoth/
 │       │   └── com/oussamateyib/thoth/
 │       │       ├── MainActivity.kt                  # App entry point
 │       │       ├── ThothApplication.kt              # Application-level setup
+│       │       ├── navigation/                      # Top level navigation items
 │       │       └── ui/
 │       │           ├── ThothApp.kt                  # Root composable
 │       │           └── ThothAppState.kt             # App-level state
@@ -106,8 +107,10 @@ Thoth/
 │   └── notes/                                       # Note-taking feature
 │       ├── api                                      # Public API
 │       │   ├── build.gradle.kts
-│       │   └── src/main/kotlin/com/oussamateyib/thoth/feature/api/
-│       │       └── NotesNavKey.kt                   # Navigation keys
+│       │   └── src/main/
+│       │       ├── kotlin/com/oussamateyib/thoth/feature/api/
+│       │       │   └── NotesNavKey.kt               # Navigation keys
+│       │       └── res/                             # Drawables, strings
 │       └── impl
 │           ├── build.gradle.kts
 │           └── src/main/
