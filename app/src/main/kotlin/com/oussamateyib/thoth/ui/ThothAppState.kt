@@ -11,29 +11,13 @@ import com.oussamateyib.thoth.core.navigation.NavigationState
 import com.oussamateyib.thoth.core.navigation.rememberNavigationState
 import com.oussamateyib.thoth.feature.notes.api.NoteListNavKey
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 @Stable
 class ThothAppState(
     val navigationState: NavigationState,
-    private val coroutineScope: CoroutineScope,
+    val coroutineScope: CoroutineScope,
     val drawerState: DrawerState
-) {
-    val isCurrentDestinationTopLevel: Boolean
-        get() = navigationState.currentKey in navigationState.topLevelKeys
-
-    fun openDrawer() {
-        coroutineScope.launch {
-            drawerState.open()
-        }
-    }
-
-    fun closeDrawer() {
-        coroutineScope.launch {
-            drawerState.close()
-        }
-    }
-}
+)
 
 @Composable
 fun rememberThothAppState(

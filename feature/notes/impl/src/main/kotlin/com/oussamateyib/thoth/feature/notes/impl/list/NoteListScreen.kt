@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -25,6 +27,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -44,21 +47,49 @@ import kotlinx.coroutines.launch
 @Composable
 fun NoteListScreen(
     onNoteClick: (Long) -> Unit,
-    onMenuClick: () -> Unit,
     onAddNote: () -> Unit,
-    viewModel: NoteListViewModel
+    viewModel: NoteListViewModel,
+    drawerState: DrawerState
 ) {
+    val scope = rememberCoroutineScope()
+
     val snackbarHostState = remember { SnackbarHostState() }
 
     val state by viewModel.state.collectAsStateWithLifecycle()
 
+    // Clear selection when the navigation drawer is opened
+    LaunchedEffect(drawerState.currentValue) {
+        if (drawerState.currentValue == DrawerValue.Open) {
+            viewModel.onEvent(NoteListEvent.ClearSelection)
+        }
+    }
+
+    val selectedNotesDeletedMessage =
+        stringResource(R.string.feature_notes_impl_selected_notes_deleted)
+    val undoLabel = stringResource(R.string.feature_notes_impl_undo)
+
     NoteListScreen(
         state = state,
         snackbarHostState = snackbarHostState,
-        onEvent = { event -> viewModel.onEvent(event) },
-        onMenuClick = onMenuClick,
+        onEvent = viewModel::onEvent,
         onNoteClick = onNoteClick,
-        onAddNote = onAddNote
+        onAddNote = onAddNote,
+        onMenuClick = {
+            scope.launch { drawerState.open() }
+        },
+        onDeleteSelected = {
+            viewModel.onEvent(NoteListEvent.DeleteSelectedNotes)
+            scope.launch {
+                val result = snackbarHostState.showSnackbar(
+                    message = selectedNotesDeletedMessage,
+                    actionLabel = undoLabel,
+                    duration = SnackbarDuration.Short
+                )
+                if (result == SnackbarResult.ActionPerformed) {
+                    viewModel.onEvent(NoteListEvent.RestoreDeletedNotes)
+                }
+            }
+        }
     )
 }
 
@@ -68,12 +99,11 @@ internal fun NoteListScreen(
     state: NoteListState,
     snackbarHostState: SnackbarHostState,
     onEvent: (NoteListEvent) -> Unit,
-    onMenuClick: () -> Unit,
     onNoteClick: (Long) -> Unit,
-    onAddNote: () -> Unit
+    onAddNote: () -> Unit,
+    onMenuClick: () -> Unit,
+    onDeleteSelected: () -> Unit
 ) {
-    val scope = rememberCoroutineScope()
-
     // Clear selection when back button is pressed in selection mode
     BackHandler(enabled = state.isSelectionMode) {
         onEvent(NoteListEvent.ClearSelection)
@@ -125,9 +155,6 @@ internal fun NoteListScreen(
     } else {
         TopAppBarDefaults.enterAlwaysScrollBehavior()
     }
-
-    val selectedNotesDeletedMessage = stringResource(R.string.feature_notes_impl_selected_notes_deleted)
-    val undoLabel = stringResource(R.string.feature_notes_impl_undo)
 
     Scaffold(
         modifier = Modifier
@@ -193,19 +220,7 @@ internal fun NoteListScreen(
                             )
                         }
                         IconButton(
-                            onClick = {
-                                onEvent(NoteListEvent.DeleteSelectedNotes)
-                                scope.launch {
-                                    val result = snackbarHostState.showSnackbar(
-                                        message = selectedNotesDeletedMessage,
-                                        actionLabel = undoLabel,
-                                        duration = SnackbarDuration.Short
-                                    )
-                                    if (result == SnackbarResult.ActionPerformed) {
-                                        onEvent(NoteListEvent.RestoreDeletedNotes)
-                                    }
-                                }
-                            }
+                            onClick = onDeleteSelected
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.feature_notes_impl_delete),

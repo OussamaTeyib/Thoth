@@ -1,6 +1,7 @@
 package com.oussamateyib.thoth.feature.notes.impl.navigation
 
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.compose.material3.DrawerState
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import com.oussamateyib.thoth.core.navigation.Navigator
@@ -13,21 +14,21 @@ import com.oussamateyib.thoth.feature.notes.impl.list.NoteListViewModel
 
 // Map the navigation keys of the notes feature to their respective screens
 fun EntryProviderScope<NavKey>.notesEntry(
-    onMenuClick: () -> Unit,
-    navigator: Navigator
+    navigator: Navigator,
+    drawerState: DrawerState
 ) {
     entry<NoteListNavKey> {
         val viewModel = hiltViewModel<NoteListViewModel>()
 
         NoteListScreen(
-            onMenuClick = onMenuClick,
             onNoteClick = { noteId ->
                 navigator.navigate(NoteEditorNavKey(noteId))
             },
             onAddNote = {
                 navigator.navigate(NoteEditorNavKey())
             },
-            viewModel = viewModel
+            viewModel = viewModel,
+            drawerState = drawerState
         )
     }
 
