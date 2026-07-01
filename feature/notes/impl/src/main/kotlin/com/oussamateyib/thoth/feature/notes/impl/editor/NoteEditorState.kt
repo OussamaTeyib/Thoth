@@ -7,8 +7,8 @@ import kotlin.time.Instant
 data class NoteEditorState(
     val id: Long = 0L,
     val createdAt: Instant? = null,
-    val title: NoteEditorTextFieldState = NoteEditorTextFieldState(hint = R.string.note_title_hint),
-    val content: NoteEditorTextFieldState = NoteEditorTextFieldState(hint = R.string.note_content_hint),
+    val title: NoteEditorTextFieldState = NoteEditorTextFieldState(hint = R.string.feature_notes_impl_note_title_hint),
+    val content: NoteEditorTextFieldState = NoteEditorTextFieldState(hint = R.string.feature_notes_impl_note_content_hint),
     val color: NoteColor = NoteColor.Default,
     val isColorPickerVisible: Boolean = false,
     val isLoading: Boolean = true

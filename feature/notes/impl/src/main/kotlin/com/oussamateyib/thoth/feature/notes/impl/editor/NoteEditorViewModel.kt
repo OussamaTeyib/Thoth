@@ -56,11 +56,11 @@ class NoteEditorViewModel @AssistedInject constructor(
                             createdAt = note.createdAt,
                             title = NoteEditorTextFieldState(
                                 text = note.title,
-                                hint = R.string.note_title_hint
+                                hint = R.string.feature_notes_impl_note_title_hint
                             ),
                             content = NoteEditorTextFieldState(
                                 text = note.content,
-                                hint = R.string.note_content_hint
+                                hint = R.string.feature_notes_impl_note_content_hint
                             ),
                             color = note.color,
                             isLoading = false

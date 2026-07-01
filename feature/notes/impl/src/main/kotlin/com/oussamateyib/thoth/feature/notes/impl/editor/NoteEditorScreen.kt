@@ -54,7 +54,7 @@ fun NoteEditorScreen(
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val noteNotFoundMessage = stringResource(R.string.note_not_found)
+    val noteNotFoundMessage = stringResource(R.string.feature_notes_impl_note_not_found)
 
     LaunchedEffect(Unit) {
         viewModel.events.collect { event ->
@@ -155,8 +155,8 @@ internal fun NoteEditorScreen(
                         }
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.arrow_back),
-                            contentDescription = stringResource(R.string.back)
+                            painter = painterResource(R.drawable.feature_notes_impl_arrow_back),
+                            contentDescription = stringResource(R.string.feature_notes_impl_back)
                         )
                     }
                 },
@@ -167,8 +167,8 @@ internal fun NoteEditorScreen(
                         }
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.palette),
-                            contentDescription = stringResource(R.string.change_color)
+                            painter = painterResource(R.drawable.feature_notes_impl_palette),
+                            contentDescription = stringResource(R.string.feature_notes_impl_change_color)
                         )
                     }
                 }

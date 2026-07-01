@@ -29,17 +29,17 @@ fun NoteColor.asColor(): Color {
 @Composable
 fun NoteColor.asLabel(): String = stringResource(
     when (this) {
-        NoteColor.Default -> R.string.note_color_default
-        NoteColor.ButterYellow -> R.string.note_color_butter_yellow
-        NoteColor.PeachCream -> R.string.note_color_peach_cream
-        NoteColor.CoralMist -> R.string.note_color_coral_mist
-        NoteColor.RoseBlush -> R.string.note_color_rose_blush
-        NoteColor.Lavender -> R.string.note_color_lavender
-        NoteColor.Periwinkle -> R.string.note_color_periwinkle
-        NoteColor.SkyBlue -> R.string.note_color_sky_blue
-        NoteColor.MintGreen -> R.string.note_color_mint_green
-        NoteColor.Sage -> R.string.note_color_sage
-        NoteColor.AquaMist -> R.string.note_color_aqua_mist
-        NoteColor.SilverCloud -> R.string.note_color_silver_cloud
+        NoteColor.Default -> R.string.core_ui_note_color_default
+        NoteColor.ButterYellow -> R.string.core_ui_note_color_butter_yellow
+        NoteColor.PeachCream -> R.string.core_ui_note_color_peach_cream
+        NoteColor.CoralMist -> R.string.core_ui_note_color_coral_mist
+        NoteColor.RoseBlush -> R.string.core_ui_note_color_rose_blush
+        NoteColor.Lavender -> R.string.core_ui_note_color_lavender
+        NoteColor.Periwinkle -> R.string.core_ui_note_color_periwinkle
+        NoteColor.SkyBlue -> R.string.core_ui_note_color_sky_blue
+        NoteColor.MintGreen -> R.string.core_ui_note_color_mint_green
+        NoteColor.Sage -> R.string.core_ui_note_color_sage
+        NoteColor.AquaMist -> R.string.core_ui_note_color_aqua_mist
+        NoteColor.SilverCloud -> R.string.core_ui_note_color_silver_cloud
     }
 )
