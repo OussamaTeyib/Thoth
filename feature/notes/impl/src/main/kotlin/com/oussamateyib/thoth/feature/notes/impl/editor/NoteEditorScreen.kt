@@ -41,7 +41,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.oussamateyib.thoth.core.designsystem.components.TransparentTextField
+import com.oussamateyib.thoth.core.designsystem.component.TransparentTextField
 import com.oussamateyib.thoth.core.ui.NoteColorPicker
 import com.oussamateyib.thoth.core.ui.asColor
 import com.oussamateyib.thoth.core.ui.util.PaletteLayout
