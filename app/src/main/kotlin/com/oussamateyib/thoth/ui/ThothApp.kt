@@ -17,7 +17,6 @@ import com.oussamateyib.thoth.core.navigation.Navigator
 import com.oussamateyib.thoth.core.navigation.toEntries
 import com.oussamateyib.thoth.feature.notes.impl.navigation.notesEntry
 import com.oussamateyib.thoth.navigation.TOP_LEVEL_NAV_ITEMS
-import kotlinx.coroutines.launch
 
 @Composable
 fun ThothApp(
@@ -28,16 +27,14 @@ fun ThothApp(
 
     ThothNavigationDrawer(
         drawerState = appState.drawerState,
-        gesturesEnabled = appState.navigationState.currentKey in appState.navigationState.topLevelKeys,
+        gesturesEnabled = appState.isCurrentDestinationTopLevel,
         drawerContent = {
             TOP_LEVEL_NAV_ITEMS.forEach { (key, item) ->
                 item(
                     selected = key == appState.navigationState.currentTopLevelKey,
                     onClick = {
                         navigator.navigate(key)
-                        appState.coroutineScope.launch {
-                            appState.drawerState.close()
-                        }
+                        appState.closeDrawer()
                     },
                     label = {
                         Text(text = stringResource(item.labelId))
@@ -58,7 +55,10 @@ fun ThothApp(
             color = MaterialTheme.colorScheme.background
         ) {
             val entryProvider = entryProvider {
-                notesEntry(navigator)
+                notesEntry(
+                    onMenuClick = appState::openDrawer,
+                    navigator = navigator
+                )
             }
 
             NavDisplay(

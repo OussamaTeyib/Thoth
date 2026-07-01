@@ -44,6 +44,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun NoteListScreen(
     onNoteClick: (Long) -> Unit,
+    onMenuClick: () -> Unit,
     onAddNote: () -> Unit,
     viewModel: NoteListViewModel
 ) {
@@ -55,6 +56,7 @@ fun NoteListScreen(
         state = state,
         snackbarHostState = snackbarHostState,
         onEvent = { event -> viewModel.onEvent(event) },
+        onMenuClick = onMenuClick,
         onNoteClick = onNoteClick,
         onAddNote = onAddNote
     )
@@ -66,6 +68,7 @@ internal fun NoteListScreen(
     state: NoteListState,
     snackbarHostState: SnackbarHostState,
     onEvent: (NoteListEvent) -> Unit,
+    onMenuClick: () -> Unit,
     onNoteClick: (Long) -> Unit,
     onAddNote: () -> Unit
 ) {
@@ -153,6 +156,15 @@ internal fun NoteListScreen(
                             Icon(
                                 painter = painterResource(R.drawable.feature_notes_impl_close),
                                 contentDescription = stringResource(R.string.feature_notes_impl_clear_selection)
+                            )
+                        }
+                    } else {
+                        IconButton(
+                            onClick = onMenuClick
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.feature_notes_impl_menu),
+                                contentDescription = stringResource(R.string.feature_notes_impl_note_open_navigation_drawer)
                             )
                         }
                     }

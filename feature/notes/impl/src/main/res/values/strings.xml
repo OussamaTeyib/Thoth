@@ -9,6 +9,7 @@
     <string name="feature_notes_impl_note_content_hint">Note</string>
     <string name="feature_notes_impl_note_not_found">This note could not be found.</string>
     <string name="feature_notes_impl_note_title_hint">Title</string>
+    <string name="feature_notes_impl_note_open_navigation_drawer">Open navigation drawer</string>
     <string name="feature_notes_impl_selected_notes_deleted">Selected notes deleted.</string>
     <string name="feature_notes_impl_sort_notes">Sort notes</string>
     <string name="feature_notes_impl_undo">Undo</string>
