@@ -27,6 +27,6 @@ fun rememberThothAppState(
     ),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed)
-): ThothAppState = remember(navigationState, coroutineScope, drawerState) {
+) = remember(navigationState, coroutineScope, drawerState) {
     ThothAppState(navigationState, coroutineScope, drawerState)
 }

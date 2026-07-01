@@ -23,7 +23,7 @@ fun ThothNavigationDrawer(
     drawerState = drawerState,
     drawerContent = {
         ModalDrawerSheet(
-            modifier = Modifier.width(280.dp)
+            modifier = Modifier.width(304.dp)
         ) {
             Text(
                 text = "Thoth",
@@ -57,7 +57,7 @@ class ThothNavigationDrawerScope(
             colors = NavigationDrawerItemDefaults.colors(
                 selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                 selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer
             ),
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
         )
