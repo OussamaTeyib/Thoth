@@ -18,6 +18,7 @@ fun ThothNavigationDrawer(
     drawerState: DrawerState,
     drawerContent: ThothNavigationDrawerScope.() -> Unit,
     modifier: Modifier = Modifier,
+    gesturesEnabled: Boolean = true,
     content: @Composable () -> Unit
 ) = ModalNavigationDrawer(
     drawerState = drawerState,
@@ -37,6 +38,7 @@ fun ThothNavigationDrawer(
         }
     },
     modifier = modifier,
+    gesturesEnabled = gesturesEnabled,
     content = content
 )
 

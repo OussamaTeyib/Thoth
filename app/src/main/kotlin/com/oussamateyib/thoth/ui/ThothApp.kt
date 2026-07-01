@@ -28,6 +28,7 @@ fun ThothApp(
 
     ThothNavigationDrawer(
         drawerState = appState.drawerState,
+        gesturesEnabled = appState.navigationState.currentKey in appState.navigationState.topLevelKeys,
         drawerContent = {
             TOP_LEVEL_NAV_ITEMS.forEach { (key, item) ->
                 item(
