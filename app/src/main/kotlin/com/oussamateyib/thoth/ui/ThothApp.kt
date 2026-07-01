@@ -5,6 +5,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.WindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -21,7 +23,8 @@ import com.oussamateyib.thoth.navigation.TOP_LEVEL_NAV_ITEMS
 @Composable
 fun ThothApp(
     appState: ThothAppState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo()
 ) {
     val navigator = remember { Navigator(appState.navigationState) }
 
@@ -48,7 +51,8 @@ fun ThothApp(
                 )
             }
         },
-        modifier = modifier
+        modifier = modifier,
+        windowAdaptiveInfo = windowAdaptiveInfo
     ) {
         Surface(
             modifier = modifier.fillMaxSize(),
