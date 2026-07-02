@@ -16,7 +16,7 @@ navigation3 = "1.1.4"
 room = "2.8.4"
 sqlite = "2.7.0"
 serialization = "1.11.0"
-window = "1.4.0"
+window = "1.5.1"
 
 [libraries]
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
