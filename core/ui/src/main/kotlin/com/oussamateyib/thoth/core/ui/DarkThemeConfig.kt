@@ -1,0 +1,12 @@
+package com.oussamateyib.thoth.core.ui
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.oussamateyib.thoth.core.model.data.DarkThemeConfig
+
+@Composable
+fun DarkThemeConfig.asLabel() = when (this) {
+    DarkThemeConfig.LIGHT -> stringResource(R.string.core_ui_dark_theme_config_light)
+    DarkThemeConfig.DARK -> stringResource(R.string.core_ui_dark_theme_config_dark)
+    DarkThemeConfig.FOLLOW_SYSTEM -> stringResource(R.string.core_ui_dark_theme_config_system_default)
+}

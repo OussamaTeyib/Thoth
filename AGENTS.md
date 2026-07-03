@@ -53,6 +53,7 @@ Thoth/
 │       ├── kotlin/
 │       │   └── com/oussamateyib/thoth/
 │       │       ├── MainActivity.kt                  # App entry point
+│       │       ├── MainActivityViewModel.kt         # UI state for main activity
 │       │       ├── ThothApplication.kt              # Application-level setup
 │       │       ├── navigation/                      # Top level navigation items
 │       │       └── ui/
@@ -80,6 +81,11 @@ Thoth/
 │   │       ├── di/                                  # Database Hilt modules
 │   │       ├── model/                               # Room entities
 │   │       └── ThothDatabase.kt
+│   ├── datastore/                                   # User preferences storage
+│   │   ├── build.gradle.kts
+│   │   └── src/main/kotlin/com/oussamateyib/thoth/core/datastore/
+│   │       ├── di/                                  # DataStore Hilt module
+│   │       └── ThothPreferencesDataSource.kt        # Preferences wrapper
 │   ├── designsystem/                                # Core UI components, themes
 │   │   ├── build.gradle.kts
 │   │   └── src/main/kotlin/com/oussamateyib/thoth/core/designsystem/
@@ -130,7 +136,9 @@ Thoth/
 │           ├── build.gradle.kts
 │           └── src/main/
 │               ├── kotlin/com/oussamateyib/thoth/settings/impl/
-│               │   └── SettingsScreen.kt            # Settings screen
+│               │   ├── navigation/                  # Navigation entries
+│               │   ├── SettingsScreen.kt            # Settings screen
+│               │   └── SettingsViewModel.kt
 │               └── res/                             # Drawables, strings
 ├── gradle/                                          # Wrapper and version catalog
 ├── build.gradle.kts

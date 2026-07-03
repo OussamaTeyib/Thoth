@@ -2,6 +2,8 @@ package com.oussamateyib.thoth.core.data.di
 
 import com.oussamateyib.thoth.core.data.repository.NotesRepository
 import com.oussamateyib.thoth.core.data.repository.OfflineFirstNotesRepository
+import com.oussamateyib.thoth.core.data.repository.OfflineFirstUserDataRepository
+import com.oussamateyib.thoth.core.data.repository.UserDataRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,4 +16,9 @@ internal abstract class DataModule {
     abstract fun bindNotesRepository(
         notesRepository: OfflineFirstNotesRepository
     ): NotesRepository
+
+    @Binds
+    abstract fun bindUserDataRepository(
+        userDataRepository: OfflineFirstUserDataRepository
+    ): UserDataRepository
 }

@@ -9,8 +9,9 @@ android {
 
 dependencies {
     api(projects.core.database)
+    api(projects.core.datastore)
     api(projects.core.model)
 
-    implementation(libs.javax.inject)
+    api(libs.javax.inject)
     api(libs.kotlinx.coroutines.core)
 }

@@ -2,5 +2,6 @@
 <resources>
     <string name="feature_settings_impl_back">رجوع</string>
     <string name="feature_settings_impl_display_options">خيارات العرض</string>
+    <string name="feature_settings_impl_theme">المظهر</string>
     <string name="feature_settings_impl_title">الإعدادات</string>
 </resources>
