@@ -10,6 +10,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import com.oussamateyib.thoth.core.navigation.NavigationState
 import com.oussamateyib.thoth.core.navigation.rememberNavigationState
 import com.oussamateyib.thoth.feature.notes.api.NoteListNavKey
+import com.oussamateyib.thoth.feature.settings.api.SettingsNavKey
 import kotlinx.coroutines.CoroutineScope
 
 @Stable
@@ -23,7 +24,7 @@ class ThothAppState(
 fun rememberThothAppState(
     navigationState: NavigationState = rememberNavigationState(
         startKey = NoteListNavKey,
-        topLevelKeys = setOf(NoteListNavKey)
+        topLevelKeys = setOf(NoteListNavKey, SettingsNavKey)
     ),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed)

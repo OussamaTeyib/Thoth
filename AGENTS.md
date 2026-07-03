@@ -104,21 +104,28 @@ Thoth/
 │           ├── kotlin/com/oussamateyib/thoth/core/ui
 │           └── res/                                 # Drawables, strings
 ├── feature/
-│   └── notes/                                       # Note-taking feature
-│       ├── api                                      # Public API
-│       │   ├── build.gradle.kts
-│       │   └── src/main/
-│       │       ├── kotlin/com/oussamateyib/thoth/feature/api/
-│       │       │   └── NotesNavKey.kt               # Navigation keys
-│       │       └── res/                             # Drawables, strings
-│       └── impl
+│   ├── notes/                                       # Note-taking feature
+│   │   ├── api                                      # Public API
+│   │   │   ├── build.gradle.kts
+│   │   │   └── src/main/
+│   │   │       ├── kotlin/com/oussamateyib/thoth/feature/api/
+│   │   │       │   └── NotesNavKey.kt               # Navigation keys
+│   │   │       └── res/                             # Drawables, strings
+│   │   └── impl
+│   │       ├── build.gradle.kts
+│   │       └── src/main/
+│   │           ├── kotlin/com/oussamateyib/thoth/feature/impl/
+│   │           │   ├── navigation/                  # Navigation entries
+│   │           │   ├── editor/                      # Note editor screen
+│   │           │   └── list/                        # Note list screen
+│   │           └── res/                             # Drawables, strings
+│   └── settings/                                    # App settings
+│       └── api                                      # Public API
 │           ├── build.gradle.kts
 │           └── src/main/
-│               ├── kotlin/com/oussamateyib/thoth/feature/impl/
-│               │   ├── navigation/                  # Navigation entries
-│               │   ├── editor/                      # Note editor screen
-│               │   └── list/                        # Note list screen
-│               └── res/                             # Drawables, strings
+│               ├── kotlin/com/oussamateyib/thoth/settings/api/
+│               │   └── SettingsNavKey.kt            # Navigation keys
+│               └── res/    
 ├── gradle/                                          # Wrapper and version catalog
 ├── build.gradle.kts
 ├── settings.gradle.kts

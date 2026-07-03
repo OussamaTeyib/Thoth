@@ -83,6 +83,7 @@ dependencies {
     implementation(projects.core.navigation)
     implementation(projects.feature.notes.api)
     implementation(projects.feature.notes.impl)
+    implementation(projects.feature.settings.api)
 
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)
