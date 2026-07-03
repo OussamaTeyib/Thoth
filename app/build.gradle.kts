@@ -84,6 +84,7 @@ dependencies {
     implementation(projects.feature.notes.api)
     implementation(projects.feature.notes.impl)
     implementation(projects.feature.settings.api)
+    implementation(projects.feature.settings.impl)
 
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)

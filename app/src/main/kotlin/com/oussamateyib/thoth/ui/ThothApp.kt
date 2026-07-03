@@ -18,6 +18,7 @@ import com.oussamateyib.thoth.core.designsystem.component.ThothNavigationDrawer
 import com.oussamateyib.thoth.core.navigation.Navigator
 import com.oussamateyib.thoth.core.navigation.toEntries
 import com.oussamateyib.thoth.feature.notes.impl.navigation.notesEntry
+import com.oussamateyib.thoth.feature.settings.impl.navigation.settingsEntry
 import com.oussamateyib.thoth.navigation.TOP_LEVEL_NAV_ITEMS
 import kotlinx.coroutines.launch
 
@@ -66,6 +67,7 @@ fun ThothApp(
                     navigator = navigator,
                     drawerState = appState.drawerState
                 )
+                settingsEntry(navigator = navigator)
             }
 
             NavDisplay(

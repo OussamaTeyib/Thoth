@@ -39,6 +39,7 @@
             <option value="$PROJECT_DIR$/feature/notes/impl" />
             <option value="$PROJECT_DIR$/feature/settings" />
             <option value="$PROJECT_DIR$/feature/settings/api" />
+            <option value="$PROJECT_DIR$/feature/settings/impl" />
           </set>
         </option>
       </GradleProjectSettings>

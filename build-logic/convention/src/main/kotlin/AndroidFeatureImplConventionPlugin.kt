@@ -11,7 +11,13 @@ class AndroidFeatureImplConventionPlugin : Plugin<Project> {
 
             dependencies {
                 "api"(project(":core:navigation"))
+
+                "api"(libs.findLibrary("androidx-compose-runtime").get())
+                "api"(libs.findLibrary("androidx-lifecycle-viewmodel").get())
+                "implementation"(libs.findLibrary("androidx-lifecycle-viewmodel-compose").get())
                 "api"(libs.findLibrary("androidx-navigation3-runtime").get())
+                "implementation"(libs.findLibrary("hilt-lifecycle-viewmodel-compose").get())
+                "api"(libs.findLibrary("javax-inject").get())
             }
         }
     }

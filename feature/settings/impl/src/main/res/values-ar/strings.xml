@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_settings_impl_back">رجوع</string>
+    <string name="feature_settings_impl_display_options">خيارات العرض</string>
+    <string name="feature_settings_impl_title">الإعدادات</string>
+</resources>
