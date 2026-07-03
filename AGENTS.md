@@ -120,12 +120,18 @@ Thoth/
 │   │           │   └── list/                        # Note list screen
 │   │           └── res/                             # Drawables, strings
 │   └── settings/                                    # App settings
-│       └── api                                      # Public API
+│       ├── api                                      # Public API
+│       │   ├── build.gradle.kts
+│       │   └── src/main/
+│       │       ├── kotlin/com/oussamateyib/thoth/settings/api/
+│       │       │   └── SettingsNavKey.kt            # Navigation keys
+│       │       └── res/                             # Drawables, strings
+│       └── impl
 │           ├── build.gradle.kts
 │           └── src/main/
-│               ├── kotlin/com/oussamateyib/thoth/settings/api/
-│               │   └── SettingsNavKey.kt            # Navigation keys
-│               └── res/    
+│               ├── kotlin/com/oussamateyib/thoth/settings/impl/
+│               │   └── SettingsScreen.kt            # Settings screen
+│               └── res/                             # Drawables, strings
 ├── gradle/                                          # Wrapper and version catalog
 ├── build.gradle.kts
 ├── settings.gradle.kts
