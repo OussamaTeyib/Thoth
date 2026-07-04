@@ -4,7 +4,7 @@ sealed class OrderType {
     object Ascending : OrderType()
     object Descending : OrderType()
 
-    fun toggle(): OrderType = when (this) {
+    fun toggle() = when (this) {
         is Ascending -> Descending
         is Descending -> Ascending
     }
