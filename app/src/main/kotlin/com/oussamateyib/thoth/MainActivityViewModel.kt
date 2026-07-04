@@ -2,7 +2,7 @@ package com.oussamateyib.thoth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.oussamateyib.thoth.core.data.repository.UserDataRepository
+import com.oussamateyib.thoth.core.domain.GetUserPreferencesStreamUseCase
 import com.oussamateyib.thoth.core.model.data.DarkThemeConfig
 import com.oussamateyib.thoth.core.model.data.UserData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,9 +13,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    userDataRepository: UserDataRepository
+    getUserPreferencesStreamUseCase: GetUserPreferencesStreamUseCase
 ) : ViewModel() {
-    val uiState = userDataRepository.userData.map {
+    val uiState = getUserPreferencesStreamUseCase().map {
         MainActivityUiState.Success(it)
     }.stateIn(
         scope = viewModelScope,
