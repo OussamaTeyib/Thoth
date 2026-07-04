@@ -17,7 +17,7 @@ data class NoteEntity(
     val color: NoteColor
 )
 
-fun NoteEntity.asExternalModel(): Note = Note(
+fun NoteEntity.asExternalModel() = Note(
     id = id,
     title = title,
     content = content,

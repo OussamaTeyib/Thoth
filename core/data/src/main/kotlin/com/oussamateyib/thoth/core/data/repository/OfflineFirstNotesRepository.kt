@@ -19,7 +19,5 @@ internal class OfflineFirstNotesRepository @Inject constructor(
 
     override suspend fun insertNote(note: Note) = dao.insertNote(note.asEntity())
 
-    override suspend fun deleteNote(note: Note) {
-        dao.deleteNote(note.asEntity())
-    }
+    override suspend fun deleteNote(note: Note) = dao.deleteNote(note.asEntity())
 }

@@ -1,6 +1,5 @@
 package com.oussamateyib.thoth.feature.notes.impl.editor
 
-import androidx.compose.ui.focus.FocusState
 import com.oussamateyib.thoth.core.model.data.NoteColor
 
 sealed class NoteEditorEvent {
