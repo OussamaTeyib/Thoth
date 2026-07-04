@@ -20,6 +20,7 @@ class AndroidFeatureImplConventionPlugin : Plugin<Project> {
                 "api"(libs.findLibrary("androidx-navigation3-runtime").get())
                 "implementation"(libs.findLibrary("hilt-lifecycle-viewmodel-compose").get())
                 "api"(libs.findLibrary("javax-inject").get())
+                "api"(libs.findLibrary("kotlinx-coroutines-core").get())
             }
         }
     }

@@ -34,29 +34,27 @@ fun NoteColorPicker(
     modifier: Modifier = Modifier,
     selectedColor: NoteColor? = null,
     layout: PaletteLayout = PaletteLayout.Grid
-) {
-    when (layout) {
-        PaletteLayout.Row -> LazyRow(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(5.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            items(NoteColor.entries) {
-                ColorSwatch(it, it == selectedColor, { onColorChange(it) })
-            }
+) = when (layout) {
+    PaletteLayout.Row -> LazyRow(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(5.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        items(NoteColor.entries) {
+            ColorSwatch(it, it == selectedColor, { onColorChange(it) })
         }
+    }
 
-        PaletteLayout.Grid -> LazyVerticalGrid(
-            columns = GridCells.Fixed(4),
-            modifier = modifier.padding(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(5.dp),
-            verticalArrangement = Arrangement.spacedBy(5.dp)
-        ) {
-            items(NoteColor.entries) {
-                ColorSwatch(it, it == selectedColor, { onColorChange(it) })
-            }
+    PaletteLayout.Grid -> LazyVerticalGrid(
+        columns = GridCells.Fixed(4),
+        modifier = modifier.padding(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(5.dp),
+        verticalArrangement = Arrangement.spacedBy(5.dp)
+    ) {
+        items(NoteColor.entries) {
+            ColorSwatch(it, it == selectedColor, { onColorChange(it) })
         }
     }
 }

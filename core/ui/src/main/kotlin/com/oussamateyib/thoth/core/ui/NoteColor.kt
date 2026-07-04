@@ -27,7 +27,7 @@ fun NoteColor.asColor(): Color {
 }
 
 @Composable
-fun NoteColor.asLabel(): String = stringResource(
+fun NoteColor.asLabel() = stringResource(
     when (this) {
         NoteColor.Default -> R.string.core_ui_note_color_default
         NoteColor.ButterYellow -> R.string.core_ui_note_color_butter_yellow

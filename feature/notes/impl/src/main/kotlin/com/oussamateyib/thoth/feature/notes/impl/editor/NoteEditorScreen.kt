@@ -72,7 +72,7 @@ fun NoteEditorScreen(
     NoteEditorScreen(
         state = state,
         snackbarHostState = snackbarHostState,
-        onEvent = { event -> viewModel.onEvent(event) },
+        onEvent = viewModel::onEvent,
         onBackClick = onBackClick
     )
 }

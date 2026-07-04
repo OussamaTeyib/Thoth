@@ -7,7 +7,7 @@ sealed class NoteOrder(
     class DateCreated(orderType: OrderType) : NoteOrder(orderType)
     class DateUpdated(orderType: OrderType) : NoteOrder(orderType)
 
-    fun copy(orderType: OrderType = this.orderType): NoteOrder = when (this) {
+    fun copy(orderType: OrderType = this.orderType) = when (this) {
         is Title -> Title(orderType)
         is DateCreated -> DateCreated(orderType)
         is DateUpdated -> DateUpdated(orderType)
