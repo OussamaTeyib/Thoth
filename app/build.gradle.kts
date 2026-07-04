@@ -73,6 +73,10 @@ android {
             vcsInfo.include = false
         }
     }
+
+    androidResources {
+        generateLocaleConfig = true
+    }
 }
 
 dependencies {
