@@ -6,4 +6,13 @@
     <style name="Theme.Thoth" parent="NightAdjusted.Theme.Thoth">
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
     </style>
+
+    <style name="NightAdjusted.Theme.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+
+    <style name="Theme.Thoth.Splash" parent="NightAdjusted.Theme.Splash">
+        <item name="postSplashScreenTheme">@style/Theme.Thoth</item>
+    </style>
 </resources>
