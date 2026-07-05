@@ -21,5 +21,4 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.text)
     implementation(libs.androidx.compose.ui.unit)
-    api(libs.kotlinx.coroutines.core)
 }

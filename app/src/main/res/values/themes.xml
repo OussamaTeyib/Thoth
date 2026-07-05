@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <style name="Theme.Thoth" parent="android:Theme.DeviceDefault.NoActionBar">
-        <item name="android:windowFullscreen">true</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="NightAdjusted.Theme.Thoth" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.Thoth" parent="NightAdjusted.Theme.Thoth">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+    </style>
+
+    <style name="NightAdjusted.Theme.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+
+    <style name="Theme.Thoth.Splash" parent="NightAdjusted.Theme.Splash">
+        <item name="postSplashScreenTheme">@style/Theme.Thoth</item>
     </style>
 </resources>

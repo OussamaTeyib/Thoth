@@ -3,16 +3,16 @@
     android:installLocation="auto">
 
     <application
+        android:name=".ThothApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:description="@string/app_description"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".ThothApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Thoth">
+        android:theme="@style/Theme.Thoth.Splash">
 
         <activity
             android:name=".MainActivity"
