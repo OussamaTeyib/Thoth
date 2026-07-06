@@ -11,9 +11,10 @@ android {
 dependencies {
     api(projects.core.domain)
     api(projects.core.model)
-    implementation(projects.core.ui)
+    api(projects.core.ui)
     implementation(projects.feature.settings.api)
 
+    api(libs.androidx.appcompat)
     implementation(libs.androidx.compose.foundation)
     api(libs.androidx.compose.foundation.layout)
     implementation(libs.androidx.compose.material3)
@@ -21,4 +22,5 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.text)
     implementation(libs.androidx.compose.ui.unit)
+    implementation(libs.androidx.core)
 }

@@ -30,6 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.core.model.data.UserData
+import com.oussamateyib.thoth.core.ui.Language
+import com.oussamateyib.thoth.core.ui.LanguageChooserDialog
 import com.oussamateyib.thoth.core.ui.ThemeChooserDialog
 import com.oussamateyib.thoth.core.ui.asLabel
 
@@ -39,9 +41,11 @@ fun SettingsScreen(
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
     val userData by viewModel.userData.collectAsStateWithLifecycle()
+    val currentLanguage by viewModel.currentLanguage.collectAsStateWithLifecycle()
 
     SettingsScreen(
         userData = userData,
+        currentLanguage = currentLanguage,
         onBackClick = onBackClick,
         onEvent = viewModel::onEvent
     )
@@ -51,11 +55,13 @@ fun SettingsScreen(
 @Composable
 internal fun SettingsScreen(
     userData: UserData,
+    currentLanguage: Language,
     onBackClick: () -> Unit,
     onEvent: (SettingsEvent) -> Unit
 ) {
     val verticalScroll = rememberScrollState()
     var showThemeDialog by remember { mutableStateOf(false) }
+    var showLanguageDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -107,6 +113,25 @@ internal fun SettingsScreen(
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { showLanguageDialog = true }
+                    .padding(horizontal = 20.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = stringResource(R.string.feature_settings_impl_language),
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                Text(
+                    text = currentLanguage.asLabel(),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
     }
 
@@ -117,6 +142,17 @@ internal fun SettingsScreen(
             onConfigSelected = {
                 onEvent(SettingsEvent.UpdateDarkThemeConfig(it))
                 showThemeDialog = false
+            }
+        )
+    }
+
+    if (showLanguageDialog) {
+        LanguageChooserDialog(
+            onDismiss = { showLanguageDialog = false },
+            currentLanguage = currentLanguage,
+            onLanguageSelected = {
+                onEvent(SettingsEvent.UpdateLanguage(it))
+                showLanguageDialog = false
             }
         )
     }

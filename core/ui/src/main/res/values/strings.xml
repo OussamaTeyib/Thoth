@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="core_ui_ascending">Ascending</string>
+    <string name="core_ui_choose_language">Choose language</string>
     <string name="core_ui_choose_theme">Choose theme</string>
     <string name="core_ui_dark_theme_config_dark">Dark</string>
     <string name="core_ui_dark_theme_config_light">Light</string>
-    <string name="core_ui_dark_theme_config_system_default">System default</string>
+    <string name="core_ui_dark_theme_config_system_default" tools:ignore="DuplicateStrings">System default</string>
     <string name="core_ui_date_created">Date created</string>
     <string name="core_ui_date_modified">Date modified</string>
     <string name="core_ui_descending">Descending</string>
     <string name="core_ui_dismiss_dialog_button_text">Cancel</string>
+    <string name="core_ui_language_system_default" tools:ignore="DuplicateStrings">System default</string>
+    <string name="core_ui_language_en" translatable="false">English</string>
+    <string name="core_ui_language_ar" translatable="false">العربية</string>
     <string name="core_ui_note_color_default">Default</string>
     <string name="core_ui_note_color_butter_yellow">Butter Yellow</string>
     <string name="core_ui_note_color_peach_cream">Peach Cream</string>
