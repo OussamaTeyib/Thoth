@@ -13,6 +13,6 @@ dependencies {
     api(libs.androidx.datastore.core)
     implementation(libs.androidx.datastore.preferences)
     api(libs.androidx.datastore.preferences.core)
-    api(libs.kotlinx.coroutines.core)
     api(libs.javax.inject)
+    api(libs.kotlinx.coroutines.core)
 }

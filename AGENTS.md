@@ -114,13 +114,13 @@ Thoth/
 │   │   ├── api                                      # Public API
 │   │   │   ├── build.gradle.kts
 │   │   │   └── src/main/
-│   │   │       ├── kotlin/com/oussamateyib/thoth/feature/api/
+│   │   │       ├── kotlin/com/oussamateyib/thoth/feature/notes/api/
 │   │   │       │   └── NotesNavKey.kt               # Navigation keys
 │   │   │       └── res/                             # Drawables, strings
 │   │   └── impl
 │   │       ├── build.gradle.kts
 │   │       └── src/main/
-│   │           ├── kotlin/com/oussamateyib/thoth/feature/impl/
+│   │           ├── kotlin/com/oussamateyib/thoth/feature/notes/impl/
 │   │           │   ├── navigation/                  # Navigation entries
 │   │           │   ├── editor/                      # Note editor screen
 │   │           │   └── list/                        # Note list screen
@@ -129,13 +129,13 @@ Thoth/
 │       ├── api                                      # Public API
 │       │   ├── build.gradle.kts
 │       │   └── src/main/
-│       │       ├── kotlin/com/oussamateyib/thoth/settings/api/
+│       │       ├── kotlin/com/oussamateyib/thoth/feature/settings/api/
 │       │       │   └── SettingsNavKey.kt            # Navigation keys
 │       │       └── res/                             # Drawables, strings
 │       └── impl
 │           ├── build.gradle.kts
 │           └── src/main/
-│               ├── kotlin/com/oussamateyib/thoth/settings/impl/
+│               ├── kotlin/com/oussamateyib/thoth/feature/settings/impl/
 │               │   ├── navigation/                  # Navigation entries
 │               │   ├── SettingsScreen.kt            # Settings screen
 │               │   └── SettingsViewModel.kt

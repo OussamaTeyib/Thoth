@@ -27,7 +27,9 @@ class MainActivityViewModel @Inject constructor(
 
 sealed interface MainActivityUiState {
     data object Loading : MainActivityUiState
-    data class Success(val userData: UserData) : MainActivityUiState {
+    data class Success(
+        val userData: UserData
+    ) : MainActivityUiState {
         override fun shouldUseDarkTheme(isSystemDarkTheme: Boolean) =
             when (userData.darkThemeConfig) {
                 DarkThemeConfig.FOLLOW_SYSTEM -> isSystemDarkTheme

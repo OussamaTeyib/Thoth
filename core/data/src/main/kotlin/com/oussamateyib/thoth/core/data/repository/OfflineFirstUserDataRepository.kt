@@ -9,7 +9,6 @@ class OfflineFirstUserDataRepository @Inject constructor(
 ) : UserDataRepository {
     override val userData = thothPreferencesDataSource.userData
 
-    override suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig) {
+    override suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig) =
         thothPreferencesDataSource.setDarkThemeConfig(darkThemeConfig)
-    }
 }
