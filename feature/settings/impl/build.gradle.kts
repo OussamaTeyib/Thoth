@@ -21,5 +21,6 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.text)
+    implementation(libs.androidx.compose.ui.unit)
     implementation(libs.androidx.core)
 }

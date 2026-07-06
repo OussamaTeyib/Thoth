@@ -1,5 +1,9 @@
 package com.oussamateyib.thoth.feature.settings.impl
 
+import android.content.Context
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
@@ -10,6 +14,7 @@ import com.oussamateyib.thoth.core.model.data.DarkThemeConfig
 import com.oussamateyib.thoth.core.model.data.UserData
 import com.oussamateyib.thoth.core.ui.Language
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,9 +24,17 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
+    @ApplicationContext context: Context,
     getUserPreferencesStreamUseCase: GetUserPreferencesStreamUseCase,
     private val setDarkThemeConfigUseCase: SetDarkThemeConfigUseCase
 ) : ViewModel() {
+    val packageInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        context.packageManager.getPackageInfo(context.packageName, PackageManager.PackageInfoFlags.of(0))
+    } else {
+        context.packageManager.getPackageInfo(context.packageName, 0)
+    }
+    val appVersion = packageInfo.versionName ?: ""
+
     private val _currentLanguage = MutableStateFlow(getCurrentLanguage())
     val currentLanguage = _currentLanguage.asStateFlow()
 
