@@ -1,11 +1,7 @@
 package com.oussamateyib.thoth.feature.settings.impl
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -21,17 +17,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.core.model.data.UserData
 import com.oussamateyib.thoth.core.ui.Language
 import com.oussamateyib.thoth.core.ui.LanguageChooserDialog
+import com.oussamateyib.thoth.core.ui.SettingsItem
+import com.oussamateyib.thoth.core.ui.SettingsSectionTitle
 import com.oussamateyib.thoth.core.ui.ThemeChooserDialog
 import com.oussamateyib.thoth.core.ui.asLabel
 
@@ -89,49 +84,17 @@ internal fun SettingsScreen(
                 .padding(innerPadding)
                 .verticalScroll(verticalScroll)
         ) {
-            Text(
-                text = stringResource(R.string.feature_settings_impl_display_options),
-                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                modifier = Modifier.padding(start = 20.dp, top = 10.dp, end = 20.dp, bottom = 8.dp)
+            SettingsSectionTitle(text = stringResource(R.string.feature_settings_impl_display_options))
+            SettingsItem(
+                label = stringResource(R.string.feature_settings_impl_theme),
+                value = userData.darkThemeConfig.asLabel(),
+                onClick = { showThemeDialog = true }
             )
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { showThemeDialog = true }
-                    .padding(horizontal = 20.dp, vertical = 12.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = stringResource(R.string.feature_settings_impl_theme),
-                    style = MaterialTheme.typography.bodyLarge
-                )
-                Text(
-                    text = userData.darkThemeConfig.asLabel(),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { showLanguageDialog = true }
-                    .padding(horizontal = 20.dp, vertical = 12.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = stringResource(R.string.feature_settings_impl_language),
-                    style = MaterialTheme.typography.bodyLarge
-                )
-                Text(
-                    text = currentLanguage.asLabel(),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
+            SettingsItem(
+                label = stringResource(R.string.feature_settings_impl_language),
+                value = currentLanguage.asLabel(),
+                onClick = { showLanguageDialog = true }
+            )
         }
     }
 
