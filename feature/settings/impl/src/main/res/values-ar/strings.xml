@@ -6,5 +6,6 @@
     <string name="feature_settings_impl_display_options">خيارات العرض</string>
     <string name="feature_settings_impl_theme">المظهر</string>
     <string name="feature_settings_impl_language">اللغة</string>
+    <string name="feature_settings_impl_source_code">كود المصدر</string>
     <string name="feature_settings_impl_title">الإعدادات</string>
 </resources>

@@ -19,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -61,6 +62,7 @@ internal fun SettingsScreen(
     val verticalScroll = rememberScrollState()
     var showThemeDialog by remember { mutableStateOf(false) }
     var showLanguageDialog by remember { mutableStateOf(false) }
+    val uriHandler = LocalUriHandler.current
 
     Scaffold(
         topBar = {
@@ -107,6 +109,19 @@ internal fun SettingsScreen(
                 label = stringResource(R.string.feature_settings_impl_app_version),
                 value = appVersion,
                 onClick = { }
+            )
+            SettingsItem(
+                label = stringResource(R.string.feature_settings_impl_source_code),
+                value = "GitHub",
+                valueColor = MaterialTheme.colorScheme.primary,
+                onClick = { uriHandler.openUri("https://github.com/OussamaTeyib/Thoth") },
+                trailingIcon = {
+                    Icon(
+                        painter = painterResource(R.drawable.feature_settings_impl_open_in_new),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
             )
         }
     }
