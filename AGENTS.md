@@ -53,6 +53,7 @@ Thoth/
 │       ├── kotlin/
 │       │   └── com/oussamateyib/thoth/
 │       │       ├── MainActivity.kt                  # App entry point
+│       │       ├── MainActivityViewModel.kt         # UI state for main activity
 │       │       ├── ThothApplication.kt              # Application-level setup
 │       │       ├── navigation/                      # Top level navigation items
 │       │       └── ui/
@@ -80,6 +81,11 @@ Thoth/
 │   │       ├── di/                                  # Database Hilt modules
 │   │       ├── model/                               # Room entities
 │   │       └── ThothDatabase.kt
+│   ├── datastore/                                   # User preferences storage
+│   │   ├── build.gradle.kts
+│   │   └── src/main/kotlin/com/oussamateyib/thoth/core/datastore/
+│   │       ├── di/                                  # DataStore Hilt module
+│   │       └── ThothPreferencesDataSource.kt        # Preferences wrapper
 │   ├── designsystem/                                # Core UI components, themes
 │   │   ├── build.gradle.kts
 │   │   └── src/main/kotlin/com/oussamateyib/thoth/core/designsystem/
@@ -104,20 +110,35 @@ Thoth/
 │           ├── kotlin/com/oussamateyib/thoth/core/ui
 │           └── res/                                 # Drawables, strings
 ├── feature/
-│   └── notes/                                       # Note-taking feature
+│   ├── notes/                                       # Note-taking feature
+│   │   ├── api                                      # Public API
+│   │   │   ├── build.gradle.kts
+│   │   │   └── src/main/
+│   │   │       ├── kotlin/com/oussamateyib/thoth/feature/notes/api/
+│   │   │       │   └── NotesNavKey.kt               # Navigation keys
+│   │   │       └── res/                             # Drawables, strings
+│   │   └── impl
+│   │       ├── build.gradle.kts
+│   │       └── src/main/
+│   │           ├── kotlin/com/oussamateyib/thoth/feature/notes/impl/
+│   │           │   ├── navigation/                  # Navigation entries
+│   │           │   ├── editor/                      # Note editor screen
+│   │           │   └── list/                        # Note list screen
+│   │           └── res/                             # Drawables, strings
+│   └── settings/                                    # App settings
 │       ├── api                                      # Public API
 │       │   ├── build.gradle.kts
 │       │   └── src/main/
-│       │       ├── kotlin/com/oussamateyib/thoth/feature/api/
-│       │       │   └── NotesNavKey.kt               # Navigation keys
+│       │       ├── kotlin/com/oussamateyib/thoth/feature/settings/api/
+│       │       │   └── SettingsNavKey.kt            # Navigation keys
 │       │       └── res/                             # Drawables, strings
 │       └── impl
 │           ├── build.gradle.kts
 │           └── src/main/
-│               ├── kotlin/com/oussamateyib/thoth/feature/impl/
+│               ├── kotlin/com/oussamateyib/thoth/feature/settings/impl/
 │               │   ├── navigation/                  # Navigation entries
-│               │   ├── editor/                      # Note editor screen
-│               │   └── list/                        # Note list screen
+│               │   ├── SettingsScreen.kt            # Settings screen
+│               │   └── SettingsViewModel.kt
 │               └── res/                             # Drawables, strings
 ├── gradle/                                          # Wrapper and version catalog
 ├── build.gradle.kts

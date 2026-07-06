@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="core_ui_ascending">تصاعديًّا</string>
+    <string name="core_ui_choose_language">اختيار اللغة</string>
+    <string name="core_ui_choose_theme">اختيار مظهر</string>
+    <string name="core_ui_dark_theme_config_dark">داكن</string>
+    <string name="core_ui_dark_theme_config_light">فاتح</string>
+    <string name="core_ui_dark_theme_config_system_default">الإعداد التلقائي للنظام</string>
     <string name="core_ui_date_created">تاريخ الإنشاء</string>
     <string name="core_ui_date_modified">تاريخ التعديل</string>
     <string name="core_ui_descending">تنازليًّا</string>
+    <string name="core_ui_dismiss_dialog_button_text">إلغاء</string>
+    <string name="core_ui_language_system_default">اللغة التلقائية للنظام</string>
     <string name="core_ui_note_color_default">افتراضي</string>
     <string name="core_ui_note_color_butter_yellow">أصفر</string>
     <string name="core_ui_note_color_peach_cream">برتقالي فاتح</string>

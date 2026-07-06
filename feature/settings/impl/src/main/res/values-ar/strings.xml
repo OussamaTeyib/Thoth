@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_settings_impl_about">حول</string>
+    <string name="feature_settings_impl_app_version">إصدار التطبيق</string>
+    <string name="feature_settings_impl_back">رجوع</string>
+    <string name="feature_settings_impl_display_options">خيارات العرض</string>
+    <string name="feature_settings_impl_theme">المظهر</string>
+    <string name="feature_settings_impl_language">اللغة</string>
+    <string name="feature_settings_impl_source_code">كود المصدر</string>
+    <string name="feature_settings_impl_title">الإعدادات</string>
+</resources>
