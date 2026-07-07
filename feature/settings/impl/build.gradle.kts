@@ -14,6 +14,9 @@ dependencies {
     api(projects.core.ui)
     implementation(projects.feature.settings.api)
 
+    implementation(libs.aboutlibraries.compose.core)
+    implementation(libs.aboutlibraries.compose.m3)
+    implementation(libs.aboutlibraries.core)
     api(libs.androidx.appcompat)
     implementation(libs.androidx.compose.foundation)
     api(libs.androidx.compose.foundation.layout)

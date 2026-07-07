@@ -29,7 +29,10 @@ class SettingsViewModel @Inject constructor(
     private val setDarkThemeConfigUseCase: SetDarkThemeConfigUseCase
 ) : ViewModel() {
     val packageInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        context.packageManager.getPackageInfo(context.packageName, PackageManager.PackageInfoFlags.of(0))
+        context.packageManager.getPackageInfo(
+            context.packageName,
+            PackageManager.PackageInfoFlags.of(0)
+        )
     } else {
         context.packageManager.getPackageInfo(context.packageName, 0)
     }
