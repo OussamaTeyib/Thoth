@@ -12,7 +12,7 @@ import com.oussamateyib.thoth.feature.notes.impl.editor.NoteEditorViewModel
 import com.oussamateyib.thoth.feature.notes.impl.list.NoteListScreen
 import com.oussamateyib.thoth.feature.notes.impl.list.NoteListViewModel
 
-// Map the navigation keys of the notes feature to their respective screens
+// Map navigation keys to their corresponding screens
 fun EntryProviderScope<NavKey>.notesEntry(
     navigator: Navigator,
     drawerState: DrawerState

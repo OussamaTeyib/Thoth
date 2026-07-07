@@ -25,8 +25,6 @@ fun EntryProviderScope<NavKey>.settingsEntry(
     }
 
     entry<LicensesNavKey> {
-        LicensesScreen(
-            onBackClick = navigator::goBack
-        )
+        LicensesScreen(onBackClick = navigator::goBack)
     }
 }
