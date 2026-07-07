@@ -36,6 +36,7 @@ import com.oussamateyib.thoth.core.ui.asLabel
 @Composable
 fun SettingsScreen(
     onBackClick: () -> Unit,
+    onLicensesClick: () -> Unit,
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
     val userData by viewModel.userData.collectAsStateWithLifecycle()
@@ -46,6 +47,7 @@ fun SettingsScreen(
         currentLanguage = currentLanguage,
         appVersion = viewModel.appVersion,
         onBackClick = onBackClick,
+        onLicensesClick = onLicensesClick,
         onEvent = viewModel::onEvent
     )
 }
@@ -57,6 +59,7 @@ internal fun SettingsScreen(
     currentLanguage: Language,
     appVersion: String,
     onBackClick: () -> Unit,
+    onLicensesClick: () -> Unit,
     onEvent: (SettingsEvent) -> Unit
 ) {
     val verticalScroll = rememberScrollState()
@@ -122,6 +125,11 @@ internal fun SettingsScreen(
                         tint = MaterialTheme.colorScheme.primary
                     )
                 }
+            )
+            SettingsItem(
+                label = stringResource(R.string.feature_settings_impl_open_source_licenses),
+                value = "",
+                onClick = onLicensesClick
             )
         }
     }

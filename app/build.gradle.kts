@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.aboutlibraries)
     alias(libs.plugins.thoth.android.application)
     alias(libs.plugins.thoth.android.application.compose)
     alias(libs.plugins.thoth.hilt)
