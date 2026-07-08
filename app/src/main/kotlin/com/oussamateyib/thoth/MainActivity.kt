@@ -26,13 +26,13 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         splashScreen.setKeepOnScreenCondition {
-            viewModel.uiState.value is MainActivityUiState.Loading
+            viewModel.uiState.value is MainActivityState.Loading
         }
 
         setContent {
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-            if (uiState is MainActivityUiState.Success) {
+            if (uiState is MainActivityState.Success) {
                 val appState = rememberThothAppState()
                 val darkTheme = uiState.shouldUseDarkTheme(isSystemInDarkTheme())
 

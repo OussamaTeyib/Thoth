@@ -11,8 +11,8 @@ import androidx.lifecycle.viewModelScope
 import com.oussamateyib.thoth.core.domain.GetUserPreferencesStreamUseCase
 import com.oussamateyib.thoth.core.domain.SetDarkThemeConfigUseCase
 import com.oussamateyib.thoth.core.model.data.DarkThemeConfig
+import com.oussamateyib.thoth.core.model.data.Language
 import com.oussamateyib.thoth.core.model.data.UserData
-import com.oussamateyib.thoth.core.ui.Language
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow

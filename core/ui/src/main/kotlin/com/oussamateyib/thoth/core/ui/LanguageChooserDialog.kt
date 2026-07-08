@@ -1,6 +1,7 @@
 package com.oussamateyib.thoth.core.ui
 
 import androidx.compose.runtime.Composable
+import com.oussamateyib.thoth.core.model.data.Language
 
 @Composable
 fun LanguageChooserDialog(

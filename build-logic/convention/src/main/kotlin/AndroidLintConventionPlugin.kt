@@ -26,9 +26,8 @@ class AndroidLintConventionPlugin : Plugin<Project> {
 }
 
 private fun Lint.configure() {
-    xmlReport = true
-    sarifReport = true
     checkAllWarnings = true
     checkDependencies = true
+    sarifReport = true
     warningsAsErrors = true
 }

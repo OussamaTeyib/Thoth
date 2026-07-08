@@ -11,7 +11,7 @@ android {
 dependencies {
     api(projects.core.domain)
     api(projects.core.model)
-    api(projects.core.ui)
+    implementation(projects.core.ui)
     implementation(projects.feature.settings.api)
 
     implementation(libs.aboutlibraries.compose.core)
