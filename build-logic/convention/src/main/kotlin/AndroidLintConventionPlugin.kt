@@ -31,8 +31,4 @@ private fun Lint.configure() {
     checkAllWarnings = true
     checkDependencies = true
     warningsAsErrors = true
-    disable += "AndroidGradlePluginVersion"
-    disable += "GradleDependency"
-    disable += "NewerVersionAvailable"
-    disable += "VectorPath"
 }
