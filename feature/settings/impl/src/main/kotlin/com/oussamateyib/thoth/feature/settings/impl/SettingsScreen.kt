@@ -25,8 +25,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.oussamateyib.thoth.core.model.data.Language
 import com.oussamateyib.thoth.core.model.data.UserData
-import com.oussamateyib.thoth.core.ui.Language
 import com.oussamateyib.thoth.core.ui.LanguageChooserDialog
 import com.oussamateyib.thoth.core.ui.SettingsItem
 import com.oussamateyib.thoth.core.ui.SettingsSectionTitle

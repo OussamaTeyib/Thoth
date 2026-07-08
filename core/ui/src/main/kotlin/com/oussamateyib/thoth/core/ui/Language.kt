@@ -2,18 +2,7 @@ package com.oussamateyib.thoth.core.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-
-enum class Language(
-    val tag: String
-) {
-    FOLLOW_SYSTEM(""),
-    ENGLISH("en"),
-    ARABIC("ar");
-
-    companion object {
-        fun fromTag(tag: String) = entries.find { it.tag == tag } ?: FOLLOW_SYSTEM
-    }
-}
+import com.oussamateyib.thoth.core.model.data.Language
 
 @Composable
 fun Language.asLabel() = stringResource(
