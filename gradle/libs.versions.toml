@@ -21,7 +21,6 @@ room = "2.8.4"
 serialization = "1.11.0"
 splashscreen = "1.2.0"
 sqlite = "2.7.0"
-window = "1.5.1"
 
 [libraries]
 aboutlibraries-compose-core = { group = "com.mikepenz", name = "aboutlibraries-compose-core", version.ref = "aboutLibraries" }
@@ -31,7 +30,6 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
-androidx-compose-adaptive = { group = "androidx.compose.material3.adaptive", name = "adaptive" }
 androidx-compose-animation = { group = "androidx.compose.animation", name = "animation" }
 androidx-compose-animation-core = { group = "androidx.compose.animation", name = "animation-core" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
@@ -64,7 +62,6 @@ androidx-room-common = { group = "androidx.room", name = "room-common", version.
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime-android", version.ref = "room" }
 androidx-sqlite = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqlite" }
-androidx-window-core = { group = "androidx.window", name = "window-core", version.ref = "window" }
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "hilt" }
 dagger-hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }

@@ -8,7 +8,6 @@ android {
 }
 
 dependencies {
-    api(libs.androidx.compose.adaptive)
     api(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.foundation.layout)
     api(libs.androidx.compose.material3)
@@ -18,5 +17,4 @@ dependencies {
     api(libs.androidx.compose.ui.graphics)
     api(libs.androidx.compose.ui.text)
     implementation(libs.androidx.compose.ui.unit)
-    implementation(libs.androidx.window.core)
 }
