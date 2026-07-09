@@ -17,7 +17,7 @@
 
 ## 1. Project Overview
 
-**Thoth** is a note-taking app for Android.
+**Thoth** is an elegant and adaptable workspace for streamlining your digital productivity and personal organization on Android.
 
 | Property       | Value                                        |
 |----------------|----------------------------------------------|
