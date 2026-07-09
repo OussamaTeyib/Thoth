@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Thoth</string>
-    <string name="app_description">Yet another note-taking app</string>
+    <string name="app_description">An adaptable workspace for organizing thoughts and digital workflows</string>
 </resources>
