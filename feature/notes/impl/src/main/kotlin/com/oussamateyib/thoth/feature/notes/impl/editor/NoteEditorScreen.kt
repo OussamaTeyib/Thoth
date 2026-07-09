@@ -109,7 +109,8 @@ internal fun NoteEditorScreen(
             onDismissRequest = {
                 onEvent(NoteEditorEvent.ToggleColorPicker)
             },
-            containerColor = noteBackgroundAnimatable.value
+            containerColor = noteBackgroundAnimatable.value,
+            dragHandle = null
         ) {
             NoteColorPicker(
                 selectedColor = state.color,

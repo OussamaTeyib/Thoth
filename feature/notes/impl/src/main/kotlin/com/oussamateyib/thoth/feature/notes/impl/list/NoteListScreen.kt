@@ -136,7 +136,8 @@ internal fun NoteListScreen(
             sheetState = sheetState,
             onDismissRequest = {
                 onEvent(NoteListEvent.ToggleSortSheet)
-            }
+            },
+            dragHandle = null
         ) {
             NoteSortSheet(
                 modifier = Modifier
