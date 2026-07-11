@@ -8,6 +8,8 @@ sealed interface MainActivityState {
     data class Success(
         val userData: UserData
     ) : MainActivityState {
+        override fun shouldUseDynamicColor() = userData.dynamicColor
+
         override fun shouldUseDarkTheme(isSystemDarkTheme: Boolean) =
             when (userData.darkThemeConfig) {
                 DarkThemeConfig.FOLLOW_SYSTEM -> isSystemDarkTheme
@@ -15,6 +17,8 @@ sealed interface MainActivityState {
                 DarkThemeConfig.DARK -> true
             }
     }
+
+    fun shouldUseDynamicColor() = true
 
     fun shouldUseDarkTheme(isSystemDarkTheme: Boolean) = isSystemDarkTheme
 }

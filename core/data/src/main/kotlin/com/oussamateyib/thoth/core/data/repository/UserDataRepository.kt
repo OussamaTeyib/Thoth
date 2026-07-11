@@ -7,5 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface UserDataRepository {
     val userData: Flow<UserData>
 
+    suspend fun setDynamicColorPreference(dynamicColor: Boolean)
+
     suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig)
 }

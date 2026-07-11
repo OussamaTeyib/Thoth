@@ -34,9 +34,13 @@ class MainActivity : AppCompatActivity() {
 
             if (uiState is MainActivityState.Success) {
                 val appState = rememberThothAppState()
+                val dynamicColor = uiState.shouldUseDynamicColor()
                 val darkTheme = uiState.shouldUseDarkTheme(isSystemInDarkTheme())
 
-                ThothTheme(darkTheme = darkTheme) {
+                ThothTheme(
+                    darkTheme = darkTheme,
+                    dynamicColor = dynamicColor
+                ) {
                     ThothApp(appState)
                 }
             }

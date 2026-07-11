@@ -30,6 +30,7 @@ import com.oussamateyib.thoth.core.model.data.UserData
 import com.oussamateyib.thoth.core.ui.LanguageChooserDialog
 import com.oussamateyib.thoth.core.ui.SettingsItem
 import com.oussamateyib.thoth.core.ui.SettingsSectionTitle
+import com.oussamateyib.thoth.core.ui.SettingsSwitchRow
 import com.oussamateyib.thoth.core.ui.ThemeChooserDialog
 import com.oussamateyib.thoth.core.ui.asLabel
 
@@ -44,6 +45,7 @@ fun SettingsScreen(
 
     SettingsScreen(
         userData = userData,
+        isDynamicColorSupported = viewModel.isDynamicColorSupported,
         currentLanguage = currentLanguage,
         appVersion = viewModel.appVersion,
         onBackClick = onBackClick,
@@ -56,6 +58,7 @@ fun SettingsScreen(
 @Composable
 internal fun SettingsScreen(
     userData: UserData,
+    isDynamicColorSupported: Boolean,
     currentLanguage: Language,
     appVersion: String,
     onBackClick: () -> Unit,
@@ -94,6 +97,12 @@ internal fun SettingsScreen(
                 .verticalScroll(verticalScroll)
         ) {
             SettingsSectionTitle(text = stringResource(R.string.feature_settings_impl_display_options))
+            SettingsSwitchRow(
+                label = stringResource(R.string.feature_settings_impl_dynamic_theming),
+                checked = if (isDynamicColorSupported) userData.dynamicColor else false,
+                enabled = isDynamicColorSupported,
+                onCheckedChange = { onEvent(SettingsEvent.SetDynamicColorPreference(it)) }
+            )
             SettingsItem(
                 label = stringResource(R.string.feature_settings_impl_theme),
                 value = userData.darkThemeConfig.asLabel(),

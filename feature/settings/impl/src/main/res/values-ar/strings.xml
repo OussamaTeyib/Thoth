@@ -4,6 +4,7 @@
     <string name="feature_settings_impl_app_version">إصدار التطبيق</string>
     <string name="feature_settings_impl_back">رجوع</string>
     <string name="feature_settings_impl_display_options">خيارات العرض</string>
+    <string name="feature_settings_impl_dynamic_theming">مظهر ديناميكي</string>
     <string name="feature_settings_impl_theme">المظهر</string>
     <string name="feature_settings_impl_language">اللغة</string>
     <string name="feature_settings_impl_open_source_licenses">تراخيص مفتوحة المصدر</string>
