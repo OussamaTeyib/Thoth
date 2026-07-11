@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oussamateyib.thoth.core.domain.GetUserPreferencesStreamUseCase
 import com.oussamateyib.thoth.core.domain.SetDarkThemeConfigUseCase
+import com.oussamateyib.thoth.core.domain.SetDynamicColorPreferenceUseCase
 import com.oussamateyib.thoth.core.model.data.DarkThemeConfig
 import com.oussamateyib.thoth.core.model.data.Language
 import com.oussamateyib.thoth.core.model.data.UserData
@@ -26,8 +27,11 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     @ApplicationContext context: Context,
     getUserPreferencesStreamUseCase: GetUserPreferencesStreamUseCase,
+    private val setDynamicColorPreferenceUseCase: SetDynamicColorPreferenceUseCase,
     private val setDarkThemeConfigUseCase: SetDarkThemeConfigUseCase
 ) : ViewModel() {
+    val isDynamicColorSupported = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+
     val packageInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         context.packageManager.getPackageInfo(
             context.packageName,
@@ -46,11 +50,20 @@ class SettingsViewModel @Inject constructor(
             scope = viewModelScope,
             // Wait 5 seconds before stopping to handle configuration changes smoothly
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = UserData(darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM)
+            initialValue = UserData(
+                dynamicColor = true,
+                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM
+            )
         )
 
     fun onEvent(event: SettingsEvent) {
         when (event) {
+            is SettingsEvent.SetDynamicColorPreference -> {
+                viewModelScope.launch {
+                    setDynamicColorPreferenceUseCase(event.dynamicColor)
+                }
+            }
+
             is SettingsEvent.UpdateDarkThemeConfig -> {
                 viewModelScope.launch {
                     setDarkThemeConfigUseCase(event.config)

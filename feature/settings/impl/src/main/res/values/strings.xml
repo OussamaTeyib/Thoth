@@ -4,6 +4,7 @@
     <string name="feature_settings_impl_app_version">App version</string>
     <string name="feature_settings_impl_back">Back</string>
     <string name="feature_settings_impl_display_options">Display options</string>
+    <string name="feature_settings_impl_dynamic_theming">Dynamic theming</string>
     <string name="feature_settings_impl_theme">Theme</string>
     <string name="feature_settings_impl_language">Language</string>
     <string name="feature_settings_impl_open_source_licenses">Open source licenses</string>
