@@ -80,6 +80,20 @@ android {
     }
 }
 
+androidComponents {
+    onVariants(selector().withBuildType("release")) { variant ->
+        variant.packaging.resources.excludes.add("META-INF/NOTICE.md")
+        variant.packaging.resources.excludes.add("META-INF/**/LICENSE.txt")
+        variant.packaging.resources.excludes.add("META-INF/*.version")
+        // Strip coroutines debugger probes
+        variant.packaging.resources.excludes.add("DebugProbesKt.bin")
+        // Remove build-time verification metadata
+        variant.packaging.resources.excludes.add("META-INF/**/verification.properties")
+        // Strip Kotlin builtins and metadata
+        variant.packaging.resources.excludes.add("kotlin/**")
+    }
+}
+
 dependencies {
     implementation(projects.core.data)
     implementation(projects.core.database)
