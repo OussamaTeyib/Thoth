@@ -13,18 +13,18 @@ fun LazyListScope.noteItems(
     selectedItemIds: Set<Long>,
     onItemClick: (Long) -> Unit,
     onItemLongClick: (Long) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = items(
     items = items,
     // Assign unique identifiers to optimize list state and reordering performance
-    key = { it.id }
+    key = { it.id },
 ) { note ->
     NoteItem(
         note = note,
         isSelected = selectedItemIds.contains(note.id),
         modifier = modifier,
         onClick = { onItemClick(note.id) },
-        onLongClick = { onItemLongClick(note.id) }
+        onLongClick = { onItemLongClick(note.id) },
     )
     Spacer(modifier = Modifier.height(16.dp))
 }

@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
                 ThothTheme(
                     darkTheme = darkTheme,
-                    dynamicColor = dynamicColor
+                    dynamicColor = dynamicColor,
                 ) {
                     ThothApp(appState)
                 }

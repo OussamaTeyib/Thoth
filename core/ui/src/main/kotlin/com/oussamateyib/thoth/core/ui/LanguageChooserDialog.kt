@@ -7,16 +7,16 @@ import com.oussamateyib.thoth.core.model.data.Language
 fun LanguageChooserDialog(
     onDismiss: () -> Unit,
     currentLanguage: Language,
-    onLanguageSelected: (Language) -> Unit
+    onLanguageSelected: (Language) -> Unit,
 ) = SettingsDialog(
     titleRes = R.string.core_ui_choose_language,
-    onDismiss = onDismiss
+    onDismiss = onDismiss,
 ) {
     Language.entries.forEach {
         SettingsChooserRow(
             text = it.asLabel(),
             selected = it == currentLanguage,
-            onClick = { onLanguageSelected(it) }
+            onClick = { onLanguageSelected(it) },
         )
     }
 }

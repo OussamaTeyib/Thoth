@@ -33,14 +33,14 @@ fun NoteColorPicker(
     onColorChange: (NoteColor) -> Unit,
     modifier: Modifier = Modifier,
     selectedColor: NoteColor? = null,
-    layout: PaletteLayout = PaletteLayout.Grid
+    layout: PaletteLayout = PaletteLayout.Grid,
 ) = when (layout) {
     PaletteLayout.Row -> LazyRow(
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(5.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         items(NoteColor.entries) {
             ColorSwatch(it, it == selectedColor, { onColorChange(it) })
@@ -51,7 +51,7 @@ fun NoteColorPicker(
         columns = GridCells.Fixed(4),
         modifier = modifier.padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(5.dp),
-        verticalArrangement = Arrangement.spacedBy(5.dp)
+        verticalArrangement = Arrangement.spacedBy(5.dp),
     ) {
         items(NoteColor.entries) {
             ColorSwatch(it, it == selectedColor, { onColorChange(it) })
@@ -63,7 +63,7 @@ fun NoteColorPicker(
 internal fun ColorSwatch(
     color: NoteColor,
     isSelected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     val label = color.asLabel()
 
@@ -74,12 +74,12 @@ internal fun ColorSwatch(
             .selectable(
                 selected = isSelected,
                 onClick = onClick,
-                role = Role.RadioButton
+                role = Role.RadioButton,
             )
             .semantics {
                 contentDescription = label
             },
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Box(
             modifier = Modifier
@@ -93,8 +93,8 @@ internal fun ColorSwatch(
                     } else {
                         MaterialTheme.colorScheme.outline
                     },
-                    shape = CircleShape
-                )
+                    shape = CircleShape,
+                ),
         ) {
             if (isSelected) {
                 // Selected color indicator
@@ -103,7 +103,7 @@ internal fun ColorSwatch(
                     contentDescription = null, // Already described by parent semantics
                     modifier = Modifier
                         .size(35.dp)
-                        .align(Alignment.Center)
+                        .align(Alignment.Center),
                 )
             }
         }

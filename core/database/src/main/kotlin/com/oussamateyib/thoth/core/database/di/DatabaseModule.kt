@@ -16,10 +16,10 @@ internal object DatabaseModule {
     @Provides
     @Singleton
     fun provideThothDatabase(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ) = Room.databaseBuilder(
         context,
         ThothDatabase::class.java,
-        "thoth-database"
+        "thoth-database",
     ).build()
 }

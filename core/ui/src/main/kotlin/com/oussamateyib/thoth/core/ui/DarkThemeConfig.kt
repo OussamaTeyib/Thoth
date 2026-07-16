@@ -10,5 +10,5 @@ fun DarkThemeConfig.asLabel() = stringResource(
         DarkThemeConfig.FOLLOW_SYSTEM -> R.string.core_ui_dark_theme_config_system_default
         DarkThemeConfig.LIGHT -> R.string.core_ui_dark_theme_config_light
         DarkThemeConfig.DARK -> R.string.core_ui_dark_theme_config_dark
-    }
+    },
 )

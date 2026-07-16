@@ -8,5 +8,5 @@ data class Note(
     val content: String,
     val createdAt: Instant,
     val updatedAt: Instant,
-    val color: NoteColor
+    val color: NoteColor,
 )

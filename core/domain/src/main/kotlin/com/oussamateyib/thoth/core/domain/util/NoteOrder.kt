@@ -1,7 +1,7 @@
 package com.oussamateyib.thoth.core.domain.util
 
 sealed class NoteOrder(
-    val orderType: OrderType
+    val orderType: OrderType,
 ) {
     class Title(orderType: OrderType) : NoteOrder(orderType)
     class DateCreated(orderType: OrderType) : NoteOrder(orderType)

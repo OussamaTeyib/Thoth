@@ -12,5 +12,5 @@ enum class NoteColor {
     MintGreen,
     Sage,
     AquaMist,
-    SilverCloud
+    SilverCloud,
 }

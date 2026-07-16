@@ -23,13 +23,13 @@ fun TransparentTextField(
     textStyle: TextStyle = TextStyle.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    isHintVisible: Boolean = true
+    isHintVisible: Boolean = true,
 ) = BasicTextField(
     value = value,
     onValueChange = onValueChange,
     textStyle = textStyle.copy(
         color = LocalContentColor.current,
-        textDirection = TextDirection.Content
+        textDirection = TextDirection.Content,
     ),
     cursorBrush = SolidColor(LocalContentColor.current),
     keyboardActions = keyboardActions,
@@ -38,17 +38,17 @@ fun TransparentTextField(
     decorationBox = { innerTextField ->
         Box(
             // Ensure children occupy the full width
-            propagateMinConstraints = true
+            propagateMinConstraints = true,
         ) {
             if (isHintVisible) {
                 Text(
                     text = hint,
                     style = textStyle,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
             // Display the actual text field
             innerTextField()
         }
-    }
+    },
 )

@@ -9,5 +9,5 @@ internal fun Note.asEntity() = NoteEntity(
     content = content,
     createdAt = createdAt,
     updatedAt = updatedAt,
-    color = color
+    color = color,
 )

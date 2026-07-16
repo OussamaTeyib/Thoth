@@ -28,14 +28,14 @@ class SettingsViewModel @Inject constructor(
     @ApplicationContext context: Context,
     getUserPreferencesStreamUseCase: GetUserPreferencesStreamUseCase,
     private val setDynamicColorPreferenceUseCase: SetDynamicColorPreferenceUseCase,
-    private val setDarkThemeConfigUseCase: SetDarkThemeConfigUseCase
+    private val setDarkThemeConfigUseCase: SetDarkThemeConfigUseCase,
 ) : ViewModel() {
     val isDynamicColorSupported = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
 
     val packageInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         context.packageManager.getPackageInfo(
             context.packageName,
-            PackageManager.PackageInfoFlags.of(0)
+            PackageManager.PackageInfoFlags.of(0),
         )
     } else {
         context.packageManager.getPackageInfo(context.packageName, 0)
@@ -52,8 +52,8 @@ class SettingsViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = UserData(
                 dynamicColor = true,
-                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM
-            )
+                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
+            ),
         )
 
     fun onEvent(event: SettingsEvent) {
@@ -87,6 +87,6 @@ class SettingsViewModel @Inject constructor(
     }
 
     private fun getCurrentLanguage() = Language.fromTag(
-        AppCompatDelegate.getApplicationLocales().toLanguageTags()
+        AppCompatDelegate.getApplicationLocales().toLanguageTags(),
     )
 }

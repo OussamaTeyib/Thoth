@@ -10,5 +10,5 @@ fun Language.asLabel() = stringResource(
         Language.FOLLOW_SYSTEM -> R.string.core_ui_language_system_default
         Language.ENGLISH -> R.string.core_ui_language_en
         Language.ARABIC -> R.string.core_ui_language_ar
-    }
+    },
 )

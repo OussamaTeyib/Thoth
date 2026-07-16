@@ -7,10 +7,10 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetNotesStreamUseCase @Inject constructor(
-    private val repository: NotesRepository
+    private val repository: NotesRepository,
 ) {
     operator fun invoke(
-        noteOrder: NoteOrder = NoteOrder.DateUpdated(OrderType.Descending)
+        noteOrder: NoteOrder = NoteOrder.DateUpdated(OrderType.Descending),
     ) = repository.getNotesStream().map { notes ->
         when (noteOrder) {
             is NoteOrder.Title -> when (noteOrder.orderType) {

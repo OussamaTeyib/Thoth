@@ -41,5 +41,5 @@ fun NoteColor.asLabel() = stringResource(
         NoteColor.Sage -> R.string.core_ui_note_color_sage
         NoteColor.AquaMist -> R.string.core_ui_note_color_aqua_mist
         NoteColor.SilverCloud -> R.string.core_ui_note_color_silver_cloud
-    }
+    },
 )

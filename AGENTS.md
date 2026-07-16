@@ -17,7 +17,8 @@
 
 ## 1. Project Overview
 
-**Thoth** is an elegant and adaptable workspace for streamlining your digital productivity and personal organization on Android.
+**Thoth** is an elegant and adaptable workspace for streamlining your digital productivity and
+personal organization on Android.
 
 | Property       | Value                                        |
 |----------------|----------------------------------------------|

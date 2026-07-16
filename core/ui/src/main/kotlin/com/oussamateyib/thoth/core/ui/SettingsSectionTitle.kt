@@ -11,9 +11,9 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SettingsSectionTitle(
     text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = Text(
     text = text,
     style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-    modifier = modifier.padding(start = 20.dp, top = 10.dp, end = 20.dp, bottom = 8.dp)
+    modifier = modifier.padding(start = 20.dp, top = 10.dp, end = 20.dp, bottom = 8.dp),
 )

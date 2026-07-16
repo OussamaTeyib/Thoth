@@ -5,7 +5,7 @@ import com.oussamateyib.thoth.core.model.data.DarkThemeConfig
 import javax.inject.Inject
 
 class OfflineFirstUserDataRepository @Inject constructor(
-    private val thothPreferencesDataSource: ThothPreferencesDataSource
+    private val thothPreferencesDataSource: ThothPreferencesDataSource,
 ) : UserDataRepository {
     override val userData = thothPreferencesDataSource.userData
 

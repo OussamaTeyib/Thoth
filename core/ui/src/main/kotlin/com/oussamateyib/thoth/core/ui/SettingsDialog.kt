@@ -21,26 +21,26 @@ import androidx.compose.ui.unit.dp
 fun SettingsDialog(
     titleRes: Int,
     onDismiss: () -> Unit,
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) = AlertDialog(
     onDismissRequest = onDismiss,
     modifier = Modifier.widthIn(max = 320.dp),
     title = {
         Text(
             text = stringResource(titleRes),
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
         )
     },
     text = {
         Column(
-            Modifier.selectableGroup()
+            Modifier.selectableGroup(),
         ) {
             HorizontalDivider()
             Column(
                 modifier = Modifier
                     .heightIn(max = 240.dp)
                     .verticalScroll(rememberScrollState()),
-                content = content
+                content = content,
             )
             HorizontalDivider()
         }
@@ -49,5 +49,5 @@ fun SettingsDialog(
         TextButton(onClick = onDismiss) {
             Text(text = stringResource(R.string.core_ui_dismiss_dialog_button_text))
         }
-    }
+    },
 )

@@ -6,7 +6,7 @@ import com.oussamateyib.thoth.core.model.data.UserData
 sealed interface MainActivityState {
     data object Loading : MainActivityState
     data class Success(
-        val userData: UserData
+        val userData: UserData,
     ) : MainActivityState {
         override fun shouldUseDynamicColor() = userData.dynamicColor
 

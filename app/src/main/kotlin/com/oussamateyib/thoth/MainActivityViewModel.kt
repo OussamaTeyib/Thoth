@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    getUserPreferencesStreamUseCase: GetUserPreferencesStreamUseCase
+    getUserPreferencesStreamUseCase: GetUserPreferencesStreamUseCase,
 ) : ViewModel() {
     val uiState = getUserPreferencesStreamUseCase().map {
         MainActivityState.Success(it)
@@ -19,6 +19,6 @@ class MainActivityViewModel @Inject constructor(
         scope = viewModelScope,
         initialValue = MainActivityState.Loading,
         // Wait 5 seconds before stopping to handle configuration changes smoothly
-        started = SharingStarted.WhileSubscribed(5_000)
+        started = SharingStarted.WhileSubscribed(5_000),
     )
 }
