@@ -50,7 +50,7 @@ import com.oussamateyib.thoth.feature.notes.impl.R
 @Composable
 fun NoteEditorScreen(
     onBackClick: () -> Unit,
-    viewModel: NoteEditorViewModel
+    viewModel: NoteEditorViewModel,
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -73,7 +73,7 @@ fun NoteEditorScreen(
         state = state,
         snackbarHostState = snackbarHostState,
         onEvent = viewModel::onEvent,
-        onBackClick = onBackClick
+        onBackClick = onBackClick,
     )
 }
 
@@ -83,7 +83,7 @@ internal fun NoteEditorScreen(
     state: NoteEditorState,
     snackbarHostState: SnackbarHostState,
     onEvent: (NoteEditorEvent) -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
 ) {
     if (state.isLoading) return
 
@@ -97,7 +97,7 @@ internal fun NoteEditorScreen(
     LaunchedEffect(state.color) {
         noteBackgroundAnimatable.animateTo(
             targetValue = noteColor,
-            animationSpec = tween(durationMillis = 400)
+            animationSpec = tween(durationMillis = 400),
         )
     }
 
@@ -110,7 +110,7 @@ internal fun NoteEditorScreen(
                 onEvent(NoteEditorEvent.ToggleColorPicker)
             },
             containerColor = noteBackgroundAnimatable.value,
-            dragHandle = null
+            dragHandle = null,
         ) {
             NoteColorPicker(
                 selectedColor = state.color,
@@ -118,7 +118,7 @@ internal fun NoteEditorScreen(
                     onEvent(NoteEditorEvent.ChangeColor(it))
                 },
                 modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp),
-                layout = PaletteLayout.Row
+                layout = PaletteLayout.Row,
             )
         }
     }
@@ -146,18 +146,18 @@ internal fun NoteEditorScreen(
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
+                    containerColor = Color.Transparent,
                 ),
                 title = {},
                 navigationIcon = {
                     IconButton(
                         onClick = {
                             onBackClick()
-                        }
+                        },
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.feature_notes_impl_arrow_back),
-                            contentDescription = stringResource(R.string.feature_notes_impl_back)
+                            contentDescription = stringResource(R.string.feature_notes_impl_back),
                         )
                     }
                 },
@@ -165,14 +165,14 @@ internal fun NoteEditorScreen(
                     IconButton(
                         onClick = {
                             onEvent(NoteEditorEvent.ToggleColorPicker)
-                        }
+                        },
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.feature_notes_impl_palette),
-                            contentDescription = stringResource(R.string.feature_notes_impl_change_color)
+                            contentDescription = stringResource(R.string.feature_notes_impl_change_color),
                         )
                     }
-                }
+                },
             )
         },
         containerColor = noteBackgroundAnimatable.value,
@@ -183,7 +183,7 @@ internal fun NoteEditorScreen(
                 .background(noteBackgroundAnimatable.value)
                 .padding(innerPadding)
                 .padding(horizontal = 20.dp, vertical = 12.dp)
-                .verticalScroll(verticalScroll)
+                .verticalScroll(verticalScroll),
         ) {
             TransparentTextField(
                 value = titleFieldValue,
@@ -195,18 +195,18 @@ internal fun NoteEditorScreen(
                 },
                 textStyle = MaterialTheme.typography.headlineMedium,
                 keyboardOptions = KeyboardOptions.Default.copy(
-                    imeAction = ImeAction.Next
+                    imeAction = ImeAction.Next,
                 ),
                 keyboardActions = KeyboardActions(
                     onNext = {
                         // Move focus to the content field and place the cursor at the end
                         contentFocusRequester.requestFocus()
                         contentFieldValue = contentFieldValue.copy(
-                            selection = TextRange(contentFieldValue.text.length)
+                            selection = TextRange(contentFieldValue.text.length),
                         )
-                    }
+                    },
                 ),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
             Spacer(modifier = Modifier.height(12.dp))
             TransparentTextField(
@@ -220,7 +220,7 @@ internal fun NoteEditorScreen(
                 textStyle = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .focusRequester(contentFocusRequester)
+                    .focusRequester(contentFocusRequester),
             )
         }
     }

@@ -19,17 +19,17 @@ fun ThothNavigationDrawer(
     drawerContent: ThothNavigationDrawerScope.() -> Unit,
     modifier: Modifier = Modifier,
     gesturesEnabled: Boolean = true,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) = ModalNavigationDrawer(
     drawerState = drawerState,
     drawerContent = {
         ModalDrawerSheet(
-            modifier = Modifier.width(304.dp)
+            modifier = Modifier.width(304.dp),
         ) {
             Text(
                 text = "Thoth",
                 style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
             )
             // Collect navigation items by calling the drawer content on the scope
             val scope = ThothNavigationDrawerScope().apply(drawerContent)
@@ -39,17 +39,17 @@ fun ThothNavigationDrawer(
     },
     modifier = modifier,
     gesturesEnabled = gesturesEnabled,
-    content = content
+    content = content,
 )
 
 class ThothNavigationDrawerScope(
-    internal val items: MutableList<@Composable () -> Unit> = mutableListOf()
+    internal val items: MutableList<@Composable () -> Unit> = mutableListOf(),
 ) {
     fun item(
         selected: Boolean,
         onClick: () -> Unit,
         icon: @Composable () -> Unit,
-        label: @Composable () -> Unit
+        label: @Composable () -> Unit,
     ) = items.add {
         NavigationDrawerItem(
             selected = selected,
@@ -59,9 +59,9 @@ class ThothNavigationDrawerScope(
             colors = NavigationDrawerItemDefaults.colors(
                 selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                 selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer
+                selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
             ),
-            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
         )
     }
 }

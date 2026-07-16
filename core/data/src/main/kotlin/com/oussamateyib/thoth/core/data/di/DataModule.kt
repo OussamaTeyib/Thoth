@@ -14,11 +14,11 @@ import dagger.hilt.components.SingletonComponent
 internal abstract class DataModule {
     @Binds
     abstract fun bindNotesRepository(
-        notesRepository: OfflineFirstNotesRepository
+        notesRepository: OfflineFirstNotesRepository,
     ): NotesRepository
 
     @Binds
     abstract fun bindUserDataRepository(
-        userDataRepository: OfflineFirstUserDataRepository
+        userDataRepository: OfflineFirstUserDataRepository,
     ): UserDataRepository
 }

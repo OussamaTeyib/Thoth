@@ -14,7 +14,7 @@ data class NoteEntity(
     val content: String,
     val createdAt: Instant,
     val updatedAt: Instant,
-    val color: NoteColor
+    val color: NoteColor,
 )
 
 fun NoteEntity.asExternalModel() = Note(
@@ -23,5 +23,5 @@ fun NoteEntity.asExternalModel() = Note(
     content = content,
     createdAt = createdAt,
     updatedAt = updatedAt,
-    color = color
+    color = color,
 )

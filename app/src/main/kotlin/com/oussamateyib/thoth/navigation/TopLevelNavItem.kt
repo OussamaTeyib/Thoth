@@ -9,20 +9,20 @@ import com.oussamateyib.thoth.feature.settings.api.R as SettingsR
 
 data class TopLevelNavItem(
     @param:DrawableRes val iconId: Int,
-    @param:StringRes val labelId: Int
+    @param:StringRes val labelId: Int,
 )
 
 val NOTES = TopLevelNavItem(
     iconId = NotesR.drawable.feature_notes_api_icon,
-    labelId = NotesR.string.feature_notes_api_title
+    labelId = NotesR.string.feature_notes_api_title,
 )
 
 val Settings = TopLevelNavItem(
     iconId = SettingsR.drawable.feature_settings_api_icon,
-    labelId = SettingsR.string.feature_settings_api_title
+    labelId = SettingsR.string.feature_settings_api_title,
 )
 
 val TOP_LEVEL_NAV_ITEMS = mapOf(
     NoteListNavKey to NOTES,
-    SettingsNavKey to Settings
+    SettingsNavKey to Settings,
 )

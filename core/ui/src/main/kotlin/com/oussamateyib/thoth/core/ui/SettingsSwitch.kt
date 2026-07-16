@@ -20,7 +20,7 @@ fun SettingsSwitchRow(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) = Row(
     modifier = modifier
         .fillMaxWidth()
@@ -28,21 +28,21 @@ fun SettingsSwitchRow(
             value = checked,
             enabled = enabled,
             role = Role.Switch,
-            onValueChange = onCheckedChange
+            onValueChange = onCheckedChange,
         )
         .padding(horizontal = 20.dp, vertical = 12.dp),
-    verticalAlignment = Alignment.CenterVertically
+    verticalAlignment = Alignment.CenterVertically,
 ) {
     Text(
         text = label,
         style = MaterialTheme.typography.bodyLarge,
-        modifier = Modifier.weight(1f)
+        modifier = Modifier.weight(1f),
     )
     Switch(
         checked = checked,
         onCheckedChange = null,
         enabled = enabled,
         // Clear remaining internal semantics
-        modifier = Modifier.clearAndSetSemantics {}
+        modifier = Modifier.clearAndSetSemantics {},
     )
 }

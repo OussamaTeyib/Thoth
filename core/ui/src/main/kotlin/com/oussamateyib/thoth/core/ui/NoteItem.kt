@@ -28,7 +28,7 @@ fun NoteItem(
     isSelected: Boolean,
     onClick: () -> Unit,
     onLongClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val containerColor = note.color.asColor()
 
@@ -38,30 +38,30 @@ fun NoteItem(
                 onClickLabel = stringResource(R.string.core_ui_open_note),
                 onClick = onClick,
                 onLongClick = onLongClick,
-                onLongClickLabel = stringResource(R.string.core_ui_select_note)
+                onLongClickLabel = stringResource(R.string.core_ui_select_note),
             )
             .semantics { selected = isSelected },
         colors = CardDefaults.outlinedCardColors(
-            containerColor = containerColor
+            containerColor = containerColor,
         ),
         border = BorderStroke(
             width = if (isSelected) 3.dp else 1.dp,
-            color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
-        )
+            color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
+        ),
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(16.dp),
         ) {
             if (!note.title.isEmpty()) {
                 Text(
                     text = note.title,
                     style = MaterialTheme.typography.titleLarge.copy(
-                        textDirection = TextDirection.Content
+                        textDirection = TextDirection.Content,
                     ),
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
             if (!note.content.isEmpty()) {
@@ -69,11 +69,11 @@ fun NoteItem(
                 Text(
                     text = note.content,
                     style = MaterialTheme.typography.bodyMedium.copy(
-                        textDirection = TextDirection.Content
+                        textDirection = TextDirection.Content,
                     ),
                     maxLines = 10,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
         }

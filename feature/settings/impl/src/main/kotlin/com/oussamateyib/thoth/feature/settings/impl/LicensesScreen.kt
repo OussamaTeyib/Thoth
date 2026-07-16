@@ -21,7 +21,7 @@ import com.mikepenz.aboutlibraries.util.withContext
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LicensesScreen(
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
 ) {
     val context = LocalContext.current
     val libs = remember { Libs.Builder().withContext(context).build() }
@@ -33,23 +33,23 @@ fun LicensesScreen(
                     IconButton(onClick = onBackClick) {
                         Icon(
                             painter = painterResource(R.drawable.feature_settings_impl_arrow_back),
-                            contentDescription = stringResource(R.string.feature_settings_impl_back)
+                            contentDescription = stringResource(R.string.feature_settings_impl_back),
                         )
                     }
                 },
                 title = {
                     Text(
                         text = stringResource(R.string.feature_settings_impl_open_source_licenses),
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
                     )
-                }
+                },
             )
-        }
+        },
     ) { innerPadding ->
         LibrariesContainer(
             libraries = libs,
             modifier = Modifier.fillMaxSize(),
-            contentPadding = innerPadding
+            contentPadding = innerPadding,
         )
     }
 }

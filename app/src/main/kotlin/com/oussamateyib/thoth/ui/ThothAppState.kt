@@ -16,17 +16,17 @@ import kotlinx.coroutines.CoroutineScope
 class ThothAppState(
     val navigationState: NavigationState,
     val coroutineScope: CoroutineScope,
-    val drawerState: DrawerState
+    val drawerState: DrawerState,
 )
 
 @Composable
 fun rememberThothAppState(
     navigationState: NavigationState = rememberNavigationState(
         startKey = NoteListNavKey,
-        topLevelKeys = setOf(NoteListNavKey)
+        topLevelKeys = setOf(NoteListNavKey),
     ),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
-    drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed)
+    drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
 ) = remember(navigationState, coroutineScope, drawerState) {
     ThothAppState(navigationState, coroutineScope, drawerState)
 }

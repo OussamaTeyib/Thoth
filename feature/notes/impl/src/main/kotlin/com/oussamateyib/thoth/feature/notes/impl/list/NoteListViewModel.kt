@@ -21,7 +21,7 @@ import javax.inject.Inject
 class NoteListViewModel @Inject constructor(
     getNotesStreamUseCase: GetNotesStreamUseCase,
     private val deleteNoteUseCase: DeleteNoteUseCase,
-    private val insertNoteUseCase: InsertNoteUseCase
+    private val insertNoteUseCase: InsertNoteUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow(NoteListState())
     val state = _state.asStateFlow()
@@ -50,7 +50,7 @@ class NoteListViewModel @Inject constructor(
                 _state.update {
                     it.copy(
                         noteOrder = event.noteOrder,
-                        isSortSheetVisible = false
+                        isSortSheetVisible = false,
                     )
                 }
             }
@@ -90,7 +90,7 @@ class NoteListViewModel @Inject constructor(
                 _state.update {
                     it.copy(
                         selectedNoteIds = emptySet(),
-                        recentlyDeletedNotes = notesToDelete
+                        recentlyDeletedNotes = notesToDelete,
                     )
                 }
             }
@@ -128,7 +128,7 @@ class NoteListViewModel @Inject constructor(
                 _state.update {
                     it.copy(
                         isColorPickerVisible = false,
-                        selectedNoteIds = emptySet()
+                        selectedNoteIds = emptySet(),
                     )
                 }
             }

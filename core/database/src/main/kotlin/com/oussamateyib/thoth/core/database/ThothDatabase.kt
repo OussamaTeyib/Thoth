@@ -9,7 +9,7 @@ import com.oussamateyib.thoth.core.database.util.InstantConverter
 
 @Database(
     entities = [NoteEntity::class],
-    version = 1
+    version = 1,
 )
 @TypeConverters(InstantConverter::class)
 internal abstract class ThothDatabase : RoomDatabase() {

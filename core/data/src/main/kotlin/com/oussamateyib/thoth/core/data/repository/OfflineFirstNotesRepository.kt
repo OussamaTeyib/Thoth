@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 internal class OfflineFirstNotesRepository @Inject constructor(
-    private val dao: NoteDao
+    private val dao: NoteDao,
 ) : NotesRepository {
     override fun getNotesStream() = dao.getNotes().map {
         it.map(NoteEntity::asExternalModel)

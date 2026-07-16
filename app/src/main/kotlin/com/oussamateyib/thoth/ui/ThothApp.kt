@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ThothApp(
     appState: ThothAppState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val navigator = remember { Navigator(appState.navigationState) }
 
@@ -46,22 +46,22 @@ fun ThothApp(
                     icon = {
                         Icon(
                             painter = painterResource(item.iconId),
-                            contentDescription = stringResource(item.labelId)
+                            contentDescription = stringResource(item.labelId),
                         )
-                    }
+                    },
                 )
             }
         },
-        modifier = modifier
+        modifier = modifier,
     ) {
         Surface(
             modifier = modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
+            color = MaterialTheme.colorScheme.background,
         ) {
             val entryProvider = entryProvider {
                 notesEntry(
                     navigator = navigator,
-                    drawerState = appState.drawerState
+                    drawerState = appState.drawerState,
                 )
                 settingsEntry(navigator = navigator)
             }
@@ -69,7 +69,7 @@ fun ThothApp(
             NavDisplay(
                 // Provide entries for the current navigation state
                 entries = appState.navigationState.toEntries(entryProvider),
-                onBack = { navigator.goBack() }
+                onBack = { navigator.goBack() },
             )
         }
     }

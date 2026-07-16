@@ -38,7 +38,7 @@ import com.oussamateyib.thoth.core.ui.asLabel
 fun SettingsScreen(
     onBackClick: () -> Unit,
     onLicensesClick: () -> Unit,
-    viewModel: SettingsViewModel = hiltViewModel()
+    viewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val userData by viewModel.userData.collectAsStateWithLifecycle()
     val currentLanguage by viewModel.currentLanguage.collectAsStateWithLifecycle()
@@ -50,7 +50,7 @@ fun SettingsScreen(
         appVersion = viewModel.appVersion,
         onBackClick = onBackClick,
         onLicensesClick = onLicensesClick,
-        onEvent = viewModel::onEvent
+        onEvent = viewModel::onEvent,
     )
 }
 
@@ -63,7 +63,7 @@ internal fun SettingsScreen(
     appVersion: String,
     onBackClick: () -> Unit,
     onLicensesClick: () -> Unit,
-    onEvent: (SettingsEvent) -> Unit
+    onEvent: (SettingsEvent) -> Unit,
 ) {
     val verticalScroll = rememberScrollState()
     var showThemeDialog by remember { mutableStateOf(false) }
@@ -77,41 +77,41 @@ internal fun SettingsScreen(
                     IconButton(onClick = onBackClick) {
                         Icon(
                             painter = painterResource(R.drawable.feature_settings_impl_arrow_back),
-                            contentDescription = stringResource(R.string.feature_settings_impl_back)
+                            contentDescription = stringResource(R.string.feature_settings_impl_back),
                         )
                     }
                 },
                 title = {
                     Text(
                         text = stringResource(R.string.feature_settings_impl_title),
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
                     )
-                }
+                },
             )
-        }
+        },
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .verticalScroll(verticalScroll)
+                .verticalScroll(verticalScroll),
         ) {
             SettingsSectionTitle(text = stringResource(R.string.feature_settings_impl_display_options))
             SettingsSwitchRow(
                 label = stringResource(R.string.feature_settings_impl_dynamic_theming),
                 checked = if (isDynamicColorSupported) userData.dynamicColor else false,
                 enabled = isDynamicColorSupported,
-                onCheckedChange = { onEvent(SettingsEvent.SetDynamicColorPreference(it)) }
+                onCheckedChange = { onEvent(SettingsEvent.SetDynamicColorPreference(it)) },
             )
             SettingsItem(
                 label = stringResource(R.string.feature_settings_impl_theme),
                 value = userData.darkThemeConfig.asLabel(),
-                onClick = { showThemeDialog = true }
+                onClick = { showThemeDialog = true },
             )
             SettingsItem(
                 label = stringResource(R.string.feature_settings_impl_language),
                 value = currentLanguage.asLabel(),
-                onClick = { showLanguageDialog = true }
+                onClick = { showLanguageDialog = true },
             )
 
             HorizontalDivider(modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp))
@@ -120,7 +120,7 @@ internal fun SettingsScreen(
             SettingsItem(
                 label = stringResource(R.string.feature_settings_impl_app_version),
                 value = appVersion,
-                onClick = { }
+                onClick = { },
             )
             SettingsItem(
                 label = stringResource(R.string.feature_settings_impl_source_code),
@@ -131,14 +131,14 @@ internal fun SettingsScreen(
                     Icon(
                         painter = painterResource(R.drawable.feature_settings_impl_open_in_new),
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
+                        tint = MaterialTheme.colorScheme.primary,
                     )
-                }
+                },
             )
             SettingsItem(
                 label = stringResource(R.string.feature_settings_impl_open_source_licenses),
                 value = "",
-                onClick = onLicensesClick
+                onClick = onLicensesClick,
             )
         }
     }
@@ -150,7 +150,7 @@ internal fun SettingsScreen(
             onConfigSelected = {
                 onEvent(SettingsEvent.UpdateDarkThemeConfig(it))
                 showThemeDialog = false
-            }
+            },
         )
     }
 
@@ -161,7 +161,7 @@ internal fun SettingsScreen(
             onLanguageSelected = {
                 onEvent(SettingsEvent.UpdateLanguage(it))
                 showLanguageDialog = false
-            }
+            },
         )
     }
 }

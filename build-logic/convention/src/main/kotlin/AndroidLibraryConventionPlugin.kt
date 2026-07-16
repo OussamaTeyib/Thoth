@@ -17,8 +17,10 @@ abstract class AndroidLibraryConventionPlugin : Plugin<Project> {
                 lint.targetSdk = 37
                 // Warn if resources don't start with a unique prefix based on the module path
                 resourcePrefix =
-                    path.split("""\W"""
-                        .toRegex())
+                    path.split(
+                        """\W"""
+                            .toRegex(),
+                    )
                         .drop(1)
                         .distinct()
                         .joinToString(separator = "_")

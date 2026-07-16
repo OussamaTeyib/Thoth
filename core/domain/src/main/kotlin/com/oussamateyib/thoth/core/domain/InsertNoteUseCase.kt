@@ -5,7 +5,7 @@ import com.oussamateyib.thoth.core.model.data.Note
 import javax.inject.Inject
 
 class InsertNoteUseCase @Inject constructor(
-    private val repository: NotesRepository
+    private val repository: NotesRepository,
 ) {
     suspend operator fun invoke(note: Note) = repository.insertNote(note)
 }

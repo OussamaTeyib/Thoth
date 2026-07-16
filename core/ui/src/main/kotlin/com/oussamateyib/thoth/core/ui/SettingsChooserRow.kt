@@ -19,25 +19,25 @@ import androidx.compose.ui.unit.dp
 fun SettingsChooserRow(
     text: String,
     selected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) = Row(
     Modifier
         .fillMaxWidth()
         .selectable(
             selected = selected,
             role = Role.RadioButton,
-            onClick = onClick
+            onClick = onClick,
         )
         .padding(vertical = 16.dp),
-    verticalAlignment = Alignment.CenterVertically
+    verticalAlignment = Alignment.CenterVertically,
 ) {
     RadioButton(
         selected = selected,
-        onClick = null
+        onClick = null,
     )
     Spacer(Modifier.width(16.dp))
     Text(
         text = text,
-        style = MaterialTheme.typography.bodyLarge
+        style = MaterialTheme.typography.bodyLarge,
     )
 }

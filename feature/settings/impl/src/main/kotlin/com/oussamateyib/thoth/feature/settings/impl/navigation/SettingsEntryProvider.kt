@@ -12,7 +12,7 @@ import com.oussamateyib.thoth.feature.settings.impl.SettingsViewModel
 
 // Map navigation keys to their corresponding screens
 fun EntryProviderScope<NavKey>.settingsEntry(
-    navigator: Navigator
+    navigator: Navigator,
 ) {
     entry<SettingsNavKey> {
         val viewModel = hiltViewModel<SettingsViewModel>()
@@ -20,7 +20,7 @@ fun EntryProviderScope<NavKey>.settingsEntry(
         SettingsScreen(
             onBackClick = navigator::goBack,
             onLicensesClick = { navigator.navigate(LicensesNavKey) },
-            viewModel = viewModel
+            viewModel = viewModel,
         )
     }
 

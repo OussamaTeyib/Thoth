@@ -16,7 +16,7 @@ import javax.inject.Singleton
 
 @Singleton
 class ThothPreferencesDataSource @Inject constructor(
-    private val dataStore: DataStore<Preferences>
+    private val dataStore: DataStore<Preferences>,
 ) {
     val userData = dataStore.data
         .catch { exception ->
@@ -34,7 +34,7 @@ class ThothPreferencesDataSource @Inject constructor(
                     DarkThemeConfig.LIGHT.name -> DarkThemeConfig.LIGHT
                     DarkThemeConfig.DARK.name -> DarkThemeConfig.DARK
                     else -> DarkThemeConfig.FOLLOW_SYSTEM
-                }
+                },
             )
         }
 

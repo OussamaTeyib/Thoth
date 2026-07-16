@@ -17,7 +17,7 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 class NavigationState(
     val startKey: NavKey,
     val topLevelStack: NavBackStack<NavKey>,
-    val subStacks: Map<NavKey, NavBackStack<NavKey>>
+    val subStacks: Map<NavKey, NavBackStack<NavKey>>,
 ) {
     // Active top-level destination
     val currentTopLevelKey: NavKey by derivedStateOf { topLevelStack.last() }
@@ -37,7 +37,7 @@ class NavigationState(
 @Composable
 fun rememberNavigationState(
     startKey: NavKey,
-    topLevelKeys: Set<NavKey>
+    topLevelKeys: Set<NavKey>,
 ): NavigationState {
     // Track top-level navigation history
     val topLevelStack = rememberNavBackStack(startKey)
@@ -49,14 +49,14 @@ fun rememberNavigationState(
         NavigationState(
             startKey = startKey,
             topLevelStack = topLevelStack,
-            subStacks = subStacks
+            subStacks = subStacks,
         )
     }
 }
 
 @Composable
 fun NavigationState.toEntries(
-    entryProvider: (NavKey) -> NavEntry<NavKey>
+    entryProvider: (NavKey) -> NavEntry<NavKey>,
 ): SnapshotStateList<NavEntry<NavKey>> {
     // Map each root key to its corresponding list of fully decorated entries
     val decoratedEntries = subStacks.mapValues { (_, stack) ->
@@ -64,12 +64,12 @@ fun NavigationState.toEntries(
             // Save and restore inner screen state (e.g., text inputs) during configuration changes
             rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
             // Scope ViewModels to entries
-            rememberViewModelStoreNavEntryDecorator()
+            rememberViewModelStoreNavEntryDecorator(),
         )
         rememberDecoratedNavEntries(
             backStack = stack,
             entryDecorators = decorators,
-            entryProvider = entryProvider
+            entryProvider = entryProvider,
         )
     }
 

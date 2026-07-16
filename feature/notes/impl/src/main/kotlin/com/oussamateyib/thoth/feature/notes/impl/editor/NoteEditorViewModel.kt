@@ -25,7 +25,7 @@ import kotlin.time.Duration.Companion.milliseconds
 class NoteEditorViewModel @AssistedInject constructor(
     @Assisted private val noteId: Long,
     getNoteByIdUseCase: GetNoteByIdUseCase,
-    private val insertNoteUseCase: InsertNoteUseCase
+    private val insertNoteUseCase: InsertNoteUseCase,
 ) : ViewModel() {
     @AssistedFactory
     interface Factory {
@@ -56,14 +56,14 @@ class NoteEditorViewModel @AssistedInject constructor(
                             createdAt = note.createdAt,
                             title = NoteEditorTextFieldState(
                                 text = note.title,
-                                hint = R.string.feature_notes_impl_note_title_hint
+                                hint = R.string.feature_notes_impl_note_title_hint,
                             ),
                             content = NoteEditorTextFieldState(
                                 text = note.content,
-                                hint = R.string.feature_notes_impl_note_content_hint
+                                hint = R.string.feature_notes_impl_note_content_hint,
                             ),
                             color = note.color,
-                            isLoading = false
+                            isLoading = false,
                         )
                     }
                 }
@@ -77,8 +77,8 @@ class NoteEditorViewModel @AssistedInject constructor(
                 _state.update {
                     it.copy(
                         title = it.title.copy(
-                            text = event.title
-                        )
+                            text = event.title,
+                        ),
                     )
                 }
                 saveNote()
@@ -88,8 +88,8 @@ class NoteEditorViewModel @AssistedInject constructor(
                 _state.update {
                     it.copy(
                         content = it.content.copy(
-                            text = event.content
-                        )
+                            text = event.content,
+                        ),
                     )
                 }
                 saveNote()
@@ -126,8 +126,8 @@ class NoteEditorViewModel @AssistedInject constructor(
                         content = content.text,
                         createdAt = createdAt ?: now,
                         updatedAt = now,
-                        color = color
-                    )
+                        color = color,
+                    ),
                 )
 
                 // Update the state if this was a newly created note
@@ -135,7 +135,7 @@ class NoteEditorViewModel @AssistedInject constructor(
                     _state.update {
                         it.copy(
                             id = newId,
-                            createdAt = now
+                            createdAt = now,
                         )
                     }
                 }

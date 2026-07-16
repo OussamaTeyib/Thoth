@@ -7,16 +7,16 @@ import com.oussamateyib.thoth.core.model.data.DarkThemeConfig
 fun ThemeChooserDialog(
     onDismiss: () -> Unit,
     currentConfig: DarkThemeConfig,
-    onConfigSelected: (DarkThemeConfig) -> Unit
+    onConfigSelected: (DarkThemeConfig) -> Unit,
 ) = SettingsDialog(
     titleRes = R.string.core_ui_choose_theme,
-    onDismiss = onDismiss
+    onDismiss = onDismiss,
 ) {
     DarkThemeConfig.entries.forEach {
         SettingsChooserRow(
             text = it.asLabel(),
             selected = it == currentConfig,
-            onClick = { onConfigSelected(it) }
+            onClick = { onConfigSelected(it) },
         )
     }
 }

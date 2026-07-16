@@ -11,5 +11,5 @@ data class NoteEditorState(
     val content: NoteEditorTextFieldState = NoteEditorTextFieldState(hint = R.string.feature_notes_impl_note_content_hint),
     val color: NoteColor = NoteColor.Default,
     val isColorPickerVisible: Boolean = false,
-    val isLoading: Boolean = true
+    val isLoading: Boolean = true,
 )

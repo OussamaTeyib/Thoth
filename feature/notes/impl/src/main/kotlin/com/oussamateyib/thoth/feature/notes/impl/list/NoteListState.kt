@@ -11,7 +11,7 @@ data class NoteListState(
     val noteOrder: NoteOrder = NoteOrder.DateUpdated(OrderType.Descending),
     val isSortSheetVisible: Boolean = false,
     val isColorPickerVisible: Boolean = false,
-    val recentlyDeletedNotes: List<Note> = emptyList()
+    val recentlyDeletedNotes: List<Note> = emptyList(),
 ) {
     val isSelectionMode: Boolean
         get() = selectedNoteIds.isNotEmpty()

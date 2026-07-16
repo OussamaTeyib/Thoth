@@ -1,7 +1,7 @@
 package com.oussamateyib.thoth.core.model.data
 
 enum class Language(
-    val tag: String
+    val tag: String,
 ) {
     FOLLOW_SYSTEM(""),
     ENGLISH("en"),

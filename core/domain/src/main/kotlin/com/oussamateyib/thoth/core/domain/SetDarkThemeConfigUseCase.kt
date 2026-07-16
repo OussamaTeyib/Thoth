@@ -5,7 +5,8 @@ import com.oussamateyib.thoth.core.model.data.DarkThemeConfig
 import javax.inject.Inject
 
 class SetDarkThemeConfigUseCase @Inject constructor(
-    private val userDataRepository: UserDataRepository
+    private val userDataRepository: UserDataRepository,
 ) {
-    suspend operator fun invoke(config: DarkThemeConfig) = userDataRepository.setDarkThemeConfig(config)
+    suspend operator fun invoke(config: DarkThemeConfig) =
+        userDataRepository.setDarkThemeConfig(config)
 }

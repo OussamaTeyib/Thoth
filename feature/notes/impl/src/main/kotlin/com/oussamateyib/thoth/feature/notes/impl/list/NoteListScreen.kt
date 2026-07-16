@@ -49,7 +49,7 @@ fun NoteListScreen(
     onNoteClick: (Long) -> Unit,
     onAddNote: () -> Unit,
     viewModel: NoteListViewModel,
-    drawerState: DrawerState
+    drawerState: DrawerState,
 ) {
     val scope = rememberCoroutineScope()
 
@@ -83,13 +83,13 @@ fun NoteListScreen(
                 val result = snackbarHostState.showSnackbar(
                     message = selectedNotesDeletedMessage,
                     actionLabel = undoLabel,
-                    duration = SnackbarDuration.Short
+                    duration = SnackbarDuration.Short,
                 )
                 if (result == SnackbarResult.ActionPerformed) {
                     viewModel.onEvent(NoteListEvent.RestoreDeletedNotes)
                 }
             }
-        }
+        },
     )
 }
 
@@ -102,7 +102,7 @@ internal fun NoteListScreen(
     onNoteClick: (Long) -> Unit,
     onAddNote: () -> Unit,
     onMenuClick: () -> Unit,
-    onDeleteSelected: () -> Unit
+    onDeleteSelected: () -> Unit,
 ) {
     // Clear selection when back button is pressed in selection mode
     BackHandler(enabled = state.isSelectionMode) {
@@ -111,19 +111,19 @@ internal fun NoteListScreen(
 
     if (state.isColorPickerVisible) {
         BasicAlertDialog(
-            onDismissRequest = { onEvent(NoteListEvent.ToggleColorPicker) }
+            onDismissRequest = { onEvent(NoteListEvent.ToggleColorPicker) },
         ) {
             Surface(
                 shape = MaterialTheme.shapes.extraLarge,
                 tonalElevation = AlertDialogDefaults.TonalElevation,
-                modifier = Modifier.width(280.dp)
+                modifier = Modifier.width(280.dp),
             ) {
                 NoteColorPicker(
                     selectedColor = state.commonSelectedColor,
                     onColorChange = {
                         onEvent(NoteListEvent.ChangeColor(it))
                     },
-                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
+                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
                 )
             }
         }
@@ -137,7 +137,7 @@ internal fun NoteListScreen(
             onDismissRequest = {
                 onEvent(NoteListEvent.ToggleSortSheet)
             },
-            dragHandle = null
+            dragHandle = null,
         ) {
             NoteSortSheet(
                 modifier = Modifier
@@ -146,7 +146,7 @@ internal fun NoteListScreen(
                 noteOrder = state.noteOrder,
                 onOrderChange = {
                     onEvent(NoteListEvent.Order(it))
-                }
+                },
             )
         }
     }
@@ -174,25 +174,25 @@ internal fun NoteListScreen(
                         MaterialTheme.colorScheme.secondaryContainer
                     } else {
                         MaterialTheme.colorScheme.surface
-                    }
+                    },
                 ),
                 navigationIcon = {
                     if (state.isSelectionMode) {
                         IconButton(
-                            onClick = { onEvent(NoteListEvent.ClearSelection) }
+                            onClick = { onEvent(NoteListEvent.ClearSelection) },
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.feature_notes_impl_close),
-                                contentDescription = stringResource(R.string.feature_notes_impl_clear_selection)
+                                contentDescription = stringResource(R.string.feature_notes_impl_clear_selection),
                             )
                         }
                     } else {
                         IconButton(
-                            onClick = onMenuClick
+                            onClick = onMenuClick,
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.feature_notes_impl_menu),
-                                contentDescription = stringResource(R.string.feature_notes_impl_note_open_navigation_drawer)
+                                contentDescription = stringResource(R.string.feature_notes_impl_note_open_navigation_drawer),
                             )
                         }
                     }
@@ -205,7 +205,7 @@ internal fun NoteListScreen(
                         } else {
                             stringResource(R.string.feature_notes_impl_list_screen_top_bar_title)
                         },
-                        style = MaterialTheme.typography.headlineMedium
+                        style = MaterialTheme.typography.headlineMedium,
                     )
                 },
                 actions = {
@@ -213,35 +213,35 @@ internal fun NoteListScreen(
                         IconButton(
                             onClick = {
                                 onEvent(NoteListEvent.ToggleColorPicker)
-                            }
+                            },
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.feature_notes_impl_palette),
-                                contentDescription = stringResource(R.string.feature_notes_impl_change_color)
+                                contentDescription = stringResource(R.string.feature_notes_impl_change_color),
                             )
                         }
                         IconButton(
-                            onClick = onDeleteSelected
+                            onClick = onDeleteSelected,
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.feature_notes_impl_delete),
-                                contentDescription = stringResource(R.string.feature_notes_impl_delete_selected_notes)
+                                contentDescription = stringResource(R.string.feature_notes_impl_delete_selected_notes),
                             )
                         }
                     } else {
                         IconButton(
                             onClick = {
                                 onEvent(NoteListEvent.ToggleSortSheet)
-                            }
+                            },
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.feature_notes_impl_sort),
-                                contentDescription = stringResource(R.string.feature_notes_impl_sort_notes)
+                                contentDescription = stringResource(R.string.feature_notes_impl_sort_notes),
                             )
                         }
                     }
                 },
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
             )
         },
         floatingActionButton = {
@@ -251,20 +251,20 @@ internal fun NoteListScreen(
                         onEvent(NoteListEvent.ClearSelection)
                     }
                     onAddNote()
-                }
+                },
             ) {
                 Icon(
                     painter = painterResource(R.drawable.feature_notes_impl_add),
-                    contentDescription = stringResource(R.string.feature_notes_impl_add_note)
+                    contentDescription = stringResource(R.string.feature_notes_impl_add_note),
                 )
             }
-        }
+        },
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = 16.dp),
         ) {
             noteItems(
                 items = state.notes,
@@ -279,7 +279,7 @@ internal fun NoteListScreen(
                 onItemLongClick = {
                     onEvent(NoteListEvent.SelectNote(it))
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }

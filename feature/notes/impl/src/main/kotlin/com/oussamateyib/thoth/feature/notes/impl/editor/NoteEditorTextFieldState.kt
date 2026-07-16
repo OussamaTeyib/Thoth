@@ -4,5 +4,5 @@ import androidx.annotation.StringRes
 
 data class NoteEditorTextFieldState(
     val text: String = "",
-    @param:StringRes val hint: Int = 0
+    @param:StringRes val hint: Int = 0,
 )
