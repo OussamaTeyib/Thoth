@@ -101,18 +101,21 @@ jobs:
           path: app/build/outputs/mapping/release/*.txt
 
       - name: Upload logs
+        if: always()
         uses: actions/upload-artifact@v7
         with:
           name: logs
           path: app/build/outputs/logs/*.txt
 
       - name: Upload lint reports
+        if: always()
         uses: actions/upload-artifact@v7
         with:
           name: lint-reports
           path: app/build/reports/*
 
       - name: Upload dependency analysis reports
+        if: always()
         uses: actions/upload-artifact@v7
         with:
           name: dependency-analysis-reports
