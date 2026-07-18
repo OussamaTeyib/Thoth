@@ -15,6 +15,9 @@ android {
         applicationId = "com.oussamateyib.thoth"
         versionCode = 1
         versionName = "1.0.0"
+
+        // Custom instrumentation runner to enable Hilt testing
+        testInstrumentationRunner = "com.oussamateyib.thoth.core.testing.ThothTestRunner"
     }
 
     splits {
