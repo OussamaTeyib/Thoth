@@ -13,6 +13,7 @@ fragment = "1.8.9"
 hilt = "2.60.1"
 hiltCompose = "1.4.0"
 inject = "1"
+junit4 = "4.13.2"
 kotlin = "2.4.10"
 ksp = "2.3.10"
 lifecycle = "2.11.0"
@@ -21,6 +22,7 @@ room = "2.8.4"
 serialization = "1.11.0"
 splashscreen = "1.2.0"
 sqlite = "2.7.0"
+test = "1.7.0"
 
 [libraries]
 aboutlibraries-compose-core = { group = "com.mikepenz", name = "aboutlibraries-compose-core", version.ref = "aboutLibraries" }
@@ -62,14 +64,18 @@ androidx-room-common = { group = "androidx.room", name = "room-common", version.
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime-android", version.ref = "room" }
 androidx-sqlite = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqlite" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "test" }
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "hilt" }
 dagger-hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-lifecycle-viewmodel-compose = { group = "androidx.hilt", name = "hilt-lifecycle-viewmodel-compose", version.ref = "hiltCompose" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "inject" }
+junit = { group = "junit", name = "junit", version.ref = "junit4" }
 kotlin-metadata-jvm = { group = "org.jetbrains.kotlin", name = "kotlin-metadata-jvm", version.ref = "kotlin" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "serialization" }
 
 # Dependencies of the included build-logic
