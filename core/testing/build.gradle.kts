@@ -9,4 +9,7 @@ android {
 dependencies {
     api(libs.androidx.test.runner)
     implementation(libs.hilt.android.testing)
+    api(libs.junit)
+    implementation(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.coroutines.test)
 }
