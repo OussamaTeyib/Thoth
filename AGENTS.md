@@ -20,14 +20,14 @@
 **Thoth** is an elegant and adaptable workspace for streamlining your digital productivity and
 personal organization on Android.
 
-| Property       | Value                                        |
-|----------------|----------------------------------------------|
-| Language       | Kotlin                                       |
-| Build system   | Gradle                                       |
-| Android SDK    | `compileSdk` 37, `minSdk` 24, `targetSdk` 37 |
-| Application ID | `com.oussamateyib.thoth`                     |
-| Version        | 1.0.0 (versionCode 1)                        |
-| License        | MIT                                          |
+| Property       | Value                                          |
+|----------------|------------------------------------------------|
+| Language       | Kotlin                                         |
+| Build system   | Gradle                                         |
+| Android SDK    | `compileSdk` 37.1, `minSdk` 24, `targetSdk` 37 |
+| Application ID | `com.oussamateyib.thoth`                       |
+| Version        | 1.0.0 (versionCode 1)                          |
+| License        | MIT                                            |
 
 ---
 
