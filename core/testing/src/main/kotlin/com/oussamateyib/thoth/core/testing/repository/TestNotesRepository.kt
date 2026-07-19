@@ -11,7 +11,9 @@ class TestNotesRepository : NotesRepository {
         replay = 1,
         // Discard the previous list if a new one arrives before it's collected
         onBufferOverflow = BufferOverflow.DROP_OLDEST,
-    )
+    ).apply {
+        tryEmit(emptyList())
+    }
 
     private val currentNotes
         get() = notesFlow.replayCache.firstOrNull() ?: emptyList()

@@ -42,7 +42,6 @@ class InsertNoteUseCaseTest {
 
     @Test
     fun whenRepositoryIsEmpty_returnsNewIdAndInsertsToRepository() = runTest {
-        notesRepository.sendNotes(emptyList())
         val newNote = notes[0].copy(id = 0L)
 
         val newId = useCase(newNote)

@@ -37,7 +37,6 @@ class DeleteNoteUseCaseTest {
 
     @Test
     fun whenRepositoryIsEmpty_remainsEmpty() = runTest {
-        notesRepository.sendNotes(emptyList())
         val anyNote = notes[0]
 
         useCase(anyNote)

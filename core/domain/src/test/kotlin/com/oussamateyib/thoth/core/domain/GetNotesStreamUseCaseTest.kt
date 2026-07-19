@@ -101,8 +101,6 @@ class GetNotesStreamUseCaseTest {
 
     @Test
     fun whenRepositoryIsEmpty_returnsEmptyList() = runTest {
-        notesRepository.sendNotes(emptyList())
-
         val result = useCase().first()
 
         assertEquals(emptyList<Note>(), result)

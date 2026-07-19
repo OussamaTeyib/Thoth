@@ -34,7 +34,6 @@ class GetNoteByIdUseCaseTest {
 
     @Test
     fun whenRepositoryIsEmpty_returnsNull() = runTest {
-        notesRepository.sendNotes(emptyList())
         val anyId = 1L
 
         val result = useCase(anyId)

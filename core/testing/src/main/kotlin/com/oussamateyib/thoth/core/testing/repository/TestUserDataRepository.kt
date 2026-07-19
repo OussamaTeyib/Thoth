@@ -17,7 +17,9 @@ class TestUserDataRepository : UserDataRepository {
         replay = 1,
         // Discard the previous data if a new one arrives before it's collected
         onBufferOverflow = BufferOverflow.DROP_OLDEST,
-    )
+    ).apply {
+        tryEmit(emptyUserData)
+    }
 
     private val currentUserData
         get() = _userData.replayCache.firstOrNull() ?: emptyUserData
@@ -30,5 +32,10 @@ class TestUserDataRepository : UserDataRepository {
 
     override suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig) {
         _userData.tryEmit(currentUserData.copy(darkThemeConfig = darkThemeConfig))
+    }
+
+    // A test-only API to inject data directly
+    fun sendUserData(userData: UserData) {
+        _userData.tryEmit(userData)
     }
 }
