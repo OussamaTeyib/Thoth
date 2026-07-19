@@ -16,86 +16,86 @@ class GetNotesStreamUseCaseTest {
     private val notes = notesTestData
 
     @Test
-    fun whenNoParam_notesSortedByDateUpdatedDescReturned() = runTest {
+    fun whenNoParam_returnsNotesSortedByDateUpdatedDesc() = runTest {
         notesRepository.sendNotes(notes)
 
-        val sortedNotes = useCase()
+        val result = useCase().first()
 
         assertEquals(
             notes.sortedByDescending { it.updatedAt },
-            sortedNotes.first(),
+            result,
         )
     }
 
     @Test
-    fun whenSortedByTitleAsc_notesSortedByTitleAscReturned() = runTest {
+    fun whenTitleAsc_returnsNotesSortedByTitleAsc() = runTest {
         notesRepository.sendNotes(notes)
 
-        val sortedNotes = useCase(NoteOrder.Title(OrderType.Ascending))
+        val result = useCase(NoteOrder.Title(OrderType.Ascending)).first()
 
         assertEquals(
             notes.sortedBy { it.title.lowercase() },
-            sortedNotes.first(),
+            result,
         )
     }
 
     @Test
-    fun whenSortedByTitleDesc_notesSortedByTitleDescReturned() = runTest {
+    fun whenTitleDesc_returnsNotesSortedByTitleDesc() = runTest {
         notesRepository.sendNotes(notes)
 
-        val sortedNotes = useCase(NoteOrder.Title(OrderType.Descending))
+        val result = useCase(NoteOrder.Title(OrderType.Descending)).first()
 
         assertEquals(
             notes.sortedByDescending { it.title.lowercase() },
-            sortedNotes.first(),
+            result,
         )
     }
 
     @Test
-    fun whenSortedByDateCreatedAsc_notesSortedByDateCreatedAscReturned() = runTest {
+    fun whenDateCreatedAsc_returnsNotesSortedByDateCreatedAsc() = runTest {
         notesRepository.sendNotes(notes)
 
-        val sortedNotes = useCase(NoteOrder.DateCreated(OrderType.Ascending))
+        val result = useCase(NoteOrder.DateCreated(OrderType.Ascending)).first()
 
         assertEquals(
             notes.sortedBy { it.createdAt },
-            sortedNotes.first(),
+            result,
         )
     }
 
     @Test
-    fun whenSortedByDateCreatedDesc_notesSortedByDateCreatedDescReturned() = runTest {
+    fun whenDateCreatedDesc_returnsNotesSortedByDateCreatedDesc() = runTest {
         notesRepository.sendNotes(notes)
 
-        val sortedNotes = useCase(NoteOrder.DateCreated(OrderType.Descending))
+        val result = useCase(NoteOrder.DateCreated(OrderType.Descending)).first()
 
         assertEquals(
             notes.sortedByDescending { it.createdAt },
-            sortedNotes.first(),
+            result,
         )
     }
 
     @Test
-    fun whenSortedByDateUpdatedAsc_notesSortedByDateUpdatedAscReturned() = runTest {
+    fun whenDateUpdatedAsc_returnsNotesSortedByDateUpdatedAsc() = runTest {
         notesRepository.sendNotes(notes)
 
-        val sortedNotes = useCase(NoteOrder.DateUpdated(OrderType.Ascending))
+        val result = useCase(NoteOrder.DateUpdated(OrderType.Ascending)).first()
 
         assertEquals(
             notes.sortedBy { it.updatedAt },
-            sortedNotes.first(),
+            result,
         )
     }
 
     @Test
-    fun whenSortedByDateUpdatedDesc_notesSortedByDateUpdatedDescReturned() = runTest {
+    fun whenDateUpdatedDesc_returnsNotesSortedByDateUpdatedDesc() = runTest {
         notesRepository.sendNotes(notes)
 
-        val sortedNotes = useCase(NoteOrder.DateUpdated(OrderType.Descending))
+        val result = useCase(NoteOrder.DateUpdated(OrderType.Descending)).first()
 
         assertEquals(
             notes.sortedByDescending { it.updatedAt },
-            sortedNotes.first(),
+            result,
         )
     }
 
