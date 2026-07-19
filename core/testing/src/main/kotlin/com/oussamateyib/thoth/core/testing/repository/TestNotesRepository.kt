@@ -2,21 +2,14 @@ package com.oussamateyib.thoth.core.testing.repository
 
 import com.oussamateyib.thoth.core.data.repository.NotesRepository
 import com.oussamateyib.thoth.core.model.data.Note
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 
 class TestNotesRepository : NotesRepository {
-    private val notesFlow = MutableSharedFlow<List<Note>>(
-        // Cache the latest emitted list for new collectors
-        replay = 1,
-        // Discard the previous list if a new one arrives before it's collected
-        onBufferOverflow = BufferOverflow.DROP_OLDEST,
-    ).apply {
-        tryEmit(emptyList())
-    }
+    private val notesFlow = MutableStateFlow<List<Note>>(emptyList())
 
     private val currentNotes
-        get() = notesFlow.replayCache.firstOrNull() ?: emptyList()
+        get() = notesFlow.value
 
     override fun getNotesStream() = notesFlow
 
@@ -31,26 +24,28 @@ class TestNotesRepository : NotesRepository {
         }
 
         val updatedNote = note.copy(id = id)
-        val newList = currentNotes.toMutableList().apply {
+        notesFlow.update { notes ->
+            val newList = notes.toMutableList()
             // If the note already exists, update it
-            val index = indexOfFirst { it.id == id }
+            val index = newList.indexOfFirst { it.id == id }
             if (index != -1) {
-                set(index, updatedNote)
+                newList[index] = updatedNote
             } else {
-                add(updatedNote)
+                newList.add(updatedNote)
             }
+            newList
         }
-        notesFlow.tryEmit(newList)
         return id
     }
 
     override suspend fun deleteNote(note: Note) {
-        val newList = currentNotes.filterNot { it.id == note.id }
-        notesFlow.tryEmit(newList)
+        notesFlow.update { notes ->
+            notes.filterNot { it.id == note.id }
+        }
     }
 
     // A test-only API to inject notes directly
     fun sendNotes(notes: List<Note>) {
-        notesFlow.tryEmit(notes)
+        notesFlow.value = notes
     }
 }
