@@ -17,7 +17,9 @@ class TestUserDataRepository : UserDataRepository {
         replay = 1,
         // Discard the previous data if a new one arrives before it's collected
         onBufferOverflow = BufferOverflow.DROP_OLDEST,
-    )
+    ).apply {
+        tryEmit(emptyUserData)
+    }
 
     private val currentUserData
         get() = _userData.replayCache.firstOrNull() ?: emptyUserData
