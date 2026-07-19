@@ -105,6 +105,12 @@ Thoth/
 │   │   └── src/main/kotlin/com/oussamateyib/thoth/core/navigation/
 │   │       ├── NavigationState.kt
 │   │       └── Navigator.kt
+│   ├── testing/                                     # Common testing utilities and test data
+│   │   ├── build.gradle.kts
+│   │   └── src/main/kotlin/com/oussamateyib/thoth/core/testing/
+│   │       ├── data/                                # Test data
+│   │       ├── repository/                          # Fake/Test repositories
+│   │       └── util/                                # Test rules and utilities
 │   └── ui/                                          # Shared data-driven UI components
 │       ├── build.gradle.kts
 │       └── src/main
