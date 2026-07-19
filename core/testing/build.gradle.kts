@@ -7,6 +7,8 @@ android {
 }
 
 dependencies {
+    api(projects.core.model)
+
     api(libs.androidx.test.runner)
     implementation(libs.hilt.android.testing)
     api(libs.junit)
