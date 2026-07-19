@@ -23,7 +23,7 @@ class TestNotesRepository : NotesRepository {
     override suspend fun insertNote(note: Note): Long {
         // Generate a new ID if this is a new note
         val id = if (note.id == 0L) {
-            (currentNotes.maxOfOrNull { it.id } ?: 0L) + 1
+            (currentNotes.maxOfOrNull { it.id } ?: 0L) + 1L
         } else {
             note.id
         }
