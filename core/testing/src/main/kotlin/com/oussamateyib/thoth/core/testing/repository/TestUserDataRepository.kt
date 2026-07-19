@@ -33,4 +33,9 @@ class TestUserDataRepository : UserDataRepository {
     override suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig) {
         _userData.tryEmit(currentUserData.copy(darkThemeConfig = darkThemeConfig))
     }
+
+    // A test-only API to inject data directly
+    fun sendUserData(userData: UserData) {
+        _userData.tryEmit(userData)
+    }
 }
