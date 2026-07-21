@@ -25,3 +25,12 @@ fun NoteEntity.asExternalModel() = Note(
     updatedAt = updatedAt,
     color = color,
 )
+
+fun Note.asEntity() = NoteEntity(
+    id = id,
+    title = title,
+    content = content,
+    createdAt = createdAt,
+    updatedAt = updatedAt,
+    color = color,
+)
