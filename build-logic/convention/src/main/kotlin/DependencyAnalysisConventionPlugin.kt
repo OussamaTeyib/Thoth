@@ -18,6 +18,9 @@ class DependencyAnalysisConventionPlugin : Plugin<Project> {
                             }
                         }
                     }
+                    reporting {
+                        printBuildHealth(true)
+                    }
                 }
             }
         }
