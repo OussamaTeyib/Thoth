@@ -18,6 +18,7 @@ kotlin = "2.4.10"
 ksp = "2.3.10"
 lifecycle = "2.11.0"
 navigation3 = "1.1.4"
+robolectric = "4.17-beta-2"
 room = "2.8.4"
 serialization = "1.11.0"
 splashscreen = "1.2.0"
@@ -64,6 +65,7 @@ androidx-room-common = { group = "androidx.room", name = "room-common", version.
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime-android", version.ref = "room" }
 androidx-sqlite = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqlite" }
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "test" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "test" }
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "hilt" }
 dagger-hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
@@ -77,6 +79,8 @@ kotlin-metadata-jvm = { group = "org.jetbrains.kotlin", name = "kotlin-metadata-
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "serialization" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+robolectric-annotations = { group = "org.robolectric", name = "annotations", version.ref = "robolectric" }
 
 # Dependencies of the included build-logic
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle-api", version.ref = "androidGradlePlugin" }
