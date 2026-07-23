@@ -2,7 +2,7 @@
 aboutLibraries = "15.0.4"
 activity = "1.13.0"
 appcompat = "1.7.1"
-androidGradlePlugin = "9.3.0"
+androidGradlePlugin = "9.3.1"
 annotation = "1.10.0"
 composeBom = "2026.06.01"
 core = "1.19.0"
