@@ -13,7 +13,7 @@ class DependencyAnalysisConventionPlugin : Plugin<Project> {
                 extensions.configure<DependencyAnalysisExtension> {
                     issues {
                         all {
-                            onUnusedDependencies {
+                            onAny {
                                 severity("fail")
                             }
                         }
