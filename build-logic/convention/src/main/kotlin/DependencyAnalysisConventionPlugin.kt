@@ -1,4 +1,4 @@
-import com.autonomousapps.DependencyAnalysisSubExtension
+import com.autonomousapps.DependencyAnalysisExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -9,9 +9,15 @@ class DependencyAnalysisConventionPlugin : Plugin<Project> {
         with(target) {
             apply(plugin = "com.autonomousapps.dependency-analysis")
 
-            extensions.configure<DependencyAnalysisSubExtension> {
-                issues {
-                    onUnusedDependencies { severity("fail") }
+            if (this == rootProject) {
+                extensions.configure<DependencyAnalysisExtension> {
+                    issues {
+                        all {
+                            onUnusedDependencies {
+                                severity("fail")
+                            }
+                        }
+                    }
                 }
             }
         }

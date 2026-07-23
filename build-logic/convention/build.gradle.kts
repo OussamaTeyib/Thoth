@@ -14,7 +14,7 @@ java {
 
 dependencies {
     compileOnly(libs.android.gradle.plugin)
-    compileOnly(libs.dependency.analysis.gradle.plugin)
+    implementation(libs.dependency.analysis.gradle.plugin)
     compileOnly(libs.ksp.gradle.plugin)
     compileOnly(libs.room.gradle.plugin)
 }
