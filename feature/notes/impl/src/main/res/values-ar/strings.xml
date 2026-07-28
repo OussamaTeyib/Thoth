@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="feature_notes_impl_add_note">إنشاء ملاحظة</string>
-    <string name="feature_notes_impl_back">رجوع</string>
     <string name="feature_notes_impl_change_color">غيِّر اللون</string>
     <string name="feature_notes_impl_clear_selection">إلغاء التحديد</string>
     <string name="feature_notes_impl_delete_selected_notes">حذف الملاحظات المحدَّدة</string>

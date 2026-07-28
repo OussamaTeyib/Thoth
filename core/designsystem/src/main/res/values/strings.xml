@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="core_designsystem_back">Back</string>
+    <string name="core_designsystem_notes">Notes</string>
+    <string name="core_designsystem_settings">Settings</string>
+</resources>

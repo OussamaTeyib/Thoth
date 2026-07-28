@@ -43,6 +43,7 @@ import com.oussamateyib.thoth.core.ui.noteItems
 import com.oussamateyib.thoth.core.ui.util.toLocalizedFormat
 import com.oussamateyib.thoth.feature.notes.impl.R
 import kotlinx.coroutines.launch
+import com.oussamateyib.thoth.core.designsystem.R as DesignR
 
 @Composable
 fun NoteListScreen(
@@ -182,7 +183,7 @@ internal fun NoteListScreen(
                             onClick = { onEvent(NoteListEvent.ClearSelection) },
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.feature_notes_impl_close),
+                                painter = painterResource(DesignR.drawable.core_designsystem_ic_close),
                                 contentDescription = stringResource(R.string.feature_notes_impl_clear_selection),
                             )
                         }
@@ -191,7 +192,7 @@ internal fun NoteListScreen(
                             onClick = onMenuClick,
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.feature_notes_impl_menu),
+                                painter = painterResource(DesignR.drawable.core_designsystem_ic_menu),
                                 contentDescription = stringResource(R.string.feature_notes_impl_note_open_navigation_drawer),
                             )
                         }
@@ -216,7 +217,7 @@ internal fun NoteListScreen(
                             },
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.feature_notes_impl_palette),
+                                painter = painterResource(DesignR.drawable.core_designsystem_ic_palette),
                                 contentDescription = stringResource(R.string.feature_notes_impl_change_color),
                             )
                         }
@@ -224,7 +225,7 @@ internal fun NoteListScreen(
                             onClick = onDeleteSelected,
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.feature_notes_impl_delete),
+                                painter = painterResource(DesignR.drawable.core_designsystem_ic_delete),
                                 contentDescription = stringResource(R.string.feature_notes_impl_delete_selected_notes),
                             )
                         }
@@ -235,7 +236,7 @@ internal fun NoteListScreen(
                             },
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.feature_notes_impl_sort),
+                                painter = painterResource(DesignR.drawable.core_designsystem_ic_sort),
                                 contentDescription = stringResource(R.string.feature_notes_impl_sort_notes),
                             )
                         }
@@ -254,7 +255,7 @@ internal fun NoteListScreen(
                 },
             ) {
                 Icon(
-                    painter = painterResource(R.drawable.feature_notes_impl_add),
+                    painter = painterResource(DesignR.drawable.core_designsystem_ic_add),
                     contentDescription = stringResource(R.string.feature_notes_impl_add_note),
                 )
             }

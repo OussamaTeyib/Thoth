@@ -25,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.oussamateyib.thoth.core.domain.util.NoteOrder
 import com.oussamateyib.thoth.core.domain.util.OrderType
+import com.oussamateyib.thoth.core.designsystem.R as DesignR
 
 @Composable
 fun NoteSortSheet(
@@ -101,7 +102,7 @@ internal fun SortOptionRow(
             if (selected) {
                 val isAscending = orderType is OrderType.Ascending
                 Icon(
-                    painter = painterResource(if (isAscending) R.drawable.core_ui_arrow_upward else R.drawable.core_ui_arrow_downward),
+                    painter = painterResource(if (isAscending) DesignR.drawable.core_designsystem_ic_arrow_upward else DesignR.drawable.core_designsystem_ic_arrow_downward),
                     contentDescription = stringResource(if (isAscending) R.string.core_ui_ascending else R.string.core_ui_descending),
                 )
             }

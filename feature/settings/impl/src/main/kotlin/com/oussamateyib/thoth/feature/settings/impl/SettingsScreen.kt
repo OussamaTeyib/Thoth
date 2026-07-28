@@ -33,6 +33,7 @@ import com.oussamateyib.thoth.core.ui.SettingsSectionTitle
 import com.oussamateyib.thoth.core.ui.SettingsSwitchRow
 import com.oussamateyib.thoth.core.ui.ThemeChooserDialog
 import com.oussamateyib.thoth.core.ui.asLabel
+import com.oussamateyib.thoth.core.designsystem.R as DesignR
 
 @Composable
 fun SettingsScreen(
@@ -76,8 +77,8 @@ internal fun SettingsScreen(
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
-                            painter = painterResource(R.drawable.feature_settings_impl_arrow_back),
-                            contentDescription = stringResource(R.string.feature_settings_impl_back),
+                            painter = painterResource(DesignR.drawable.core_designsystem_ic_arrow_back),
+                            contentDescription = stringResource(DesignR.string.core_designsystem_back),
                         )
                     }
                 },
@@ -129,7 +130,7 @@ internal fun SettingsScreen(
                 onClick = { uriHandler.openUri("https://github.com/OussamaTeyib/Thoth") },
                 trailingIcon = {
                     Icon(
-                        painter = painterResource(R.drawable.feature_settings_impl_open_in_new),
+                        painter = painterResource(DesignR.drawable.core_designsystem_ic_open_in_new),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary,
                     )
