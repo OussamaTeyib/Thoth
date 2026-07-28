@@ -14,16 +14,15 @@
 *.zip
 
 # Gradle files
-*.log
+[Bb]uild*/
+!build-logic
 .cxx/
 .gradle/
 .kotlin/
-[Bb]uild*/
-!build-logic
 local.properties
+*.log
 
 # IDE files
-*.iml
 .idea/*
 !.idea/AndroidProjectSystem.xml
 !.idea/codeStyles/
@@ -36,3 +35,4 @@ local.properties
 !.idea/misc.xml
 !.idea/runConfigurations/
 !.idea/vcs.xml
+*.iml
