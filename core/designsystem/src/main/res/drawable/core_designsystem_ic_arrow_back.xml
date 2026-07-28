@@ -1,4 +1,4 @@
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2026 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,9 +16,12 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"
+    android:autoMirrored="true"
     android:viewportWidth="960"
     android:viewportHeight="960">
+
     <path
         android:fillColor="#1f1f1f"
-        android:pathData="M440,520L200,520v-80h240v-240h80v240h240v80L520,520v240h-80v-240Z" />
+        android:pathData="m313,520 l224,224 -57,56 -320,-320 320,-320 57,56 -224,224h487v80L313,520Z" />
+
 </vector>

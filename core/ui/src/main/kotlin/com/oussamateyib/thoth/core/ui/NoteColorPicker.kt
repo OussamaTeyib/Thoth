@@ -27,6 +27,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.oussamateyib.thoth.core.model.data.NoteColor
 import com.oussamateyib.thoth.core.ui.util.PaletteLayout
+import com.oussamateyib.thoth.core.designsystem.R as DesignR
 
 @Composable
 fun NoteColorPicker(
@@ -99,7 +100,7 @@ internal fun ColorSwatch(
             if (isSelected) {
                 // Selected color indicator
                 Icon(
-                    painter = painterResource(R.drawable.core_ui_check),
+                    painter = painterResource(DesignR.drawable.core_designsystem_ic_check),
                     contentDescription = null, // Already described by parent semantics
                     modifier = Modifier
                         .size(35.dp)

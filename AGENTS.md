@@ -89,9 +89,11 @@ Thoth/
 │   │       └── ThothPreferencesDataSource.kt        # Preferences wrapper
 │   ├── designsystem/                                # Core UI components, themes
 │   │   ├── build.gradle.kts
-│   │   └── src/main/kotlin/com/oussamateyib/thoth/core/designsystem/
-│   │       ├── theme/
-│   │       └── components/
+│   │   └── src/main/
+│   │       ├── kotlin/com/oussamateyib/thoth/core/designsystem/
+│   │       │   ├── theme/
+│   │       │   └── components/
+│   │       └── res/                                 # Reusable drawable and strings
 │   ├── domain/                                      # Business logic wrappers
 │   │   ├── build.gradle.kts
 │   │   └── src/main/kotlin/com/oussamateyib/thoth/core/domain
@@ -120,10 +122,8 @@ Thoth/
 │   ├── notes/                                       # Note-taking feature
 │   │   ├── api                                      # Public API
 │   │   │   ├── build.gradle.kts
-│   │   │   └── src/main/
-│   │   │       ├── kotlin/com/oussamateyib/thoth/feature/notes/api/
-│   │   │       │   └── NotesNavKey.kt               # Navigation keys
-│   │   │       └── res/                             # Drawables, strings
+│   │   │   └── src/main/kotlin/com/oussamateyib/thoth/feature/notes/api/
+│   │   │       └── NotesNavKey.kt                   # Navigation keys
 │   │   └── impl
 │   │       ├── build.gradle.kts
 │   │       └── src/main/
@@ -135,10 +135,8 @@ Thoth/
 │   └── settings/                                    # App settings
 │       ├── api                                      # Public API
 │       │   ├── build.gradle.kts
-│       │   └── src/main/
-│       │       ├── kotlin/com/oussamateyib/thoth/feature/settings/api/
-│       │       │   └── SettingsNavKey.kt            # Navigation keys
-│       │       └── res/                             # Drawables, strings
+│       │   └── src/main/kotlin/com/oussamateyib/thoth/feature/settings/api/
+│       │       └── SettingsNavKey.kt                # Navigation keys
 │       └── impl
 │           ├── build.gradle.kts
 │           └── src/main/

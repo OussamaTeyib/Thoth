@@ -46,6 +46,7 @@ import com.oussamateyib.thoth.core.ui.NoteColorPicker
 import com.oussamateyib.thoth.core.ui.asColor
 import com.oussamateyib.thoth.core.ui.util.PaletteLayout
 import com.oussamateyib.thoth.feature.notes.impl.R
+import com.oussamateyib.thoth.core.designsystem.R as DesignR
 
 @Composable
 fun NoteEditorScreen(
@@ -156,8 +157,8 @@ internal fun NoteEditorScreen(
                         },
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.feature_notes_impl_arrow_back),
-                            contentDescription = stringResource(R.string.feature_notes_impl_back),
+                            painter = painterResource(DesignR.drawable.core_designsystem_ic_arrow_back),
+                            contentDescription = stringResource(DesignR.string.core_designsystem_back),
                         )
                     }
                 },
@@ -168,7 +169,7 @@ internal fun NoteEditorScreen(
                         },
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.feature_notes_impl_palette),
+                            painter = painterResource(DesignR.drawable.core_designsystem_ic_palette),
                             contentDescription = stringResource(R.string.feature_notes_impl_change_color),
                         )
                     }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="core_designsystem_back">رجوع</string>
+    <string name="core_designsystem_notes">ملاحظات</string>
+    <string name="core_designsystem_settings">الإعدادات</string>
+</resources>

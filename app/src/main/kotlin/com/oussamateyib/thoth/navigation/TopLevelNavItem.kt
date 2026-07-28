@@ -4,8 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.oussamateyib.thoth.feature.notes.api.NoteListNavKey
 import com.oussamateyib.thoth.feature.settings.api.SettingsNavKey
-import com.oussamateyib.thoth.feature.notes.api.R as NotesR
-import com.oussamateyib.thoth.feature.settings.api.R as SettingsR
+import com.oussamateyib.thoth.core.designsystem.R as DesignR
 
 data class TopLevelNavItem(
     @param:DrawableRes val iconId: Int,
@@ -13,13 +12,13 @@ data class TopLevelNavItem(
 )
 
 val NOTES = TopLevelNavItem(
-    iconId = NotesR.drawable.feature_notes_api_icon,
-    labelId = NotesR.string.feature_notes_api_title,
+    iconId = DesignR.drawable.core_designsystem_ic_notes,
+    labelId = DesignR.string.core_designsystem_notes,
 )
 
 val Settings = TopLevelNavItem(
-    iconId = SettingsR.drawable.feature_settings_api_icon,
-    labelId = SettingsR.string.feature_settings_api_title,
+    iconId = DesignR.drawable.core_designsystem_ic_settings,
+    labelId = DesignR.string.core_designsystem_settings,
 )
 
 val TOP_LEVEL_NAV_ITEMS = mapOf(

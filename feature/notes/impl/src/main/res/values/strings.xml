@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="feature_notes_impl_add_note">Add note</string>
-    <string name="feature_notes_impl_back">Back</string>
     <string name="feature_notes_impl_change_color">Change color</string>
     <string name="feature_notes_impl_clear_selection">Clear selection</string>
     <string name="feature_notes_impl_delete_selected_notes">Delete selected notes</string>
