@@ -33,6 +33,6 @@ local.properties
 !.idea/kotlinc.xml
 !.idea/markdown.xml
 !.idea/misc.xml
-!.idea/runConfigurations/
+!.idea/runConfigurations.xml
 !.idea/vcs.xml
 *.iml
