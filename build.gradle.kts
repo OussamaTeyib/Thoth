@@ -10,9 +10,3 @@ plugins {
     alias(libs.plugins.room) apply false
     alias(libs.plugins.thoth.dependency.analysis)
 }
-
-buildscript {
-    dependencies {
-        classpath(libs.kotlin.metadata.jvm)
-    }
-}
