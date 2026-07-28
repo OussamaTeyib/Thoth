@@ -17,6 +17,7 @@
 htmlReport/
 
 # Gradle files
+bin/
 [Bb]uild*/
 !build-logic
 .cxx/
