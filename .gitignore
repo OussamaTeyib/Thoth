@@ -13,6 +13,9 @@
 *.idsig
 *.zip
 
+# Code coverage reports
+htmlReport/
+
 # Gradle files
 [Bb]uild*/
 !build-logic
