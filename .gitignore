@@ -1,3 +1,18 @@
+# AI agent artifacts
+.artifacts/
+
+# Android build artifacts
+*.aab
+*.ap_
+*.apk
+*.apks
+*.class
+*.dex
+*.flat
+*.hprof
+*.idsig
+*.zip
+
 # Gradle files
 *.log
 .cxx/
@@ -18,18 +33,3 @@ local.properties
 !.idea/misc.xml
 !.idea/runConfigurations/
 !.idea/vcs.xml
-
-# AI agent artifacts
-.artifacts/
-
-# Android build artifacts
-*.aab
-*.ap_
-*.apk
-*.apks
-*.class
-*.dex
-*.flat
-*.hprof
-*.idsig
-*.zip
