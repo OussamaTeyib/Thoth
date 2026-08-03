@@ -2,14 +2,22 @@
   <dictionary name="project">
     <words>
       <w>Daos</w>
+      <w>Dorg</w>
       <w>Teyib</w>
       <w>aabs</w>
+      <w>aarch</w>
       <w>aboutlibraries</w>
+      <w>appname</w>
       <w>codeql</w>
+      <w>comspec</w>
       <w>designsystem</w>
+      <w>endlocal</w>
+      <w>errorlevel</w>
       <w>oussamateyib</w>
       <w>pipefail</w>
+      <w>setlocal</w>
       <w>snackbar</w>
+      <w>spdx</w>
       <w>temurin</w>
     </words>
   </dictionary>
