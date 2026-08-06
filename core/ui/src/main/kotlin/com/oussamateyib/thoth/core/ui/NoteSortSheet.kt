@@ -93,7 +93,6 @@ internal fun SortOptionRow(
     orderType: OrderType,
     onClick: () -> Unit,
 ) = ListItem(
-    headlineContent = { Text(label) },
     leadingContent = {
         Box(
             modifier = Modifier.size(24.dp),
@@ -117,4 +116,6 @@ internal fun SortOptionRow(
         .padding(horizontal = 4.dp)
         .clip(CircleShape)
         .clickable(onClick = onClick),
-)
+) {
+    Text(label)
+}
