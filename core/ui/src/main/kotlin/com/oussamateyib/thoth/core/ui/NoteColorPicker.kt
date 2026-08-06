@@ -2,16 +2,17 @@ package com.oussamateyib.thoth.core.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ExperimentalGridApi
+import androidx.compose.foundation.layout.Grid
+import androidx.compose.foundation.layout.GridTrackSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
@@ -29,6 +30,7 @@ import com.oussamateyib.thoth.core.model.data.NoteColor
 import com.oussamateyib.thoth.core.ui.util.PaletteLayout
 import com.oussamateyib.thoth.core.designsystem.R as DesignR
 
+@OptIn(ExperimentalGridApi::class)
 @Composable
 fun NoteColorPicker(
     onColorChange: (NoteColor) -> Unit,
@@ -36,25 +38,37 @@ fun NoteColorPicker(
     selectedColor: NoteColor? = null,
     layout: PaletteLayout = PaletteLayout.Grid,
 ) = when (layout) {
-    PaletteLayout.Row -> LazyRow(
+    PaletteLayout.Row -> Row(
         modifier = modifier
             .fillMaxWidth()
+            .horizontalScroll(rememberScrollState())
             .padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(5.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        items(NoteColor.entries) {
+        NoteColor.entries.forEach {
             ColorSwatch(it, it == selectedColor, { onColorChange(it) })
         }
     }
 
-    PaletteLayout.Grid -> LazyVerticalGrid(
-        columns = GridCells.Fixed(4),
-        modifier = modifier.padding(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(5.dp),
-        verticalArrangement = Arrangement.spacedBy(5.dp),
+    PaletteLayout.Grid -> Grid(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        config = {
+            val cols = if (constraints.maxWidth.toDp() < 600.dp) 4 else 6
+            val rows = (NoteColor.entries.size + cols - 1) / cols
+
+            repeat(cols) {
+                column(1.fr)
+            }
+            repeat(rows) {
+                row(GridTrackSize.Auto)
+            }
+            gap(5.dp)
+        },
     ) {
-        items(NoteColor.entries) {
+        NoteColor.entries.forEach {
             ColorSwatch(it, it == selectedColor, { onColorChange(it) })
         }
     }
