@@ -22,7 +22,7 @@ robolectric = "4.17-beta-4"
 room = "2.8.4"
 serialization = "1.11.0"
 splashscreen = "1.2.0"
-sqlite = "2.7.0"
+sqlite = "2.7.1"
 test = "1.7.0"
 
 [libraries]
