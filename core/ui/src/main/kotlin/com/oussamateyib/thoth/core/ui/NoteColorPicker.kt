@@ -5,7 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.ExperimentalGridApi
 import androidx.compose.foundation.layout.Grid
 import androidx.compose.foundation.layout.GridTrackSize
 import androidx.compose.foundation.layout.Row
@@ -30,7 +29,6 @@ import com.oussamateyib.thoth.core.model.data.NoteColor
 import com.oussamateyib.thoth.core.ui.util.PaletteLayout
 import com.oussamateyib.thoth.core.designsystem.R as DesignR
 
-@OptIn(ExperimentalGridApi::class)
 @Composable
 fun NoteColorPicker(
     onColorChange: (NoteColor) -> Unit,
