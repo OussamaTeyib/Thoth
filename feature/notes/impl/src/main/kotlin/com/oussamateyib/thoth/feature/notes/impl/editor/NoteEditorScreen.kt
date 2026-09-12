@@ -10,8 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -28,9 +28,8 @@ import androidx.compose.material3.rememberBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -39,7 +38,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oussamateyib.thoth.core.designsystem.component.TransparentTextField
@@ -47,6 +45,7 @@ import com.oussamateyib.thoth.core.ui.NoteColorPicker
 import com.oussamateyib.thoth.core.ui.asColor
 import com.oussamateyib.thoth.core.ui.util.PaletteLayout
 import com.oussamateyib.thoth.feature.notes.impl.R
+import kotlinx.coroutines.flow.drop
 import com.oussamateyib.thoth.core.designsystem.R as DesignR
 
 @Composable
@@ -128,11 +127,25 @@ internal fun NoteEditorScreen(
         }
     }
 
-    var titleFieldValue by remember {
-        mutableStateOf(TextFieldValue(text = state.title.text))
+    val titleState = rememberTextFieldState(state.title.text)
+    val contentState = rememberTextFieldState(state.content.text)
+
+    LaunchedEffect(titleState) {
+        snapshotFlow { titleState.text.toString() }
+            // Skip seed value to avoid a false update on load
+            .drop(1)
+            .collect { text ->
+                onEvent(NoteEditorEvent.EnteredTitle(text))
+            }
     }
-    var contentFieldValue by remember {
-        mutableStateOf(TextFieldValue(text = state.content.text))
+
+    LaunchedEffect(contentState) {
+        snapshotFlow { contentState.text.toString() }
+            // Skip seed value to avoid a false update on load
+            .drop(1)
+            .collect { text ->
+                onEvent(NoteEditorEvent.EnteredContent(text))
+            }
     }
 
     val contentFocusRequester = remember { FocusRequester() }
@@ -191,37 +204,27 @@ internal fun NoteEditorScreen(
                 .verticalScroll(verticalScroll),
         ) {
             TransparentTextField(
-                value = titleFieldValue,
+                state = titleState,
                 hint = stringResource(state.title.hint),
-                isHintVisible = state.title.text.isEmpty(),
-                onValueChange = {
-                    titleFieldValue = it
-                    onEvent(NoteEditorEvent.EnteredTitle(it.text))
-                },
+                isHintVisible = titleState.text.isEmpty(),
                 textStyle = MaterialTheme.typography.headlineMedium,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Next,
                 ),
-                keyboardActions = KeyboardActions(
-                    onNext = {
-                        // Move focus to the content field and place the cursor at the end
-                        contentFocusRequester.requestFocus()
-                        contentFieldValue = contentFieldValue.copy(
-                            selection = TextRange(contentFieldValue.text.length),
-                        )
-                    },
-                ),
+                onKeyboardAction = {
+                    // Move focus to the content field and place the cursor at the end
+                    contentFocusRequester.requestFocus()
+                    contentState.edit {
+                        selection = TextRange(length)
+                    }
+                },
                 modifier = Modifier.fillMaxWidth(),
             )
             Spacer(modifier = Modifier.height(12.dp))
             TransparentTextField(
-                value = contentFieldValue,
+                state = contentState,
                 hint = stringResource(state.content.hint),
-                isHintVisible = state.content.text.isEmpty(),
-                onValueChange = {
-                    contentFieldValue = it
-                    onEvent(NoteEditorEvent.EnteredContent(it.text))
-                },
+                isHintVisible = contentState.text.isEmpty(),
                 textStyle = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier
                     .fillMaxWidth()
