@@ -24,7 +24,7 @@ personal organization on Android.
 |----------------|------------------------------------------------|
 | Language       | Kotlin                                         |
 | Build system   | Gradle                                         |
-| Android SDK    | `compileSdk` 37.1, `minSdk` 24, `targetSdk` 37 |
+| Android SDK    | `compileSdk` 37.2, `minSdk` 24, `targetSdk` 37 |
 | Application ID | `com.oussamateyib.thoth`                       |
 | Version        | 1.0.0 (versionCode 1)                          |
 | License        | MIT                                            |
